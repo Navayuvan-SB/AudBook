@@ -1,26 +1,105 @@
-<ion-header>
-    <ion-navbar> 
-      <ion-title>Dashboard</ion-title>
-    </ion-navbar>
-</ion-header>
+
 
 <ion-content padding>
-<h2 style="margin: 15px 20px">Dashboard</h2>
+<!--title-->
+<h2 style="margin: 20px 25px ; font-weight: bolder">Dashboard</h2> 
 
+
+
+<!--grid for rows and cols(1row & 3cols)-->
 <ion-grid>
+
     <ion-row align-items-center >
-        <ion-col col-4>
-          <div> <ion-card>
-            <div class="img"><img src= "../../assets/imgs/camera1.jpg"></div>
-          </ion-card></div>
+        <!--col 1 for image-->
+        <ion-col >
+           <ion-card>
+            <img src= "../../assets/imgs/AuditImageView@2x.png">
+          </ion-card>
         </ion-col>
-        <ion-col col-6>
-          <div><p style="margin-bottom : -2px">Auditorimum 1</p><br><p style="margin-top : -8px">Mechanical Engineerging</p></div>
+        <!--col 2 for fonts , notification-->
+        <ion-col   col-6>
+          <div class="margin">
+              <p class="aud">Auditorimum 1
+                <!--notification circle-->
+              <span class="dot">
+                  <p class="one">1</p>
+              </span>
+              </p>
+                <br> <!--br tag to step on next line-->
+             <p class="depart">Mechanical Engineerging</p>
+            </div>
         </ion-col> 
-        <ion-col align-items-start col-4>
-            <div></div>
+        <!--col 3 for pen icon-->
+        <ion-col>
+            <div class="img2"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
           </ion-col>
     </ion-row>
 
 </ion-grid>
+
+
+<!--grid for rows and cols(1row & 3cols)-->
+<ion-grid style="margin-top: -20px">
+
+        <ion-row align-items-center>
+            <!--col 1 for image-->
+            <ion-col>
+               <ion-card>
+                <img src= "../../assets/imgs/AuditImageView@2x.png">
+              </ion-card>
+            </ion-col>
+            <!--col 2 for fonts , notification-->
+            <ion-col  col-6 >
+              <div class="margin">
+                  <p class="aud">Auditorimum 1
+                    <!--notification circle-->
+                  <span class="dot">
+                      <p class="one">1</p>
+                  </span>
+                  </p>
+                    <br> <!--br tag to step on next line-->
+                 <p class="depart">Mechanical Engineerging</p>
+                </div>
+            </ion-col> 
+            <!--col 3 for pen icon-->
+            <ion-col>
+                <div class="img2"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
+              </ion-col>
+        </ion-row>
+    
+    </ion-grid>
+
+
+    <!--grid for rows and cols(1row & 3cols)-->
+<ion-grid>
+
+        <ion-row align-items-center >
+            <!--col 1 for image-->
+            <ion-col >
+                
+               <ion-card>
+                <img src= "../../assets/imgs/AuditImageView@2x.png">
+              </ion-card>
+              
+            </ion-col>
+            <!--col 2 for fonts , notification--> 
+            <ion-col align-items-start col-6>
+              <div class="margin">
+                  <p class="aud">Auditorimum 1 
+                    <!--notification circle-->
+                  <span class="dot">
+                      <p class="one">1</p>
+                  </span>
+                  </p>
+                    <br> <!--br tag to step on next line-->
+                 <p class="depart">Mechanical Engineerging</p>
+                </div>
+            </ion-col> 
+            <!--col 3 for pen icon-->
+            <ion-col>
+                <div class="img2"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
+              </ion-col>
+        </ion-row>
+    
+    </ion-grid>
 </ion-content>

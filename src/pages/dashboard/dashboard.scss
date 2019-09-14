@@ -1,3 +1,4 @@
+
 page-dashboard {
 
     ion-grid{
@@ -7,17 +8,45 @@ page-dashboard {
     }
     ion-card{
         padding-top: 0px;
-        padding-bottom: 35px;
+        //padding-bottom: 35px;
         padding-right: -20px !important;
         padding-left: -25px !important;
         width : 80px !important;
-        border-radius: 10px;
+        border-radius: 30px;
     }
-     .img{
-    
-       
-       
-       
-        }
+    .margin{
+        margin-left: 8px;
+    }
 
+    .aud{
+        margin-bottom : -2px ; 
+        font-weight: bolder; 
+        font-size: 120%;
+    }
+
+    .depart{
+        margin-top : -5px; 
+        font-weight: lighter;
+    }
+
+    .dot {
+        height: 20px;
+        width: 20px;
+        background-color:#35AE59;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 25px;
+        //margin-top: -60px !important;
+     }
+
+     .one{
+        margin-top: 0px; 
+        margin-left: 5px; 
+        color: #FFFFFF !important;
+        //opacity: 100%;
+     }
+     .img2{
+         width: 30px !important;
+         margin-left: 25px;
+     }
 }
