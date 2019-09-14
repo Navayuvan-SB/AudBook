@@ -14,3 +14,35 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ion-icon {
+    &[class*="custom-"] {
+      mask-size: contain;
+      mask-position: 50% 50%;
+      mask-repeat: no-repeat;
+      background: currentColor;
+      width: 1em;
+      height: 1em;
+    }
+  
+    &[class*="custom-delete"] {
+      mask-image: url(../assets/icon/DeleteRequest.svg);
+    }
+    &[class*="custom-arrback"] {
+      mask-image: url(../assets/icon/ArrowBack.svg);
+    }
+    &[class*="custom-calendar"] {
+      mask-image: url(../assets/icon/Calendar.svg);
+    }
+    &[class*="custom-fromclock"] {
+      mask-image: url(../assets/icon/FromClock.svg);
+    }
+    &[class*="custom-toclock"] {
+      mask-image: url(../assets/icon/ToClock.svg);
+    }
+    &[class*="custom-dwarr"] {
+      mask-image: url(../assets/icon/dwarr.svg);
+    }
+    &[class*="custom-alert"] {
+      mask-image: url(../assets/icon/alert.svg);
+    }
+}

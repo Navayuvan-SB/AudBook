@@ -7,25 +7,35 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { StatusPage } from '../pages/status/status';
+import { BookNewPage } from '../pages/book-new/book-new';
+import { DetailPage } from '../pages/detail/detail';
+
 
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    StatusPage
+    StatusPage,
+    BookNewPage,
+    DetailPage
   ],
   imports: [
     BrowserModule,
+    
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
-    StatusPage
+    StatusPage,
+    BookNewPage,
+    DetailPage,
+   
   ],
   providers: [
+  
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

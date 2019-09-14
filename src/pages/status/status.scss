@@ -1,3 +1,104 @@
 page-status {
 
+    .one{
+        height:600px;
+    }
+
+    .toolbar-title.toolbar-title-md{  padding-left:33px; color:black; font-size: 23px;
+    }
+  
+    .toolbar-background {
+        background-color: white;
+       
+    }
+    
+    .com1{
+            position:relative;
+            left:10px;
+            width:90px;
+            height:90px;
+            background-size: cover;
+            display:block;
+            border-radius: 10%;
+    } 
+
+    .com2{
+            width: 15ch;
+            height: 5.7ch;
+            font-size: 9px;
+            color: white;
+    
+    
+    } 
+
+    .img1{
+            background-image: url(../assets/imgs/oneaud.png);
+            margin-top:50px; 
+    }
+
+    .img2{
+            background-image: url(../assets/imgs/twoaud.png);
+    
+    
+    }
+
+    .img3{
+            background-image: url(../assets/imgs/threeaud.png);
+    
+    }
+
+    .b{
+            text-transform: none;
+    }
+
+    .b1{
+            background-color:#F6FF00;
+    
+    
+    }
+
+    .b2{
+            background-color:#35AE59;
+   
+    
+    }
+
+    .b3{
+            background-color:#FF0000;
+   
+    
+    }
+
+    .b5{
+            width:16ch;
+            height: 5ch;
+            margin-left: 110px;
+            font-size:15px;
+      
+    }
+
+    .adjust{
+            margin-top: 18px;
+    }
+
+    .adjust1{
+            margin-left: 20px;
+    }
+
+    .adjust3{
+            margin-top:54px;
+    }
+
+    .adjust2{
+            margin-top:10px;
+    }
+
+    .adjust4{
+            margin-top:23px;
+    }
+    
+    .adjust5{
+            margin-top:77px;
+    }
+
 }
