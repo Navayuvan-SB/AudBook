@@ -1,35 +1,50 @@
 
 page-dashboard {
 
+    ion-icon{
+        margin-top: 38px;
+        margin-left: 5px;
+        font-size: 18px;
+    }
+    
+    ion-content{
+    margin-top: 48px;
+    }
+
+    h2{
+        font: Bold 25px Segoe UI;
+        margin-top :50px ; 
+        margin-left: 7px;
+    }
+    .toolbar-background 
+    {
+      background-color: transparent;
+    }
     ion-grid{
-        margin-top: 40px !important;
-        margin-left: 8px !important;
+        margin-top: 50px !important;
+        margin-left: 10px !important;
+        margin-bottom: -50px;
 
     }
     ion-card{
-        padding-top: 0px;
-        //padding-bottom: 35px;
-        padding-right: -20px !important;
-        padding-left: -25px !important;
         width : 80px !important;
-        border-radius: 30px;
     }
-    .margin{
+    .margin-left{
         margin-left: 8px;
     }
 
-    .aud{
+    .font-style{
         margin-bottom : -2px ; 
         font-weight: bolder; 
         font-size: 120%;
     }
 
-    .depart{
+    .font-lighter{
         margin-top : -5px; 
         font-weight: lighter;
     }
 
-    .dot {
+    .notification-circle {
         height: 20px;
         width: 20px;
         background-color:#35AE59;
@@ -39,14 +54,27 @@ page-dashboard {
         //margin-top: -60px !important;
      }
 
-     .one{
+     .notify-nums{
         margin-top: 0px; 
         margin-left: 5px; 
         color: #FFFFFF !important;
         //opacity: 100%;
      }
-     .img2{
-         width: 30px !important;
+     .pen-icon{
+         width: 32px !important;
          margin-left: 25px;
+         margin-bottom: 30px;
      }
+    .create-button{
+        margin-top: 250px;
+        margin-left: 89px;
+        background-color:#35AE59;
+        padding-bottom: 60px;
+        padding-top: 3px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .add-icon{
+        margin-top: 37px;
+    }
 }
