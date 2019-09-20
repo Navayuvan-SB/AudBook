@@ -1,22 +1,25 @@
+
+
+<!--header-->
 <ion-header no-border>
   <ion-navbar class="toolbar-background">
     <ion-buttons left >
         <button ion-button ion-only >
-    <ion-icon name="arrow-back"></ion-icon>
-    </button>
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
     </ion-buttons>
   <h2>Dashboard</h2> 
+  </ion-navbar>
+</ion-header> 
+
+
   
-    </ion-navbar>
-  </ion-header> 
   
+<!--content-->
 <ion-content padding>
 
 
-
-
-
-<!--grid for rows and cols(1row & 3cols)-->
+  <!--grid for rows and cols(1row & 3cols)-->
 <ion-grid>
 
     <ion-row align-items-center >
@@ -25,11 +28,11 @@
         <!--col 1 for image-->
         <ion-col>
            <ion-card>
-            <img src= "../../assets/imgs/AuditImageView@2x.png">
-          </ion-card>
+             <img src= "../../assets/imgs/AuditImageView@2x.png">
+           </ion-card>
         </ion-col>
 
-        <!--col 2 for fonts , notification-->
+        <!--col 2 for fonts , notification circle-->
         <ion-col   col-6>
           <div class="margin-left">
                 <p class="font-style">Auditorimum 1
@@ -39,7 +42,7 @@
                       </span>
                 </p> <br> <!--br tag to step on next line-->
                 <p class="font-lighter">Mechanical Engineerging</p>
-            </div>
+          </div>
         </ion-col>
 
         <!--col 3 for pen icon-->
@@ -67,7 +70,7 @@
         <ion-col>
            <ion-card>
             <img src= "../../assets/imgs/AuditImageView@2x.png">
-          </ion-card>
+           </ion-card>
         </ion-col>
 
         <!--col 2 for fonts , notification-->
@@ -80,7 +83,7 @@
                       </span>
                 </p> <br> <!--br tag to step on next line-->
                 <p class="font-lighter">Mechanical Engineerging</p>
-            </div>
+          </div>
         </ion-col>
 
         <!--col 3 for pen icon-->
@@ -122,20 +125,24 @@
                   </p> <br> <!--br tag to step on next line-->
                   <p class="font-lighter">Mechanical Engineerging</p>
             </div>
-            </ion-col>
+          </ion-col>
     
             <!--col 3 for pen icon-->
-            <ion-col>
-                <div class="pen-icon"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
-            </ion-col>
+          <ion-col>
+              <div class="pen-icon"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
+          </ion-col>
     
     
        </ion-row>
 </ion-grid>
+
        
-          
-       <button ion-button color="secondary" round class="create-button">
-         <ion-icon name="add" class="add-icon" large>Create New </ion-icon>
-       </button>
+<!--create button-->
+<button ion-button color="secondary" round class="create-button">
+    <ion-icon name="add" class="add-icon" large></ion-icon> Create New
+</button>
+
+
+
 
 </ion-content>

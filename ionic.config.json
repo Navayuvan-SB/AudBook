@@ -1,5 +1,7 @@
 {
   "name": "AudPsna",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

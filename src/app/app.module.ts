@@ -8,13 +8,16 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { StatusPage } from '../pages/status/status';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { RequestPage } from '../pages/request/request';
+
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
     StatusPage,
-    DashboardPage 
+    DashboardPage,
+    RequestPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
     MyApp,
     LoginPage,
     StatusPage,
-    DashboardPage 
+    DashboardPage,
+    RequestPage
   ],
   providers: [
     StatusBar,
