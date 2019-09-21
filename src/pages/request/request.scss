@@ -18,7 +18,11 @@ h2{
 }
 
 
+// ion-header height
 
+ion-header{
+    height: 10%;
+}
 
 
 
@@ -57,11 +61,11 @@ ion-grid{
     font-weight: lighter;
 }
 .done-icon{
-    width: 40px !important;
+    width: 75%;
     margin: 0px 0px 30px 35px;
 }
 .cancel-icon{
-    width: 40px !important;
+    width: 75%;
     margin: 0px 0px 30px 35px;
 }
 
