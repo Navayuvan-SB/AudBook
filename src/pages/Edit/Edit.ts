@@ -21,5 +21,7 @@ export class EditPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditPage');
   }
-
+  save() {
+    console.log('save button clicked');
+  }
 }

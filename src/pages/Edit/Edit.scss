@@ -14,13 +14,13 @@ page-edit {
     .toolbar-title.toolbar-title-md
     { 
       color:#000000;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
       text-align: left;
       letter-spacing: 0;
-      font-size: 63px;
       opacity: 1;
     }
-
+    h2{
+      font: bold 25px Segoe UI;
+    }
     .toolbar-background 
     {
       background-color: transparent;

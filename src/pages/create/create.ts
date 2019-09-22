@@ -20,5 +20,7 @@ export class CreatePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatePage');
   }
-
+  save(){
+    console.log('save button clicked');
+  }
 }

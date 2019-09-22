@@ -6,13 +6,8 @@
 -->
 <ion-header no-border>
     <ion-navbar class="toolbar-background">
-      <ion-buttons left >
-          <button large (click)="Dashpage()" ion-button ion-only >
-      <ion-icon name="arrow-back"></ion-icon>
-      </button>
-      </ion-buttons>
-    <ion-toolbar class="toolbar-title.toolbar-title-md"><b>Let's create one...
-   </b> </ion-toolbar>
+    <ion-toolbar class="toolbar-title.toolbar-title-md"><h2>Let's create one...
+    </h2> </ion-toolbar>
       </ion-navbar>
     </ion-header> 
     
@@ -30,11 +25,11 @@
               </ion-item>
         
             <ion-item class="round-border width">
-              <ion-input type="text" placeholder='Department'></ion-input>
+              <ion-input type="dropdown" placeholder='Department'></ion-input>
               <ion-icon name="custom-aw" class="resize-icon" item-right></ion-icon>
             </ion-item>
             
-            <button ion-button block class='width btn-prop'>Save</button>
+            <button ion-button block class='width btn-prop' (click)="save()">Save</button>
           
           </ion-row>  
       </ion-grid>
