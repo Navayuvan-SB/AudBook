@@ -1,15 +1,24 @@
 page-status {
 
     .one{
-        height:600px;
+        height:550px;
     }
-
+   
+    
     .toolbar-title.toolbar-title-md{  padding-left:33px; color:black; font-size: 23px;
     }
   
     .toolbar-background {
         background-color: white;
        
+    }
+    
+    .gap{
+            margin-top:8%;
+    }
+
+    .gap1{
+            margin-left:16%;
     }
     
     .com1{
@@ -23,17 +32,23 @@ page-status {
     } 
 
     .com2{
-            width: 15ch;
-            height: 5.7ch;
-            font-size: 9px;
+            width: 13ch;
+            height: 5.5ch;
+            font-size: 12px;
             color: white;
     
     
     } 
+    .com3{
+            width: 15ch;
+            height: 6ch;
+            color:white;
+            margin-left: 34%;
+    }
 
     .img1{
             background-image: url(../assets/imgs/oneaud.png);
-            margin-top:50px; 
+            
     }
 
     .img2{
@@ -71,34 +86,18 @@ page-status {
 
     .b5{
             width:16ch;
-            height: 5ch;
-            margin-left: 110px;
-            font-size:15px;
+            height: 6ch;
+            margin-left: 110%;
+            font-size:15%;
       
     }
-
-    .adjust{
-            margin-top: 18px;
-    }
-
+   
     .adjust1{
-            margin-left: 20px;
-    }
-
-    .adjust3{
-            margin-top:54px;
+            margin-top:1%;
     }
 
     .adjust2{
-            margin-top:10px;
-    }
-
-    .adjust4{
-            margin-top:23px;
-    }
-    
-    .adjust5{
-            margin-top:77px;
+            margin-left: 27%;
     }
 
 }

@@ -5,60 +5,73 @@
 </ion-header>
 
 <ion-content padding>
+      <div class="change">
+
+      </div>
+
       <div class="one">
             <ion-grid>
-                  <ion-row>
-                       <ion-col>
+                  <ion-row class="gap">
+                       <ion-col col-2>
                             <ion-avatar class="img1 com1 " style=" border: 1px solid black;">
                                                   <!--image-->
                             </ion-avatar>
                        </ion-col>
 
-                       <ion-col col-6>
-                             <ion-row class="adjust1 adjust3"><b>Auditorium 1-Mech</b> </ion-row> 
-                             <ion-row class="adjust1 adjust2">01/01/01</ion-row>
+                       <ion-col col-10>
+                             <ion-row class="adjust2"><b>Auditorium 1-Mech</b> </ion-row> 
+                             <ion-row class="adjust1 adjust2">
+                                   <ion-col col-7>01/01/01</ion-col>
+                                   <ion-col class="gap1" col-3> <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon></ion-col>
+                              </ion-row>
                              <ion-row><button class="b b1 com2 adjust1 adjust2" ion-button round>Waiting</button></ion-row>
                        </ion-col>
    
-                       <ion-col>
-                             <ion-icon (click)="alert()" class="adjust1 adjust5" name="custom-delete" color="danger"></ion-icon>
-                       </ion-col>
+                       <!-- <ion-col>
+                             <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon>
+                       </ion-col> -->
                   </ion-row>
 
-                  <ion-row>
-                       <ion-col>
+                  <ion-row class="gap">
+                       <ion-col col-2>
                             <ion-avatar class="img2 com1 adjust" style=" border: 1px solid black;">
                                                   <!--image-->
                             </ion-avatar>
                        </ion-col>
     
-                       <ion-col col-6>
-                             <ion-row class="adjust1 adjust4"><b>Auditorium 2-IT</b> </ion-row> 
-                             <ion-row class="adjust1 adjust2">01/01/01</ion-row>
+                       <ion-col col-10>
+                             <ion-row class="adjust2"><b>Auditorium 2-IT</b> </ion-row> 
+                             <ion-row class=" adjust1 adjust2">
+                                   <ion-col col-7>01/01/01</ion-col>
+                                   <ion-col class="gap1" col-3> <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon></ion-col>
+                              </ion-row>
                              <ion-row><button class="b b2 com2 adjust1 adjust2" ion-button round>Accepted</button></ion-row>
                        </ion-col>
-                      
+<!--                       
                        <ion-col>
-                             <ion-icon (click)="alert()" class="adjust1 adjust3" name="custom-delete" color="danger"></ion-icon>
-                       </ion-col>
+                             <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon>
+                       </ion-col> -->
                   </ion-row>
  
-                  <ion-row>
-                       <ion-col>
+                  <ion-row class="gap">
+                       <ion-col col-2>
                             <ion-avatar class="img3 com1 adjust" style=" border: 1px solid black;">
                                                   <!--image-->
                             </ion-avatar>
                        </ion-col>
           
-                       <ion-col col-6>
-                            <ion-row class="adjust1 adjust4 "><b>Auditorium 3-CSE</b> </ion-row> 
-                            <ion-row class="adjust1 adjust2">01/01/01</ion-row>
-                            <ion-row><button class="b b3 com2 adjust1 adjust2" ion-button round>Rejected</button></ion-row>
+                       <ion-col col-10>
+                            <ion-row class="adjust2 "><b>Auditorium 3-CSE</b> </ion-row> 
+                            <ion-row class="adjust1 adjust2">
+                                  <ion-col col-7>01/01/01</ion-col>
+                                  <ion-col class="gap1" col-3> <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon></ion-col>
+                              </ion-row>
+                            <ion-row><button class="b b3 com2 adjust1 adjust2 " ion-button round>Rejected</button></ion-row>
                        </ion-col>
 
-                       <ion-col>
-                             <ion-icon (click)="alert()" class="adjust1 adjust3" name="custom-delete" color="danger"></ion-icon>
-                       </ion-col>
+                       <!-- <ion-col>
+                             <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon>
+                       </ion-col> -->
                   </ion-row>
             </ion-grid>
       </div>
@@ -66,5 +79,5 @@
 </ion-content>
 
     <ion-footer>
-           <button (click)="next1()" class="b b5 com2 " ion-button round>+ BookNew</button>
+           <button (click)="next1()" class="b b2 com3 " ion-button round>+ BookNew</button>
     </ion-footer>

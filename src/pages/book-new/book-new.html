@@ -14,9 +14,10 @@
 <ion-content padding>
 
     <ion-grid> 
+        <div class="c1" (click)="next()" >
           <ion-row>
               <ion-col>
-                      <ion-avatar  (click)="next()" class="img1 com1 " >
+                      <ion-avatar   class="img1 com1 adjust5 " >
                                    <!--image-->
                       </ion-avatar>
               </ion-col>
@@ -26,10 +27,11 @@
                       <ion-row class="adjust1 adjust2 ">Mechanical Engineering</ion-row>
               </ion-col>
           </ion-row>
-
+        </div>
+        <div class="c1" (click)="next()" >
           <ion-row>
                 <ion-col>
-                        <ion-avatar (click)="next()" class="img2 com1 adjust5 " >
+                        <ion-avatar  class="img2 com1 adjust5 " >
                                       <!--image-->
                         </ion-avatar>
                 </ion-col>
@@ -39,7 +41,8 @@
                         <ion-row class="adjust1 adjust2">Information Technology</ion-row> 
                 </ion-col>
           </ion-row>
-
+        </div>
+        <div class="c1" (click)="next()">
           <ion-row>
                 <ion-col>
                         <ion-avatar (click)="next()" class="img3 com1 adjust5 " >
@@ -52,6 +55,6 @@
                         <ion-row class="adjust1 adjust2">Computer Science Engineering</ion-row>           
                 </ion-col>
           </ion-row>
-          
+        </div>
       </ion-grid>
 </ion-content>

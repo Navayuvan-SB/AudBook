@@ -15,6 +15,7 @@ import { StatusPage } from '../status/status';
   templateUrl: 'detail.html',
 })
 export class DetailPage {
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
