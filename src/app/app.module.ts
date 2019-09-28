@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { StatusPage } from '../pages/status/status';
 import { BookNewPage } from '../pages/book-new/book-new';
 import { DetailPage } from '../pages/detail/detail';
+import { WarningPage } from '../pages/warning/warning';
 
 
 
@@ -18,7 +19,8 @@ import { DetailPage } from '../pages/detail/detail';
     LoginPage,
     StatusPage,
     BookNewPage,
-    DetailPage
+    DetailPage,
+    WarningPage
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { DetailPage } from '../pages/detail/detail';
     StatusPage,
     BookNewPage,
     DetailPage,
+    WarningPage
    
   ],
   providers: [

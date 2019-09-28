@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams } from 'ionic-angular';
+import { NavController, AlertController, NavParams, PopoverController } from 'ionic-angular';
 import { BookNewPage } from '../book-new/book-new';
+import { WarningPage } from '../warning/warning';
 
 /**
  * Generated class for the StatusPage page.
@@ -15,21 +16,17 @@ import { BookNewPage } from '../book-new/book-new';
 })
 export class StatusPage {
 
-  constructor(public alertctrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public alertctrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
   }
   alert(){
-        const alert=this.alertctrl.create({
-        title: '<center><b>Warning</b></center>',
-        cssClass:'alert-alert',
-        message: 'Are you sure you want to delete the order?', 
-        buttons: ['Cancel','Yes'],
-      
-  });
-  alert.present(); 
+    const popover= this.popoverCtrl.create(WarningPage);
+    
+    popover.present();  
+ 
   }
   
   next1(){

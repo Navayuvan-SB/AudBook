@@ -51,6 +51,8 @@
               <ion-col col-6>
                   <ion-item class="but but1" style=" border: 1px solid #707070;" >
                       <ion-label class="l1">From</ion-label>
+                      <!-- <ion-input class="l1" placeholder="From"></ion-input>
+                      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime> -->
                                 <ion-icon class="icon1" name="custom-fromclock" item-end ></ion-icon>
                             </ion-item>
               </ion-col>
@@ -58,6 +60,8 @@
               <ion-col col-6>
                     <ion-item class="but but1" style=" border: 1px solid #707070;">
                             <ion-label class="l1">To</ion-label>
+                             <!-- <ion-input class="l1" placeholder="From"></ion-input>
+                      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime> -->
                                       <ion-icon class="icon1" name="custom-fromclock" item-end ></ion-icon>
                                   </ion-item>
               </ion-col>         
@@ -65,7 +69,7 @@
 
           <ion-row>
                 <ion-col>
-                        <ion-item class="but but1" style=" border: 1px solid #707070;" >
+                        <ion-item (click)="dept()" class="but but1" style=" border: 1px solid #707070;" >
                                 <ion-label class="l1">Department</ion-label>
                                     <ion-icon class="icon1" name="custom-dwarr" item-end></ion-icon> 
                         </ion-item>
@@ -75,7 +79,7 @@
           <ion-row>
               <ion-col>
                     <ion-item class="but but1" style=" border: 1px solid #707070;">
-                            <ion-label class="l1">Mobilenumber</ion-label>
+                            <ion-input class="l1" type="number" placeholder="Mobilenumber"></ion-input>
                                   </ion-item>               
               </ion-col>
           </ion-row>
