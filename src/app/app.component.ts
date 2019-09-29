@@ -13,7 +13,7 @@ import { Audi } from '../firebaseconfig';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = CreatePage;
+  rootPage:any =CreatePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
