@@ -7,6 +7,7 @@ import { UloginPage } from '../pages/Ulogin/Ulogin';
 import { StatusPage } from '../pages/status/status';
 import { EditPage } from '../pages/Edit/Edit';
 import { CreatePage } from '../pages/create/create';
+import { Audi } from '../firebaseconfig';
 
 @Component({
   templateUrl: 'app.html'
