@@ -12,26 +12,32 @@ page-warning {
         margin-top: -55%;
         margin-left: -85%;
     }
-  
-      
+
    .c1{
        margin-top: -10%;
        font-size: 105%;
        margin-left: -13%;
    }
-   .l1{
-       margin-top: -1%;
-       
+
+   .c2{
+    border-top :1px solid #707070;
+    
    }
+
+   .c3{
+    border-right:1px solid #707070;
+   }
+  
+   .l1{
+    text-align: center;
+    }
+
    .l{
        color: #35AE59;
-       width:110%;
+    
    }
+
    .l2{
        color:#FF0000;
-       width:100%;
-   }
-   .foot{
-       color:#707070; 
    }
 }
