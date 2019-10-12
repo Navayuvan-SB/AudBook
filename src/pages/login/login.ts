@@ -1,44 +1,38 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, LoadingController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { StatusPage } from '../status/status';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { DashboardPage } from '../dashboard/dashboard';
+
 @Component({
   selector: 'page-login',
-  templateUrl: 'Ulogin.html'
+  templateUrl: 'login.html'
 })
-export class UloginPage {
+export class LoginPage {
 
   credentialForm  : FormGroup
 
-  constructor(public navCtrl      : NavController, 
+  constructor(public navCtrl: NavController,
               public navParams    : NavParams,
               public formBuilder  : FormBuilder,
               public fbService    : FirebaseServices,
               public toastCtrl    : ToastController,
               public loadingCtrl  : LoadingController) {
-
+    
                 this.credentialForm = this.formBuilder.group({
-                   Email       :  ['', Validators.compose([
-                                       Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$'),
-                                       Validators.required
+                  email   : ['',Validators.compose([
+                                   Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$'),
+                                   Validators.required
                   ])],
                   password      : ['',Validators.compose([
                                     Validators.required,
                                     Validators.minLength(8)
                   ])]
                 })
-              }
-
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
-  navToSignUp(){
-    
-    this.navCtrl.push(StatusPage);
-  }
-
   signIn(){
 
     // loading instance
@@ -53,17 +47,21 @@ export class UloginPage {
       position  : 'bottom'
     });
 
-    var Email = this.credentialForm.controls[' Email'].value;
+    var  email = this.credentialForm.controls['email'].value;
     var password = this.credentialForm.controls['password'].value;
 
     loading.present();
-    this.fbService.login(Email, password)
+    this.fbService.filterData(this.fbService.equalTo,'users',null,this.fbService.orderByChild,'email', email)
+        .then((response) => {
+          // let obj = Object.entries(response.val());
+          // let email = obj[0][1].email;
+          this.fbService.login(email, password)
               .then((response) => {
                 loading.dismiss();
-                this.navCtrl.push(StatusPage);
+                this.navCtrl.push(DashboardPage);
               })
               .catch((error) => {
-                // toast.present();
+                toast.present();
                 loading.dismiss();
                 if (error.message == "The password is invalid or the user does not have a password."){
                   toast.setMessage("Invalid username or password");
@@ -74,9 +72,16 @@ export class UloginPage {
                 }
 
               });
-    // this.navCtrl.push(StatusPage);
+          
+        })
+        .catch((error) =>{
+          loading.dismiss();
+          toast.setMessage("Some error has occured. Please try again");
+          toast.present();
+        })
+    
   }
 
 }
 
-}
+

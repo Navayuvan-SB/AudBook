@@ -1,0 +1,49 @@
+page-request {
+
+//header styles
+ion-header{
+    height: 10% !important;
+}
+.toolbar-background {
+  background-color:white;
+}
+h2{
+    font: Bolder 25px Segoe UI;
+    margin-top :15px ; 
+    margin-left: 1px;
+    color: black;
+}
+
+
+
+//ion content styles
+ion-content{
+    margin-top: -35px;
+}
+
+
+
+//styles inside grid
+ion-grid{
+    margin-top: 50px ;
+    margin-left: 15px !important;
+    margin-bottom: -50px;
+
+}
+.font-style1{
+    font-weight: bolder; 
+    font-size: 120%;
+}
+.space0{
+    margin-top : -15px;
+}
+.font-lighter1{
+    margin-top : -8px; 
+    font-weight: lighter;
+}
+.done-cancel-icon{
+    width: 37px;
+    margin: 15px 0px 0px 5px;
+}
+
+}

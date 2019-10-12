@@ -12,13 +12,17 @@ import { BookNewPage } from '../pages/book-new/book-new';
 import { DetailPage } from '../pages/detail/detail';
 import { WarningPage } from '../pages/warning/warning';
 
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { RequestPage } from '../pages/request/request';
+import { LoginPage } from '../pages/login/login';
+
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any =CreatePage;
+  rootPage:any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

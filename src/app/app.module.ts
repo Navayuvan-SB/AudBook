@@ -13,6 +13,11 @@ import { Audi } from '../firebaseconfig';
 import { BookNewPage } from '../pages/book-new/book-new';
 import { DetailPage } from '../pages/detail/detail';
 import { WarningPage } from '../pages/warning/warning';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { RequestPage } from '../pages/request/request';
+
+
+import { FirebaseServices } from '../services/fireBaseService'
 
 
 
@@ -20,6 +25,7 @@ import { WarningPage } from '../pages/warning/warning';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
     StatusPage,
     EditPage,
     CreatePage,
-    
+    LoginPage,
+    StatusPage,
+    DashboardPage,
+    RequestPage
   ],
   imports: [
     BrowserModule,
@@ -50,14 +59,18 @@ import { AngularFireDatabase } from 'angularfire2/database';
     StatusPage,
     BookNewPage,
     DetailPage,
-    WarningPage
-   
+    WarningPage,
+    LoginPage,
+    StatusPage,
+    DashboardPage,
+    RequestPage
   ],
   providers: [
   
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    FirebaseServices,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule { }
