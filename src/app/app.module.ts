@@ -10,6 +10,8 @@ import { StatusPage } from '../pages/status/status';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RequestPage } from '../pages/request/request';
 
+import { FirebaseServices } from '../services/fireBaseService'
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { RequestPage } from '../pages/request/request';
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseServices,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

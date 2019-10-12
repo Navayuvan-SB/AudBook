@@ -7,20 +7,42 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="credentialForm">
   <ion-grid>
 
       <ion-row>
         <ion-item class="round-border width">
-            <ion-input type="text" placeholder='Username or Email'></ion-input>
+            <ion-input type="text" 
+            placeholder="UserID or Email"
+            formControlName="email">
+          </ion-input>
+        </ion-item>
+
+        <ion-item 
+        class="warning-on-input"
+        *ngIf="!credentialForm.controls.email.valid && (credentialForm.controls.phoneNumber.dirty || submitAttempt)">
+          <p>Enter valid Email</p>
         </ion-item>
     
         <ion-item class="round-border width">
-          <ion-input type="password" placeholder='Password'></ion-input>
+          <ion-input type="password" 
+          placeholder='Password'>
+          formControlName="password"
+        </ion-input>
         </ion-item>
+
+        <ion-item
+        class="warning-on-input"
+        *ngIf="!credentialForm.controls.password.valid && (credentialForm.controls.password.dirty || submitAttempt)">
+          <p>Password length should be 8 characters long</p>
+      </ion-item>
       
-        <button ion-button block class='width btn-prop'>Login</button>
+        <button ion-button block 
+        class='width btn-prop' 
+        (click)="signIn()"
+        [disabled]="!credentialForm.valid">Login</button>
       </ion-row>  
 
   </ion-grid>
-
+</form>
 </ion-content>
