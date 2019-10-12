@@ -24,7 +24,32 @@ ion-icon {
       height: 1em;
     }
   
+<<<<<<< HEAD
     &[class*="custom-aw"] {
       mask-image: url(../assets/icon/aw.svg);
     }
 }
+=======
+    &[class*="custom-delete"] {
+      mask-image: url(../assets/icon/DeleteRequest.svg);
+    }
+    &[class*="custom-arrback"] {
+      mask-image: url(../assets/icon/ArrowBack.svg);
+    }
+    &[class*="custom-calendar"] {
+      mask-image: url(../assets/icon/Calendar.svg);
+    }
+    &[class*="custom-fromclock"] {
+      mask-image: url(../assets/icon/FromClock.svg);
+    }
+    &[class*="custom-toclock"] {
+      mask-image: url(../assets/icon/ToClock.svg);
+    }
+    &[class*="custom-dwarr"] {
+      mask-image: url(../assets/icon/dwarr.svg);
+    }
+    &[class*="custom-alert"] {
+      mask-image: url(../assets/icon/alert.svg);
+    }
+}
+>>>>>>> 52e854d5d6f8782e1cbc1c88514541663224f8d1

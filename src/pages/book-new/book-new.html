@@ -1,0 +1,60 @@
+<!--
+  Generated template for the BookNewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header no-border>
+      <ion-navbar>
+            <ion-title class="toolbar-title.toolbar-title-md"><b>Book New</b></ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-grid> 
+        <div class="c1" (click)="next()" >
+          <ion-row>
+              <ion-col>
+                      <ion-avatar   class="img1 com1 adjust5 " >
+                                   <!--image-->
+                      </ion-avatar>
+              </ion-col>
+
+              <ion-col col-8>
+                      <ion-row class="adjust1 adjust3"><b>Auditorium 1</b> </ion-row> 
+                      <ion-row class="adjust1 adjust2 ">Mechanical Engineering</ion-row>
+              </ion-col>
+          </ion-row>
+        </div>
+        <div class="c1" (click)="next()" >
+          <ion-row>
+                <ion-col>
+                        <ion-avatar  class="img2 com1 adjust5 " >
+                                      <!--image-->
+                        </ion-avatar>
+                </ion-col>
+                
+                <ion-col col-8>
+                        <ion-row class="adjust1 adjust3"><b>Auditorium 2</b> </ion-row> 
+                        <ion-row class="adjust1 adjust2">Information Technology</ion-row> 
+                </ion-col>
+          </ion-row>
+        </div>
+        <div class="c1" (click)="next()">
+          <ion-row>
+                <ion-col>
+                        <ion-avatar (click)="next()" class="img3 com1 adjust5 " >
+                                    <!--image-->
+                        </ion-avatar>
+                </ion-col>
+
+                <ion-col col-8>
+                        <ion-row class="adjust1 adjust3 "><b>Auditorium 3</b> </ion-row> 
+                        <ion-row class="adjust1 adjust2">Computer Science Engineering</ion-row>           
+                </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+</ion-content>

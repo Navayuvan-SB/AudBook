@@ -1,0 +1,101 @@
+page-detail {
+  
+    .toolbar-title.toolbar-title-md{ 
+        padding-left:5px; color:black; font-size: 20px;
+    }
+    
+    .toolbar-background {
+        background-color: white;
+    }
+
+    .one{
+        height:600px;
+    }
+   
+    .c1{
+        text-align: start;
+        color:#35AE59;
+        margin-top:3px;
+    }
+
+    .a1{
+        height:27px;
+    }
+
+    .imgg1{
+        position:relative;
+        background-color:#35AE59;
+        margin-bottom:20px;
+        left:10px;
+        width:23px;
+        height:20px;
+        display:block;
+        border-radius: 50%;
+    }
+
+    .com1{
+        position:relative;
+        left:10px;
+        width:95px;
+        height:95px;
+        background-size: cover;
+        display:block;
+        border-radius: 7%;
+    } 
+
+    .img1{
+        background-image: url(../assets/imgs/oneaud.png);
+        margin-top:30px; 
+    }
+
+    .adjust1{
+        margin-left: 20px;
+    }
+    
+    .adjust3{
+        margin-top:49px;
+    }
+    
+    .adjust2{
+        margin-top:10px;
+    }
+    
+   
+    
+   
+    .l1{
+        
+        color:#C0C0C0;
+    }
+    .l2{
+        margin-right:50%;
+    }
+    .l3{
+        font-size: 13px;
+        text-align: center;
+        color: white;
+
+    }
+    .but{
+       
+        border-radius: 5px;
+        margin-top: 9px;
+    }
+
+    .but1{
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100% !important;
+        max-height: 25%;
+        margin-bottom: 1%;
+    }
+    .but2{
+        margin-left: auto;
+        margin-right: auto;
+        height:5.6ch;
+    }
+    .icon1{
+        color:#35AE59;
+        font-size:120%;
+    }
+}

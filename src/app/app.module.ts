@@ -10,6 +10,10 @@ import { StatusPage } from '../pages/status/status';
 import { EditPage } from '../pages/Edit/Edit';
 import { CreatePage } from '../pages/create/create';
 import { Audi } from '../firebaseconfig';
+import { BookNewPage } from '../pages/book-new/book-new';
+import { DetailPage } from '../pages/detail/detail';
+import { WarningPage } from '../pages/warning/warning';
+
 
 
 
@@ -29,18 +33,28 @@ import { AngularFireDatabase } from 'angularfire2/database';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(Audi.Auditor)
+    AngularFireModule.initializeApp(Audi.Auditor),
+    UloginPage,
+    StatusPage,
+    BookNewPage,
+    DetailPage,
+    WarningPage
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    UloginPage,
     StatusPage,
     EditPage,
     CreatePage,
-    
+    UloginPage,
+    StatusPage,
+    BookNewPage,
+    DetailPage,
+    WarningPage
+   
   ],
   providers: [
+  
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler }

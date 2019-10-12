@@ -8,6 +8,11 @@ import { StatusPage } from '../pages/status/status';
 import { EditPage } from '../pages/Edit/Edit';
 import { CreatePage } from '../pages/create/create';
 import { Audi } from '../firebaseconfig';
+import { BookNewPage } from '../pages/book-new/book-new';
+import { DetailPage } from '../pages/detail/detail';
+import { WarningPage } from '../pages/warning/warning';
+
+
 
 @Component({
   templateUrl: 'app.html'
