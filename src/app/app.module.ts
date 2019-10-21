@@ -15,8 +15,6 @@ import { DetailPage } from '../pages/detail/detail';
 import { WarningPage } from '../pages/warning/warning';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RequestPage } from '../pages/request/request';
-
-
 import { FirebaseServices } from '../services/fireBaseService'
 
 
