@@ -20,14 +20,15 @@
 
         <ion-item 
         class="warning-on-input"
-        *ngIf="!credentialForm.controls.email.valid && (credentialForm.controls.phoneNumber.dirty || submitAttempt)">
+        *ngIf="!credentialForm.controls.email.valid && (credentialForm.controls.email.dirty || submitAttempt)">
           <p>Enter valid Email</p>
         </ion-item>
     
         <ion-item class="round-border width">
           <ion-input type="password" 
-          placeholder='Password'>
           formControlName="password"
+          placeholder='Password'>
+      
         </ion-input>
         </ion-item>
 

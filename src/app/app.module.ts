@@ -34,18 +34,17 @@ import { LoginPage } from '../pages/login/login';
     CreatePage,
     LoginPage,
     StatusPage,
+    BookNewPage,
+    DetailPage,
+    WarningPage,
     DashboardPage,
-    RequestPage
+    RequestPage,
+    UloginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(Audi.Auditor),
-    UloginPage,
-    StatusPage,
-    BookNewPage,
-    DetailPage,
-    WarningPage
+    AngularFireModule.initializeApp(Audi.Auditor)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,6 +67,9 @@ import { LoginPage } from '../pages/login/login';
     StatusBar,
     SplashScreen,
     FirebaseServices,
+    AngularFireAuth,
+    AngularFireDatabase,
+    AngularFireModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

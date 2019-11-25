@@ -3,6 +3,7 @@ import { NavController, ToastController, LoadingController, NavParams } from 'io
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StatusPage } from '../status/status';
 import { FirebaseServices } from '../../services/fireBaseService';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'Ulogin.html'
@@ -76,7 +77,5 @@ export class UloginPage {
               });
     // this.navCtrl.push(StatusPage);
   }
-
-}
 
 }

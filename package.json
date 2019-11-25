@@ -25,6 +25,7 @@
     "@ionic-native/status-bar": "~4.20.0",
     "@ionic/storage": "2.2.0",
     "angularfire2": "^5.0.0-rc.3",
+    "destroy": "^1.0.4",
     "firebase": "^4.8.0",
     "ionic-angular": "3.9.5",
     "ionic3-calendar-en": "^1.1.3",
