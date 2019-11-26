@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
+import { CalendarPage } from '../calendar/calendar';
 
 /**
  * Generated class for the BookNewPage page.
@@ -16,7 +17,7 @@ import { DetailPage } from '../detail/detail';
 })
 export class BookNewPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
   }
 
   ionViewDidLoad() {
@@ -24,5 +25,10 @@ export class BookNewPage {
   }
 next(){
   this.navCtrl.push(DetailPage);
+}
+calendar(){
+  const popover= this.popoverCtrl.create(CalendarPage);
+    
+  popover.present();  
 }
 }

@@ -15,6 +15,7 @@ import { StatusPage } from '../status/status';
   templateUrl: 'detail.html',
 })
 export class DetailPage {
+  data:any;
   public event = {
     month: '1990-02-19',
     timeStarts: '07:43',
@@ -22,6 +23,8 @@ export class DetailPage {
   }
 
   constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
+   this.data =navParams.get('getdata');
+   console.log(this.data);
   }
 
   ionViewDidLoad() {
