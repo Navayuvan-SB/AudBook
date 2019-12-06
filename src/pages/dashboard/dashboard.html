@@ -4,7 +4,7 @@
 <ion-header no-border>
   <ion-navbar class="toolbar-background"> 
   <ion-title>
-      <h2>Dashboard</h2>
+      <h2>Dashboard</h2> 
     </ion-title>
   </ion-navbar>
 </ion-header> 
@@ -17,35 +17,35 @@
 <!--grid for rows and cols(1row & 3cols)-->
 <ion-grid>
 
-    <ion-row align-items-start >
+    <ion-row align-items-start *ngFor="let data of dataret">
         <!--col 1 for image-->
         <ion-col col-2>
-           <ion-card>
+           <ion-card (click)="req(data)">
              <img src= "../../assets/imgs/AuditImageView@2x.png">
            </ion-card>
         </ion-col>
         <!-- col 3 for text & notifi (1 col-> (2rows) -> (1row(2col)) & 1row(1col) ) -->
-        <ion-col col-9>
+        <ion-col col-9 (click)="req(data)">
             <div class="margin-left">
                   <ion-row>
                       <ion-col col-10 >
-                          <p class="font-style">Auditorimum 1</p>
+                          <p class="font-style">{{ data.dept }}</p>
                       </ion-col>
                      <ion-col col-2>
                           <span class="notification-circle">
-                            <p class="notify-nums">1</p>
+                            <p class="notify-nums">{{ data.requests }}</p>
                           </span>
                       </ion-col>
                   </ion-row>
                   <ion-row>
                       <ion-col col-12>
-                          <p class="font-lighter">Mechanical Engineerging</p>
+                          <p class="font-lighter">{{ data.name }}</p> 
                       </ion-col>
                   </ion-row>
             </div>
         </ion-col>
         <!--col 3 for pen icon-->
-        <ion-col col-1>
+        <ion-col col-1 (click)="edit(data)">
             <div class="pen-icon"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
         </ion-col>
     </ion-row>
@@ -55,21 +55,21 @@
 
 
 <!--grid for rows and cols(1row & 3cols)-->
-<ion-grid>
+<!-- <ion-grid> -->
 
-    <ion-row align-items-start >
+    <!-- <ion-row align-items-start > -->
         <!--col 1 for image-->
-        <ion-col col-2>
+        <!-- <ion-col col-2>
            <ion-card>
              <img src= "../../assets/imgs/AuditImageView@2x.png">
            </ion-card>
-        </ion-col>
+        </ion-col> -->
         <!-- col 3 for text & notifi (1 col-> (2rows) -> (1row(2col)) & 1row(1col) ) -->
-        <ion-col col-9>
+        <!-- <ion-col col-9>
             <div class="margin-left">
                   <ion-row>
                       <ion-col col-10 >
-                          <p class="font-style">Auditorimum 1</p>
+                          <p class="font-style">Auditorimum 2</p>
                       </ion-col>
                      <ion-col col-2>
                           <span class="notification-circle">
@@ -83,33 +83,33 @@
                       </ion-col>
                   </ion-row>
             </div>
-        </ion-col>
+        </ion-col> -->
         <!--col 3 for pen icon-->
-        <ion-col col-1>
+        <!-- <ion-col col-1 (click)="edit()" >
             <div class="pen-icon"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
         </ion-col>
     </ion-row>
 
-</ion-grid>
+</ion-grid> -->
 
 
 
 <!--grid for rows and cols(1row & 3cols)-->
-<ion-grid>
+<!-- <ion-grid> -->
 
-    <ion-row align-items-start >
+    <!-- <ion-row align-items-start > -->
         <!--col 1 for image-->
-        <ion-col col-2>
+        <!-- <ion-col col-2>
            <ion-card>
              <img src= "../../assets/imgs/AuditImageView@2x.png">
            </ion-card>
-        </ion-col>
+        </ion-col> -->
         <!-- col 3 for text & notifi (1 col-> (2rows) -> (1row(2col)) & 1row(1col) ) -->
-        <ion-col col-9>
+        <!-- <ion-col col-9>
             <div class="margin-left">
                   <ion-row>
                       <ion-col col-10 >
-                          <p class="font-style">Auditorimum 1</p>
+                          <p class="font-style">Auditorimum 3</p>
                       </ion-col>
                      <ion-col col-2>
                           <span class="notification-circle">
@@ -123,14 +123,14 @@
                       </ion-col>
                   </ion-row>
             </div>
-        </ion-col>
+        </ion-col> -->
         <!--col 3 for pen icon-->
-        <ion-col col-1>
+        <!-- <ion-col col-1 (click)="edit()">
             <div class="pen-icon"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
         </ion-col>
-    </ion-row>
+    </ion-row> -->
 
-</ion-grid>
+<!-- </ion-grid> -->
 
 </ion-content>
 
@@ -138,7 +138,7 @@
 
 <ion-footer no-border>
   <!--create button-->
-  <div text-center>
+  <div text-center (click)="create()">
     <button ion-button color="secondary" round class="create-button">
         <ion-icon name="add" class="add-icon"></ion-icon> Create New
     </button>

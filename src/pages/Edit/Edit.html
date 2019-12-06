@@ -14,6 +14,7 @@
   
 
 <ion-content padding>
+    <form [formGroup]="credentialForm">
     <ion-grid>
         <ion-row>
           
@@ -21,12 +22,17 @@
            <ion-img src="assets/imgs/AuditImageView.jpeg"></ion-img>
           </ion-item>
           <ion-item class="round-border width">
-              <ion-input type="text=" placeholder='Name'  >
+              <ion-input type="text"
+                         placeholder='Name' 
+                         formControlName="name">
               </ion-input>
             </ion-item>
       
           <ion-item class="round-border width">
-            <ion-input type="dropdown" placeholder='Department'></ion-input>
+            <ion-input type="dropdown"
+                       formControlName="dept" 
+                       placeholder='Department'>
+            </ion-input>
             <ion-icon name="custom-aw" class="resize-icon" item-right></ion-icon>
           </ion-item>
           
@@ -34,4 +40,5 @@
         
         </ion-row>  
     </ion-grid>
+    </form>
 </ion-content>
