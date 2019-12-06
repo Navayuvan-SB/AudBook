@@ -24,7 +24,7 @@ export class DashboardPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FirebaseServices) {
     this.firebaseFunctions();
   }
-
+ 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardPage');
   }
@@ -36,7 +36,18 @@ export class DashboardPage {
           //objects is stored in var 
           // this.dataret = response.val();
           let obj = Object.entries(response.val());
-          console.log(obj);
+
+          // Local array to store the array of objects
+          let arr = []
+
+          // Loop through the received object
+          for (var i = 0; i < obj.length; i ++){
+            arr.push(obj[i][1]);
+          }
+
+          // Assigining arr to global dataret
+          this.dataret = arr;
+          
         })
         .catch((error) => {
           console.log(error);
