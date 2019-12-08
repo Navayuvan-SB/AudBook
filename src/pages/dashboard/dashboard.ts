@@ -24,44 +24,44 @@ export class DashboardPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FirebaseServices) {
     this.firebaseFunctions();
   }
- 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardPage');
   }
   //variable name to store the objects from data
-  firebaseFunctions(){
+  firebaseFunctions() {
     this.fire.readOnce('auditorium')
-        .then((response) => {
-          console.log("Read Once Called");
-          //objects is stored in var 
-          // this.dataret = response.val();
-          let obj = Object.entries(response.val());
+      .then((response) => {
+        console.log("Read Once Called");
+        //objects is stored in var 
+        // this.dataret = response.val();
+        let obj = Object.entries(response.val());
 
-          // Local array to store the array of objects
-          let arr = []
+        // Local array to store the array of objects
+        let arr = []
 
-          // Loop through the received object
-          for (var i = 0; i < obj.length; i ++){
-            arr.push(obj[i][1]);
-          }
+        // Loop through the received object
+        for (var i = 0; i < obj.length; i++) {
+          arr.push(obj[i][1]);
+        }
 
-          // Assigining arr to global dataret
-          this.dataret = arr;
-          
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        // Assigining arr to global dataret
+        this.dataret = arr;
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-  edit(data: any){
-    this.navCtrl.push(EditPage,{data: data});
+  edit(data: any) {
+    this.navCtrl.push(EditPage, { data: data });
   }
 
-  create(){
+  create() {
     this.navCtrl.push(CreatePage);
   }
-  req(data:any) {
-    this.navCtrl.push(RequestPage,{data: data});
+  req(data: any) {
+    this.navCtrl.push(RequestPage, { data: data });
   }
 
 

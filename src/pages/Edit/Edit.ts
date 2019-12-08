@@ -17,46 +17,46 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class EditPage {
 
-  credentialForm  : FormGroup
-  aud             : any
+  credentialForm: FormGroup;
+  aud: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FirebaseServices,public form  : FormBuilder) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FirebaseServices, public form: FormBuilder) {
+    this.aud = this.navParams.get('data');
     this.credentialForm = this.form.group({
-      
-      name  : ['',Validators.compose([
+
+      name: [this.aud.name, Validators.compose([
         Validators.required
-])],
-      dept : ['',Validators.compose([
-                       Validators.required
+      ])],
+      dept: [this.aud.dept, Validators.compose([
+        Validators.required
       ])]
     })
     this.aud = this.navParams.get('data');
     console.log(this.aud);
   }
 
-  ionViewDidLoad() {                                   
+  ionViewDidLoad() {
     console.log('ionViewDidLoad EditPage');
-    // this.firebaseFunctions();
-  }                           
+    this.firebaseFunctions();
+  }
 
+                                
+    firebaseFunctions(){
+   var data = {
+        'auditorium/dept': this.credentialForm.controls['dept'].value,
+        'auditorium/name': this.credentialForm.controls['name'].value
 
-//   firebaseFunctions(){
-//  var data = {
-//       'auditorium/dept': this.credentialForm.controls['dept'].value,
-//       'auditorium/name': this.credentialForm.controls['name'].value
+      };                                     
+    this.fire.updateField(data)
+        .then((response) => {
+          console.log("Update Field Called");
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-//     };
-  //   this.fire.updateField(data)
-  //       .then((response) => {
-  //         console.log("Update Field Called");
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-
-  // }
+  }
   save() {
     console.log('save button clicked');
     this.navCtrl.push(DashboardPage)
