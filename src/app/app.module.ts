@@ -43,7 +43,9 @@ import { LoginPage } from '../pages/login/login';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      mode: 'md'
+      }),
     AngularFireModule.initializeApp(Audi.Auditor)
   ],
   bootstrap: [IonicApp],

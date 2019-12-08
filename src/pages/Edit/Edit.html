@@ -7,38 +7,44 @@
 
 <ion-header no-border>
   <ion-navbar class="toolbar-background">
-  <ion-toolbar class="toolbar-title.toolbar-title-md"><h2>Let's edit this...
- </h2> </ion-toolbar>
-    </ion-navbar>
-  </ion-header> 
-  
+    <ion-toolbar class="toolbar-title.toolbar-title-md">
+      <h2>Let's edit this...
+      </h2>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
 
 <ion-content padding>
-    <form [formGroup]="credentialForm">
+  <form [formGroup]="credentialForm">
     <ion-grid>
-        <ion-row>
-          
-          <ion-item>
-           <ion-img src="assets/imgs/AuditImageView.jpeg"></ion-img>
-          </ion-item>
-          <ion-item class="round-border width">
-              <ion-input type="text"
-                         placeholder='Name' 
-                         formControlName="name">
-              </ion-input>
-            </ion-item>
-      
-          <ion-item class="round-border width">
-            <ion-input type="dropdown"
-                       formControlName="dept" 
-                       placeholder='Department'>
-            </ion-input>
-            <ion-icon name="custom-aw" class="resize-icon" item-right></ion-icon>
-          </ion-item>
-          
-          <button ion-button block class='width btn-prop' (click)="save()">Save</button>
-        
-        </ion-row>  
+      <ion-row>
+
+        <ion-item>
+          <ion-img src="assets/imgs/AuditImageView.jpeg"></ion-img>
+        </ion-item>
+        <ion-item class="round-border width">
+          <ion-input type="text" placeholder='Name' formControlName="name">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="round-border width">
+          <ion-input type="dropdown" formControlName="dept" placeholder='Department'>
+          </ion-input>
+          <ion-icon name="custom-aw" class="resize-icon" item-right></ion-icon>
+        </ion-item>
+
+      </ion-row>
     </ion-grid>
-    </form>
+  </form>
+
 </ion-content>
+
+<ion-footer no-border>
+  <!--create button-->
+  <div text-center (click)="save()">
+    <button ion-button color="secondary" round class="create-button">
+      Save
+    </button>
+  </div>
+</ion-footer>

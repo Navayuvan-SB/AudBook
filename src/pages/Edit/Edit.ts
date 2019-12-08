@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -20,45 +20,100 @@ export class EditPage {
   credentialForm: FormGroup;
   aud: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FirebaseServices, public form: FormBuilder) {
-    this.aud = this.navParams.get('data');
-    this.credentialForm = this.form.group({
+  // Loading controller
+  loadingCtrl: any;
 
+  // Toast controller
+  toastCtrl: any;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private fire: FirebaseServices,
+    public form: FormBuilder,
+    public loading: LoadingController,
+    public toast: ToastController) {
+
+    // Getting the data from source page
+    this.aud = this.navParams.get('data');
+
+    // Form Validation
+    this.credentialForm = this.form.group({
       name: [this.aud.name, Validators.compose([
         Validators.required
       ])],
       dept: [this.aud.dept, Validators.compose([
         Validators.required
       ])]
-    })
-    this.aud = this.navParams.get('data');
-    console.log(this.aud);
+    });
+
+    // Initializing Loading Controller
+    this.loadingCtrl = this.loading.create({
+      content: 'Please wait...'
+    });
+
+    // Initializing Toast Controller
+    this.toastCtrl = this.toast.create({
+      duration: 3000
+    });
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditPage');
-    this.firebaseFunctions();
   }
 
-                                
-    firebaseFunctions(){
-   var data = {
-        'auditorium/dept': this.credentialForm.controls['dept'].value,
-        'auditorium/name': this.credentialForm.controls['name'].value
+  save() {
 
-      };                                     
-    this.fire.updateField(data)
+    // Presenting loading controller
+    this.loadingCtrl.present();
+
+    // Getting the field values
+    var dept = this.credentialForm.controls['dept'].value;
+    var name = this.credentialForm.controls['name'].value;
+
+    // Condition to check, If the field are empty
+    if (dept.trim() == '' || name.trim() == '') {
+
+      // Dismissing the loading controller
+      this.loadingCtrl.dismiss();
+
+      // Display the toast
+      this.toastCtrl.setMessage("Auditorium Name and Dept should not be empty...!")
+      this.toastCtrl.present();
+
+    } else {
+      // Keys
+      var deptKey = 'auditorium/' + this.aud.id + '/dept';
+      var nameKey = 'auditorium/' + this.aud.id + '/name';
+
+      var data = {
+        [deptKey]: this.credentialForm.controls['dept'].value,
+        [nameKey]: this.credentialForm.controls['name'].value
+      };
+
+      // Update the info.
+      this.fire.updateField(data)
         .then((response) => {
-          console.log("Update Field Called");
-          console.log(response);
+
+          // Dismissing the loading controller
+          this.loadingCtrl.dismiss();
+
+          // Display the toast
+          this.toastCtrl.setMessage("Auditorium name and dept Updated Successfully...!")
+          this.toastCtrl.present();
+
         })
         .catch((error) => {
-          console.log(error);
-        });
 
-  }
-  save() {
-    console.log('save button clicked');
-    this.navCtrl.push(DashboardPage)
+          // Dismissing the loading controller
+          this.loadingCtrl.dismiss();
+
+          // Display the toast
+          this.toastCtrl.setMessage("Something is wrong. Please try again later...!")
+          this.toastCtrl.present();
+
+        });
+    }
+
   }
 }
