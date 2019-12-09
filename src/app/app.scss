@@ -46,3 +46,9 @@ ion-icon {
       mask-image: url(../assets/icon/alert.svg);
     }
 }
+
+// Button outline change variable
+:root {
+  --button-clicked-an : 1px solid #000;
+  --button-clicked-fn : 1px solid #000;
+}

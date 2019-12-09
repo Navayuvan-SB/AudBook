@@ -46,7 +46,9 @@ import { CalendarPage } from '../pages/calendar/calendar';
   imports: [
     BrowserModule,
     CalendarModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      mode: 'md'
+    }),
     AngularFireModule.initializeApp(Audi.Auditor)
    
   ],

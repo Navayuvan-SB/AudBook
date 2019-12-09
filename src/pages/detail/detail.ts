@@ -56,6 +56,10 @@ export class DetailPage {
   //   timeEnds: '1990-02-20'
   // }
 
+  // Button check status
+  anStatus : number = 0;
+  fnStatus : number = 0;
+
   constructor( public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
     
     // getting value from calendar page
@@ -183,23 +187,44 @@ export class DetailPage {
     //console.log(this.ftext);
   }
 
-  mycolor(){
-      this.bocolor='1';
-      console.log(this.bocolor);
-      
+  // AN button trigger
+  mycolorAn(){
     
-  // }
-  // @HostBinding("attr.style")
-  // public get valueAsStyle(): any {
-  //   return this.sanitizer.bypassSecurityTrustStyle(`--color: $(this.value)`);
-  // }
-  //  action(){
-  //   document.body.style.setProperty('--my-var', colorVar);
-  //  }
-  // action(){
-  //   this.coloor="green";
-  //   // let color="green";
-  //   // return color;
-  // }
+    // Check the Initial state
+    if (this.anStatus == 0){
+
+      // If checked, change it to 1 and set the border color as Green
+      document.documentElement.style.setProperty(`--button-clicked-an`, '3px solid #00ff00');
+      this.anStatus = 1;
+    }
+    else{
+
+      // If Unchecked, Change it to 0 and set the border as normal
+      document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+      this.anStatus = 0;
+    }
+    
+      
+   }
+
+
+   // Fn button trigger
+   mycolorFn(){
+    
+    // Check the Initial state
+    if (this.fnStatus == 0){
+
+      // If checked, change it to 1 and set the border color as Green
+      document.documentElement.style.setProperty(`--button-clicked-fn`, '3px solid #00ff00');
+      this.fnStatus = 1;
+    }
+    else{
+
+      // If Unchecked, Change it to 0 and set the border as normal
+      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+      this.fnStatus = 0;
+    }
+      
+   }
 
 } 

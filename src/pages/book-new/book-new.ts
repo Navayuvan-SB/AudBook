@@ -9,7 +9,7 @@ import { FirebaseServices } from '../../services/fireBaseService';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
- */
+ */ 
 
 @IonicPage()
 @Component({
@@ -37,11 +37,13 @@ calendar( aud: any){
     
   popover.present();  
 }
+
+
 firebaseFunctions(){
   this.fire.readOnce('auditorium')
         .then((response) => {
           console.log("Read Once Called");
-          let obj = Object.entries(response. val());
+          let obj = Object.entries(response.val());
           //local array to store array of objects
           let arr=[]
           //loop through the received object
@@ -58,6 +60,6 @@ firebaseFunctions(){
         .catch((error) => {
           console.log(error);
         });
-       }
-
+       } 
+ 
 }

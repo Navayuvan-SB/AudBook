@@ -17,12 +17,12 @@ import { RequestPage } from '../pages/request/request';
 import { LoginPage } from '../pages/login/login';
 
 
-
+ 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = StatusPage;
+  rootPage:any = BookNewPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
