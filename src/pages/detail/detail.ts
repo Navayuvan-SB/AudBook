@@ -194,7 +194,7 @@ export class DetailPage {
     if (this.anStatus == 0){
 
       // If checked, change it to 1 and set the border color as Green
-      document.documentElement.style.setProperty(`--button-clicked-an`, '3px solid #00ff00');
+      document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #00ff00');
       this.anStatus = 1;
     }
     else{
@@ -215,7 +215,7 @@ export class DetailPage {
     if (this.fnStatus == 0){
 
       // If checked, change it to 1 and set the border color as Green
-      document.documentElement.style.setProperty(`--button-clicked-fn`, '3px solid #00ff00');
+      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00');
       this.fnStatus = 1;
     }
     else{
