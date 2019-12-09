@@ -32,7 +32,7 @@ export class EditPage {
     public form: FormBuilder,
     public loading: LoadingController,
     public toast: ToastController) {
-
+ 
     // Getting the data from source page
     this.aud = this.navParams.get('data');
 
@@ -87,8 +87,8 @@ export class EditPage {
       var nameKey = 'auditorium/' + this.aud.id + '/name';
 
       var data = {
-        [deptKey]: this.credentialForm.controls['dept'].value,
-        [nameKey]: this.credentialForm.controls['name'].value
+        [deptKey]: dept,
+        [nameKey]: name
       };
 
       // Update the info.
@@ -113,6 +113,9 @@ export class EditPage {
           this.toastCtrl.present();
 
         });
+
+        console.log('save button clicked');
+        this.navCtrl.push(DashboardPage)
     }
 
   }
