@@ -32,7 +32,7 @@
     <ion-grid>
           <ion-row row-12>
               <ion-col>
-            <ion-item  class="but but1" style=" border: 1px solid #707070;" >
+            <ion-item  class="but but1"  >
                 <ion-label class="l1"> {{ findata }}</ion-label>
                               <ion-icon class="icon1" (click)="cal()" name="custom-calendar" item-end ></ion-icon>                                                 
                             </ion-item></ion-col>
@@ -49,11 +49,11 @@
 
           <ion-row row-12>
               <ion-col col-6>
-                  <ion-item class="but but1" style=" border: 1px solid #707070;" >
+                  <ion-item class="but but1"  >
                     <!-- <button ion-button class="but but2 " (click)="color()" full >
                         <ion-label  class="l1">FN</ion-label>                                       
                 </button> -->
-                      <ion-label  (click)="mycolor()" class="l1 bocolor">FN</ion-label>
+                      <ion-label  (click)="mycolor" class="l1">FN</ion-label>
                       <!-- <ion-input placeholder="From" class="l1"></ion-input> -->
                       <!-- <ion-datetime displayFormat="h:mmA" pickerFormat="h mm A" name="fromtext" [(ngModel)]="fromtext" ></ion-datetime> -->
                                 <ion-icon class="icon1" name="custom-fromclock" item-end ></ion-icon>
@@ -61,7 +61,7 @@
               </ion-col>
 
               <ion-col col-6>
-                    <ion-item class="but but1" style=" border: 1px solid #707070;">
+                    <ion-item class="but but1" >
                             <ion-label  class="l1" id="bocolor" >AN</ion-label>
                              <!-- <ion-input  placeholder="To" class="l1"  ></ion-input>
                       <ion-datetime  displayFormat="h:mmA" pickerFormat="h mm A"  name="ftext" [(ngModel)]="ftext" ></ion-datetime> -->
@@ -72,7 +72,7 @@
 
           <ion-row>
                 <ion-col>
-                        <ion-item (click)="dept()" class="but but1" style=" border: 1px solid #707070;" >
+                        <ion-item (click)="dept()" class="but but1"  >
                                 <ion-label class="ll1 l1" >{{ department }}</ion-label>
                                     <ion-icon class="icon1" name="custom-dwarr" item-end></ion-icon>
                                    
@@ -83,7 +83,7 @@
           
           <ion-row>
               <ion-col>
-                    <ion-item class="but but1" style=" border: 1px solid #707070;">
+                    <ion-item class="but but1">
                             <ion-input type="number" placeholder="Mobilenumber"  class="l1" [value]="text1"[(ngModel)]="text" > </ion-input>
                                   </ion-item>               
               </ion-col>

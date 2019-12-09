@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { IonicPage, AlertController,PopoverController, NavController, NavParams } from 'ionic-angular';
 import { StatusPage } from '../status/status';
 import { strict, ok } from 'assert';
 import { CalendarPage } from '../calendar/calendar';
+import { getParentRenderElement } from '@angular/core/src/view/util';
 
 
 /**
@@ -16,6 +17,7 @@ import { CalendarPage } from '../calendar/calendar';
 @Component({
   selector: 'page-detail',
   templateUrl: 'detail.html',
+  
 })
 export class DetailPage {
   
@@ -43,7 +45,10 @@ export class DetailPage {
 
   bocolor:any='0';
 
-  borcolor: string;
+  // value: string= "green";
+
+  // private coloor: string ="#707070";
+  
 
   // public event = {
   //   month: '1990-02-19',
@@ -179,11 +184,22 @@ export class DetailPage {
   }
 
   mycolor(){
-      this.borcolor='1';
-      console.log(this.borcolor);
-  }
-
- 
-  
+      this.bocolor='1';
+      console.log(this.bocolor);
+      
+    
+  // }
+  // @HostBinding("attr.style")
+  // public get valueAsStyle(): any {
+  //   return this.sanitizer.bypassSecurityTrustStyle(`--color: $(this.value)`);
+  // }
+  //  action(){
+  //   document.body.style.setProperty('--my-var', colorVar);
+  //  }
+  // action(){
+  //   this.coloor="green";
+  //   // let color="green";
+  //   // return color;
+  // }
 
 } 
