@@ -15,8 +15,8 @@
 
     <ion-grid> 
                
-        <div class="c1" (click)="calendar()"  >
-          <ion-row *ngFor="let aud of audinfo">
+        <div class="c1"   >
+          <ion-row (click)="calendar(aud)" *ngFor="let aud of audinfo">
               <ion-col>
                       <ion-avatar  class="img1 com1 adjust5 " >
                                    

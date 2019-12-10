@@ -43,7 +43,7 @@ firebaseFunctions(){
   this.fire.readOnce('auditorium')
         .then((response) => {
           console.log("Read Once Called");
-          let obj = Object.entries(response.val());
+          let obj = Object.entries(response. val());
           //local array to store array of objects
           let arr=[]
           //loop through the received object

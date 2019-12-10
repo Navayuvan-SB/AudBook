@@ -1,9 +1,9 @@
 import { Component, HostBinding } from '@angular/core';
-import { IonicPage, AlertController,PopoverController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, AlertController, PopoverController, NavController, NavParams, Platform } from 'ionic-angular';
 import { StatusPage } from '../status/status';
-import { strict, ok } from 'assert';
 import { CalendarPage } from '../calendar/calendar';
 import { getParentRenderElement } from '@angular/core/src/view/util';
+
 
 
 /**
@@ -19,7 +19,9 @@ import { getParentRenderElement } from '@angular/core/src/view/util';
   templateUrl: 'detail.html',
   
 })
+// @ViewChild('Navbar') navBar: Navbar;
 export class DetailPage {
+ 
   
   data:any;
   data1:string;
@@ -43,7 +45,8 @@ export class DetailPage {
 
   aud:any;
 
-  bocolor:any='0';
+  audname:any;
+  auddept:any;
 
   // value: string= "green";
 
@@ -60,8 +63,15 @@ export class DetailPage {
   anStatus : number = 0;
   fnStatus : number = 0;
 
-  constructor( public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
-    
+  constructor( public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public platform: Platform, public navParams: NavParams) {
+
+    // this.platform.registerBackButtonAction(() => {
+    //   document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+    //   document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+    //   console.log("backPressed 1");
+    // });
+
+
     // getting value from calendar page
 
     //for getting the date,month,time
@@ -69,6 +79,8 @@ export class DetailPage {
 
     // for mobile number
     this.text1=navParams.get('text1');
+
+    
 
     // to time picker
     //this.ftext1=navParams.get('ftext1');
@@ -87,6 +99,7 @@ export class DetailPage {
       this.department=this.dept1;
     }
 
+
     //for seperating the values from the array of date, time , month 
     this.data1= this.data.date;
     this.data2=this.data.month;
@@ -99,12 +112,27 @@ export class DetailPage {
     //getting aud values of aud from calendar page
     this.aud=navParams.get('aud');
     console.log(this.aud);
+
+   // seperating the values needed from the array
+   this.audname=this.aud.name;
+    this.auddept=this.aud.dept;
+   
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
-    
+    // document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+    // document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+
   }
+  ionViewDidEnter() {
+    // this.navBar.backButtonClick = () => {
+      ///here you can do wathever you want to replace the backbutton event
+      // document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+      // document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+    // };
+    }
+ 
   dept(){
     // for dropdown -radio alert
     let alert = this.alertCtrl.create();
@@ -166,7 +194,7 @@ export class DetailPage {
   cal(){
    
     //passing data to calendar page
-    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department,});//fromtext: this.fromtext, ftext:this.ftext
+    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department, aud: this.aud});//fromtext: this.fromtext, ftext:this.ftext
     
     //for terminating previous pages
     let currentindex=this.navCtrl.getActive().index;
