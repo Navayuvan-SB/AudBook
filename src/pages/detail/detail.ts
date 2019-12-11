@@ -63,11 +63,17 @@ export class DetailPage {
   anStatus : number = 0;
   fnStatus : number = 0;
 
+  anpassStatus: any;
+  fnpassStatus:any;
+
+  anreceivedStatus: any;
+  fnreceivedStatus: any;
+
   constructor( public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public platform: Platform, public navParams: NavParams) {
 
     // this.platform.registerBackButtonAction(() => {
-    //   document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
-    //   document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+      document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
     //   console.log("backPressed 1");
     // });
 
@@ -116,6 +122,17 @@ export class DetailPage {
    // seperating the values needed from the array
    this.audname=this.aud.name;
     this.auddept=this.aud.dept;
+
+    //getting border status from calendar page
+    this.anreceivedStatus=navParams.get('anpassStatus');
+    this.fnreceivedStatus=navParams.get('fnpassStatus');
+    if(this.anreceivedStatus==1){
+      document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #00ff00');
+    }
+    if(this.fnreceivedStatus==1){
+      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00')
+    }
+
    
   }
 
@@ -191,19 +208,7 @@ export class DetailPage {
 }
 
  
-  cal(){
-   
-    //passing data to calendar page
-    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department, aud: this.aud});//fromtext: this.fromtext, ftext:this.ftext
-    
-    //for terminating previous pages
-    let currentindex=this.navCtrl.getActive().index;
-    pop.onDidDismiss(()=>{
-      this.navCtrl.remove(currentindex);
-    });
-
-    pop.present();
-  }
+ 
 
   // clicking book
 
@@ -224,12 +229,14 @@ export class DetailPage {
       // If checked, change it to 1 and set the border color as Green
       document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #00ff00');
       this.anStatus = 1;
+      this.anpassStatus=this.anStatus;
     }
     else{
 
       // If Unchecked, Change it to 0 and set the border as normal
       document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
       this.anStatus = 0;
+  
     }
     
       
@@ -245,6 +252,7 @@ export class DetailPage {
       // If checked, change it to 1 and set the border color as Green
       document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00');
       this.fnStatus = 1;
+      this.fnpassStatus=this.fnStatus;
     }
     else{
 
@@ -254,5 +262,18 @@ export class DetailPage {
     }
       
    }
+   cal(){
+   
+    //passing data to calendar page
+    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department, aud: this.aud,anpassStatus:this.anpassStatus,fnpassStatus:this.fnpassStatus});//fromtext: this.fromtext, ftext:this.ftext
+    
+    //for terminating previous pages
+    let currentindex=this.navCtrl.getActive().index;
+    pop.onDidDismiss(()=>{
+      this.navCtrl.remove(currentindex);
+    });
+
+    pop.present();
+  }
 
 } 
