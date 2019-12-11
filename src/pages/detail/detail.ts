@@ -61,8 +61,6 @@ export class DetailPage {
   fnStatus : number = 0;
 
 
-  anreceivedStatus: any;
-  fnreceivedStatus: any;
 
   constructor( public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public platform: Platform, public navParams: NavParams) {
 
@@ -113,30 +111,12 @@ export class DetailPage {
    this.audname=this.aud.name;
     this.auddept=this.aud.dept;
 
-    //getting border status from calendar page
-    this.anreceivedStatus=navParams.get('anpassStatus');
-    this.fnreceivedStatus=navParams.get('fnpassStatus');
-    console.log(this.anreceivedStatus);
-    console.log(this.fnreceivedStatus);
-
-   
-     if(this.anreceivedStatus==1){
-      document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #00ff00');
-    }
-    
-
-     if(this.fnreceivedStatus==1){
-      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00');
-    }
-   
-
    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
-    
-
+   
   }
  
   dept(){
@@ -255,7 +235,7 @@ export class DetailPage {
    cal(){
    
     //passing data to calendar page
-    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department, aud: this.aud,anpassStatus:this.anStatus,fnpassStatus:this.fnStatus});//fromtext: this.fromtext, ftext:this.ftext
+    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department, aud: this.aud});//fromtext: this.fromtext, ftext:this.ftext
     
     //for terminating previous pages
     let currentindex=this.navCtrl.getActive().index;

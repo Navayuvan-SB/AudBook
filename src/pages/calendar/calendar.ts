@@ -31,8 +31,6 @@ export class CalendarPage {
 
  currentEvents: any;
 
- anpassStatus:any;
- fnpassStatus:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -54,10 +52,6 @@ export class CalendarPage {
     //getting value from booknew
     this.aud=this.navParams.get('aud');
     console.log(this.aud);
-
-    //getting the border status
-    this.anpassStatus=this.navParams.get('anpassStatus');
-    this.fnpassStatus=this.navParams.get('fnpassStatus');
 
 
   //default sample code for calendar module
@@ -88,7 +82,7 @@ export class CalendarPage {
    let data= $event;
 
    //pushing data to detail page
-   this.navCtrl.push(DetailPage ,{getdata : data,text1:this.text1, dept1:this.dept1,aud :this.aud, anpassStatus:this.anpassStatus,fnpassStatus:this.fnpassStatus}).then(()=>{//fromtext1:this.fromtext1, ftext1:this.ftext1,
+   this.navCtrl.push(DetailPage ,{getdata : data,text1:this.text1, dept1:this.dept1,aud :this.aud}).then(()=>{//fromtext1:this.fromtext1, ftext1:this.ftext1,
    this.navCtrl.remove(currentindex);
    });
 
