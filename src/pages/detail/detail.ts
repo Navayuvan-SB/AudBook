@@ -48,9 +48,6 @@ export class DetailPage {
   audname:any;
   auddept:any;
 
-  // value: string= "green";
-
-  // private coloor: string ="#707070";
   
 
   // public event = {
@@ -69,12 +66,7 @@ export class DetailPage {
 
   constructor( public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public platform: Platform, public navParams: NavParams) {
 
-    // this.platform.registerBackButtonAction(() => {
-      // document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
-      // document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
-    //   console.log("backPressed 1");
-    // });
-
+   
 
     // getting value from calendar page
 
@@ -131,33 +123,21 @@ export class DetailPage {
      if(this.anreceivedStatus==1){
       document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #00ff00');
     }
-    // else{
-    //   document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
-    // }
+    
 
      if(this.fnreceivedStatus==1){
       document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00');
     }
-    // else{
-    //   document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
-    // }
+   
 
    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
-    // document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
-    // document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+    
 
   }
-  ionViewDidEnter() {
-    // this.navBar.backButtonClick = () => {
-      ///here you can do wathever you want to replace the backbutton event
-      // document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
-      // document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
-    // };
-    }
  
   dept(){
     // for dropdown -radio alert
@@ -247,7 +227,7 @@ export class DetailPage {
       this.anStatus = 0;
   
     }
-    console.log(this.anpassStatus);
+    
     
    }
 
@@ -269,7 +249,7 @@ export class DetailPage {
       document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
       this.fnStatus = 0;
     }
-    //this.fnpassStatus=this.fnStatus;
+    ;
       
    }
    cal(){
