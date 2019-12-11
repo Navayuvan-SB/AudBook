@@ -63,8 +63,6 @@ export class DetailPage {
   anStatus : number = 0;
   fnStatus : number = 0;
 
-  anpassStatus: any;
-  fnpassStatus:any;
 
   anreceivedStatus: any;
   fnreceivedStatus: any;
@@ -72,8 +70,8 @@ export class DetailPage {
   constructor( public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public platform: Platform, public navParams: NavParams) {
 
     // this.platform.registerBackButtonAction(() => {
-      document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
-      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+      // document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+      // document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
     //   console.log("backPressed 1");
     // });
 
@@ -126,12 +124,23 @@ export class DetailPage {
     //getting border status from calendar page
     this.anreceivedStatus=navParams.get('anpassStatus');
     this.fnreceivedStatus=navParams.get('fnpassStatus');
-    if(this.anreceivedStatus==1){
+    console.log(this.anreceivedStatus);
+    console.log(this.fnreceivedStatus);
+
+   
+     if(this.anreceivedStatus==1){
       document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #00ff00');
     }
-    if(this.fnreceivedStatus==1){
-      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00')
+    // else{
+    //   document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+    // }
+
+     if(this.fnreceivedStatus==1){
+      document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00');
     }
+    // else{
+    //   document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+    // }
 
    
   }
@@ -229,7 +238,7 @@ export class DetailPage {
       // If checked, change it to 1 and set the border color as Green
       document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #00ff00');
       this.anStatus = 1;
-      this.anpassStatus=this.anStatus;
+     // this.anpassStatus=this.anStatus;
     }
     else{
 
@@ -238,8 +247,8 @@ export class DetailPage {
       this.anStatus = 0;
   
     }
+    console.log(this.anpassStatus);
     
-      
    }
 
 
@@ -252,7 +261,7 @@ export class DetailPage {
       // If checked, change it to 1 and set the border color as Green
       document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #00ff00');
       this.fnStatus = 1;
-      this.fnpassStatus=this.fnStatus;
+      
     }
     else{
 
@@ -260,12 +269,13 @@ export class DetailPage {
       document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
       this.fnStatus = 0;
     }
+    //this.fnpassStatus=this.fnStatus;
       
    }
    cal(){
    
     //passing data to calendar page
-    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department, aud: this.aud,anpassStatus:this.anpassStatus,fnpassStatus:this.fnpassStatus});//fromtext: this.fromtext, ftext:this.ftext
+    let pop=this.popoverCtrl.create(CalendarPage,{text:this.text,dept:this.department, aud: this.aud,anpassStatus:this.anStatus,fnpassStatus:this.fnStatus});//fromtext: this.fromtext, ftext:this.ftext
     
     //for terminating previous pages
     let currentindex=this.navCtrl.getActive().index;

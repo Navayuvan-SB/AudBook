@@ -34,6 +34,7 @@ export class CalendarPage {
  anpassStatus:any;
  fnpassStatus:any;
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // getting value from detail page
 
@@ -57,7 +58,7 @@ export class CalendarPage {
     //getting the border status
     this.anpassStatus=this.navParams.get('anpassStatus');
     this.fnpassStatus=this.navParams.get('fnpassStatus');
-    
+
 
   //default sample code for calendar module
     this.currentEvents = [
