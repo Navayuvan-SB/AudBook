@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -12,11 +12,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
-  selector: 'page-Edit',
+  selector: 'page-Edit',  
   templateUrl: 'Edit.html',
 })
 export class EditPage {
 
+  testRadioOpen: boolean;
+  testRadioResult;
+  Department: string;
   credentialForm: FormGroup;
   aud: any;
 
@@ -31,7 +34,10 @@ export class EditPage {
     private fire: FirebaseServices,
     public form: FormBuilder,
     public loading: LoadingController,
-    public toast: ToastController) {
+    public toast: ToastController,
+    public alert: AlertController ) {
+
+      
  
     // Getting the data from source page
     this.aud = this.navParams.get('data');
@@ -40,11 +46,10 @@ export class EditPage {
     this.credentialForm = this.form.group({
       name: [this.aud.name, Validators.compose([
         Validators.required
-      ])],
-      dept: [this.aud.dept, Validators.compose([
-        Validators.required
       ])]
     });
+
+    this.Department = this.aud.dept;
 
     // Initializing Loading Controller
     this.loadingCtrl = this.loading.create({
@@ -54,7 +59,7 @@ export class EditPage {
     // Initializing Toast Controller
     this.toastCtrl = this.toast.create({
       duration: 3000
-    });
+    }); 
 
   }
 
@@ -62,13 +67,78 @@ export class EditPage {
     console.log('ionViewDidLoad EditPage');
   }
 
+  Dept() {
+    let alert = this.alert.create();
+    alert.setTitle('Departments');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Mech',
+      value: 'Mech',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'IT',
+      value: 'IT'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Cse',
+      value: 'CSE'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Civil',
+      value: 'Civil'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'ECE',
+      value: 'ECE'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'EEE',
+      value: 'EEE'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'BME',
+      value: 'BME'
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Ok',
+      handler: data => {
+        console.log('Radio data:', data);
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+        this.Department = data;
+      }
+    });
+
+    alert.present().then(() => {
+      this.testRadioOpen = true;
+    });
+  }
+
+
+
   save() {
 
     // Presenting loading controller
     this.loadingCtrl.present();
 
     // Getting the field values
-    var dept = this.credentialForm.controls['dept'].value;
+    var dept = this.Department;
     var name = this.credentialForm.controls['name'].value;
 
     // Condition to check, If the field are empty

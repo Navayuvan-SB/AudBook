@@ -28,9 +28,9 @@
           </ion-input>
         </ion-item>
 
-        <ion-item class="round-border width">
-          <ion-input type="dropdown" formControlName="name" placeholder='Department'>
-          </ion-input>
+        <ion-item   (click)="Dept()" class="round-border width">
+          <ion-label >{{Department}}
+          </ion-label>
           <ion-icon name="custom-aw" class="resize-icon" item-right></ion-icon>
         </ion-item>
 

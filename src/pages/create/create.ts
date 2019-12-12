@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -18,6 +18,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CreatePage {
 
+testRadioOpen: boolean;
+testRadioResult;
+Department: string;
+
 credentialForm: FormGroup;
 
 // Loading controller
@@ -32,7 +36,8 @@ toastCtrl: any;
               private fire: FirebaseServices,
               public loading: LoadingController,
               public toast: ToastController,
-              public form: FormBuilder, ) {
+              public form: FormBuilder, 
+              public alert: AlertController) {
 
    
 
@@ -61,6 +66,69 @@ toastCtrl: any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatePage');
   }
+  
+  Dept() {
+    let alert = this.alert.create();
+    alert.setTitle('Departments');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Mech',
+      value: 'Mech',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'IT',
+      value: 'IT'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Cse',
+      value: 'CSE'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Civil',
+      value: 'Civil'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'ECE',
+      value: 'ECE'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'EEE',
+      value: 'EEE'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'BME',
+      value: 'BME'
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Ok',
+      handler: data => {
+        console.log('Radio data:', data);
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+        this.Department = data;
+      }
+    });
+
+    alert.present().then(() => {
+      this.testRadioOpen = true;
+    });
+  }
 
  
   save(){
@@ -69,7 +137,7 @@ toastCtrl: any;
     this.loadingCtrl.present();
 
     // Getting the field values
-    var dept = this.credentialForm.controls['dept'].value;
+    var dept = this.Department;
     var name = this.credentialForm.controls['name'].value;
 
 
