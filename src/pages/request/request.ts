@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { DashboardPage } from '../dashboard/dashboard';
 /**
  * Generated class for the RequestPage page.
  *
@@ -15,78 +16,60 @@ import { FirebaseServices } from '../../services/fireBaseService';
 })
 export class RequestPage {
 
-  // reqdata: any;
+  reqdata : any;
+  display : any;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    public alerCtrl: AlertController,
-    private fire: FirebaseServices) {
+              public navParams: NavParams,
+              public alerCtrl: AlertController,
+              private fire: FirebaseServices) {
     
-    //geting data from dashboard page
-    // this.reqdata = this.navParams.get('data');
-
-    //from data geting audId from database
-    //this.reqdata.audid;
-    // console.log(this.reqdata);
+    // geting data from dashboard page
+    this.reqdata = navParams.get('data');
     
+    // from data geting audId from database
+    this.reqdata.audID;
+    console.log(this.reqdata.audID);
+  
+    // here readonce function is to get data from database 
     this.fire.readOnce('requests')
       .then((response) =>{ 
-        console.log("Read Once Called");
-        // objects is stored in var 
-        // this.reqdata = response.val(); 
-        let obj = Object.entries(response.val());
-        console.log(obj);
-        // Local array to store the array of objects
+          console.log("Read Once Called");
+          let obj = Object.entries(response.val());
+          console.log(obj);
+          
           let arr = [];
-        // Loop through the received object
-           for (var i = 0; i < obj.length; i++) {
-           arr.push(obj[i][1]);
+
+          // Loop to get all the audid in request from database
+          for (var i = 0; i < obj.length; i++) {
+              let array = (obj[i][1].audid);
+              // console.log(arr);
+              if (this.reqdata.audID == array){
+            
+                  if (obj[i][1].status == '0'){
+                  arr.push(obj[i][1]);
+                   var p = obj[i][1];
+                   console.log(p);
+              }
+          }
          }
-        // Assigining arr to global dataret
-        //  this.reqdata = arr;
-        console.log(arr);
-        // console.log(this.reqdata);
+         this.display = arr;
+    })
+    .catch((error) => {
+         console.log(error);
+    });
 
-      })
-      .catch((error) => {
-        console.log(error);
-      });
 
-      var reqdata = this.navParams.get('data');
-      console.log(reqdata);
+
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RequestPage');
   }
 
-  
-    // this.fire.readOnce('requests')
-    //   .then((response) => { 
-    //     console.log("Read Once Called");
-    //     //objects is stored in var 
-    //     this.reqdata = response.val();
-    //     let obj = Object.entries(response.val());
-    //     console.log(obj);
-    //     // Local array to store the array of objects
-    //       let arr = []
-
-    //     // Loop through the received object
-    //        for (var i = 0; i < obj.length; i++) {
-    //        arr.push(obj[i][1]);
-    //      }
-
-    //     // Assigining arr to global dataret
-    //     //  this.reqdata = arr;
-    //     console.log(arr);
-    //     console.log(this.reqdata);
-
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  
-
+    
+  // tick popup 
   doConfirm() {
     let confirm = this.alerCtrl.create({
       title: 'Use this lightsaber?',
