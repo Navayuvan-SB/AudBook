@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseServices } from '../../services/fireBaseService';
 
 /**
  * Generated class for the WarningPage page.
@@ -15,11 +16,41 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WarningPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  redata: any;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public fire: FirebaseServices) {
+
+    this.redata = this.navParams.get('data');
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WarningPage');
+  }
+
+
+  cancel(){
+
+  }
+
+  selected(){
+      
+    // Data to update
+    let path = 'requests/' + this.redata.reqId + '/status';
+
+    let data = {
+      [path] : 2
+    }
+
+    this.fire.updateField(data)
+    .then((response) => {
+      console.log("Successssssssss");
+    })
+    .catch((error) => {
+
+    })
   }
 
 }
