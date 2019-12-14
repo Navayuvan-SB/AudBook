@@ -233,8 +233,6 @@ export class DetailPage {
   {
     let currentindex=this.navCtrl.getActive().index;
 
-    this.text= this.text1;
-    console.log(this.text);
     var write= this.audname + this.text1.substring(3,6) +'wr' + this.foren + this.aftern
     let data = {
       'AN' : this.aftern,
