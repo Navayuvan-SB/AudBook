@@ -47,7 +47,6 @@ export class RequestPage {
         // Loop to get all the audid in request from database
         for (var i = 0; i < obj.length; i++) {
           let array = (obj[i][1].audid);
-          // console.log(arr);
 
           // to check audid in dash page and audid in req from db
           if (this.reqdata.audID == array) {
@@ -162,14 +161,8 @@ export class RequestPage {
   }
   cancel(redata: any) {
 
-    const popover = this.popoverCtrl.create(WarningPage, {data: redata});
+    const popover = this.popoverCtrl.create(WarningPage, {requests: redata, from: 2});
     popover.present();
-
-    // Disable the popover
-    // let index = this.navCtrl.getActive().index;
-    // popover.onDidDismiss(() => {
-    //   this.navCtrl.remove(index);
-    // })
 
   }
 

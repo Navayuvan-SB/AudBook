@@ -16,13 +16,21 @@ import { FirebaseServices } from '../../services/fireBaseService';
 })
 export class WarningPage {
 
-  redata: any;
+  // Request data
+  requests: any;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public fire: FirebaseServices) {
+  // From flag
+  from: number;
 
-    this.redata = this.navParams.get('data');
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public fire: FirebaseServices) {
+
+    // Data from Request Page
+    this.requests = this.navParams.get('requests');
+
+    // From flag
+    this.from = this.navParams.get('from');
 
   }
 
@@ -31,29 +39,34 @@ export class WarningPage {
   }
 
 
-  cancel(){
+  cancel() {
     let index = this.navCtrl.getActive().index;
-      this.navCtrl.remove(index);
+    this.navCtrl.remove(index);
   }
 
-  selected(){
-      
-    // Data to update
-    let path = 'requests/' + this.redata.reqId + '/status';
+  selected() {
 
-    let data = {
-      [path] : 2
+
+    if (this.from == 2) {
+
+      // Data to update
+      let path = 'requests/' + this.requests.reqId + '/status';
+
+      let data = {
+        [path]: 2
+      }
+
+      this.fire.updateField(data)
+        .then((response) => {
+          console.log("Successssssssss");
+          let index = this.navCtrl.getActive().index;
+          this.navCtrl.remove(index);
+        })
+        .catch((error) => {
+
+        });
     }
 
-    this.fire.updateField(data)
-    .then((response) => {
-      console.log("Successssssssss");
-      let index = this.navCtrl.getActive().index;
-      this.navCtrl.remove(index);
-    })
-    .catch((error) => {
-
-    })
   }
 
 }
