@@ -43,8 +43,8 @@ export class StatusPage {
       .then((response) => {
         console.log("Read Once Called");
         //objects is stored in obj
-        // this.dataret = response.val();
-        let obj = Object.entries(response.val());
+        // this.dataret = response;
+        let obj = Object.entries(response);
 
         // Local array to store the array of objects
         let arr = []
