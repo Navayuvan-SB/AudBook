@@ -53,7 +53,7 @@ export class LoginPage {
     loading.present();
     this.fbService.filterData(this.fbService.equalTo,'users',null,this.fbService.orderByChild,'email', email)
         .then((response) => {
-          // let obj = Object.entries(response.val());
+          // let obj = Object.entries(response);
           // let email = obj[0][1].email;
           this.fbService.login(email, password)
               .then((response) => {

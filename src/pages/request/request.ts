@@ -39,7 +39,7 @@ export class RequestPage {
     this.fire.readOnce('requests')
       .then((response) => {
         console.log("Read Once Called");
-        let obj = Object.entries(response.val());
+        let obj = Object.entries(response);
         console.log(obj);
 
         let arr = [];
