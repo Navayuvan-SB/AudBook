@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { StatusPage } from '../status/status';
 
 /**
  * Generated class for the WarningPage page.
@@ -50,8 +51,10 @@ export class WarningPage {
       this.fire.removeField('requests', this.status.reqId)
         .then((response) => {
           
-          console.log("Deleted");
-          
+          // Dismiss the popover
+          let index = this.navCtrl.getActive().index;
+          this.navCtrl.remove(index);
+          this.navCtrl.push(StatusPage);
           
         })
         .catch((error) => {
@@ -60,9 +63,8 @@ export class WarningPage {
     }
     else if (this.from == 2){
 
+      
 
     }
-
-
   }
 }
