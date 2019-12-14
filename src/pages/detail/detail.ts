@@ -225,42 +225,45 @@ export class DetailPage {
   // clicking book
 
   stat() {
-    
-    // Req Id Generation
-    var write = this.audname + this.text.substring(3, 6) + 'wr' + this.foren + this.aftern;
-    
 
-    // Data to write
-    let data = {
-      'AN': this.anStatus,
-      'FN': this.fnStatus,
-      'audName': this.audname,
-      'audid': this.auddept,
-      'date': this.findata,
-      'dept': this.department,
-      'phone': this.credentialForm.controls['text1'].value,
-      'reqid': write,
-      'status': 0
+    var phoneNumber = this.credentialForm.controls['text1'].value;
+
+    if ((this.anStatus == 0) && (this.fnStatus == 0) && (phoneNumber != '')) {
+
+      // Req Id Generation
+      var write = this.audname + this.text.substring(3, 6) + 'wr' + this.foren + this.aftern;
+
+
+      // Data to write
+      let data = {
+        'AN': this.anStatus,
+        'FN': this.fnStatus,
+        'audName': this.audname,
+        'audId': this.auddept,
+        'date': this.findata,
+        'dept': this.department,
+        'phone': phoneNumber,
+        'reqId': write,
+        'status': 0
+      }
+
+      // Write the request to database
+      this.fire.writeInDatabase('requests/' + write, data)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      this.navCtrl.push(StatusPage);
+
+    }
+    else{
+
     }
 
-    this.fire.writeInDatabase('requests/' + write, data)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-
-    this.navCtrl.push(StatusPage);
-
-
-
-    if ((this.anStatus == 0) && (this.fnStatus == 0)) {
-      console.log('adsjhvdsjg');
-    }
-
-
+    
   }
 
   // AN button trigger
@@ -270,7 +273,7 @@ export class DetailPage {
     if (this.anStatus == 0) {
 
       // If checked, change it to 1 and set the border color as Green
-      document.documentElement.style.setProperty(`--button-clicked-an`, '2px solid  #35AE59');
+      document.documentElement.style.setProperty(`--button-clicked-an`, '2px solid #35AE59');
       this.anStatus = 1;
       // this.anpassStatus=this.anStatus;
     }
@@ -353,9 +356,7 @@ export class DetailPage {
             }
 
           }
-          // console.log(this.statusrec);
-          // console.log(flagFN);
-          // console.log(flagAN);
+
 
           if ((flagAN == '0' && flagFN == '1') || (flagAN == '1' && flagFN == '0')) {
             this.statusrec = 0;
