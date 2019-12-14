@@ -3,6 +3,7 @@ import { NavController, AlertController, NavParams, PopoverController } from 'io
 import { BookNewPage } from '../book-new/book-new';
 import { WarningPage } from '../warning/warning';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the StatusPage page.
@@ -18,18 +19,25 @@ import { FirebaseServices } from '../../services/fireBaseService';
 export class StatusPage {
 
   statusinfo: any;
-  UserID: any= 'user01';
+  userId: any;
 
   constructor(
-      public alertctrl: AlertController, 
-      public navCtrl: NavController,
-      public navParams: NavParams,
-      public popoverCtrl: PopoverController,
-      private fire: FirebaseServices,
-      ) {
+    public alertctrl: AlertController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public popoverCtrl: PopoverController,
+    private fire: FirebaseServices,
+    private afAuth: AngularFireAuth) {
 
-        this.firebaseFunctions();
-        
+    this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
+      .then((response) => {
+        this.userId = response.userId;
+      })
+      .catch((error) => {
+
+      });
+
+    this.firebaseFunctions();
 
   }
 
@@ -39,6 +47,7 @@ export class StatusPage {
 
   //variable name to store the objects from data
   firebaseFunctions() {
+
     this.fire.readOnce('requests')
       .then((response) => {
         console.log("Read Once Called");
@@ -48,37 +57,37 @@ export class StatusPage {
 
         // Local array to store the array of objects
         let arr = []
-      
+
         // Loop through the received object
         for (var i = 0; i < obj.length; i++) {
 
-        //condition to compare the IDs to display the Status
-        if(this.UserID == obj[i][1].userId){
-          arr.push(obj[i][1]);
-          
-      }
+          //condition to compare the IDs to display the Status
+          if (this.userId == obj[i][1].userId) {
+            arr.push(obj[i][1]);
+
+          }
         }
         // Assigining arr to global datar
         this.statusinfo = arr;
 
-        console.log(this.statusinfo); 
+        console.log(this.statusinfo);
 
       })
       .catch((error) => {
         console.log(error);
       });
-      
-  } 
 
-  alert(data:any){  
-    
+  }
+
+  alert(data: any) {
+
     // Pass the data to Warning popover
-    const popover= this.popoverCtrl.create(WarningPage, {status: data, from: 1});
+    const popover = this.popoverCtrl.create(WarningPage, { status: data, from: 1 });
     popover.present();
   }
-  
-  next1(){
+
+  next1() {
     this.navCtrl.push(BookNewPage);
   }
-  
+
 }
