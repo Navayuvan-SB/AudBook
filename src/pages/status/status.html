@@ -1,47 +1,53 @@
 <ion-header no-border>
-     <ion-navbar>
-           <ion-title class="toolbar-title.toolbar-title-md"><b>Status</b></ion-title>
-     </ion-navbar>
+  <ion-navbar>
+    <ion-title class="toolbar-title.toolbar-title-md"><b>Status</b></ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-      <div class="change">
+  <div class="change">
 
-      </div>
+  </div>
 
-      <div class="one">
-            <ion-grid>.
-                  <ion-row class="gap" *ngFor="let data of statusinfo" >
-                       <ion-col col-2>
-                            <ion-avatar class="img1 com1 " style=" border: 1px solid black;">
-                                                  <!--image-->
-                            </ion-avatar>
-                       </ion-col>
+  <div class="one">
+    <ion-grid>.
+      <ion-row class="gap" *ngFor="let data of statusinfo">
+        <ion-col col-2>
+          <ion-avatar class="img1 com1" style=" border: 1px solid black;">
+            <!--image-->
+          </ion-avatar>
+        </ion-col>
 
-                       <ion-col col-10 >
-                             <ion-row class="adjust2"><b>{{data.audName}}-{{data.dept}}</b> </ion-row> 
-                             <ion-row class="adjust1 adjust2">
-                                   <ion-col col-7>{{data.date}}</ion-col>
-                                   <ion-col class="gap1" col-3 ><ion-icon *ngIf="data.status != 1" (click)="alert(ramya)" class="adjust2" name="custom-delete" color="danger"></ion-icon></ion-col>
-                              </ion-row>
-                              <ion-row *ngIf="data.status == 2"><button class="b b3 com2 adjust1 adjust2 " ion-button round>Rejected</button></ion-row>
-                              <ion-row *ngIf="data.status == 0"><button class="b b1 com2 adjust1 adjust2" ion-button round>Waiting</button></ion-row>
-                              <ion-row *ngIf="data.status == 1"><button class="b b2 com2 adjust1 adjust2" ion-button round>Accepted</button></ion-row>
-                       </ion-col>
-   
-                       <!-- <ion-col>
+        <ion-col col-10>
+          <ion-row class="adjust2"><b>{{data.audName}}-{{data.dept}}</b> </ion-row>
+          <ion-row class="adjust1 adjust2">
+            <ion-col col-7>{{data.date}}</ion-col>
+            <ion-col class="gap1" col-3>
+              <ion-icon *ngIf="data.status != 1" (click)="alert(data)" class="adjust2" name="custom-delete"
+                color="danger"></ion-icon>  
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="data.status == 2"><button class="b b3 com2 adjust1 adjust2 " ion-button
+              round>Rejected</button></ion-row>
+          <ion-row *ngIf="data.status == 0"><button class="b b1 com2 adjust1 adjust2" ion-button round>Waiting</button>
+          </ion-row>
+          <ion-row *ngIf="data.status == 1"><button class="b b2 com2 adjust1 adjust2" ion-button round>Accepted</button>
+          </ion-row>
+        </ion-col>
+
+        <!-- <ion-col>
                              <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon>
                        </ion-col> -->
-                  </ion-row>
+      </ion-row>
 
-                  <!-- <ion-row class="gap">
+      <!-- <ion-row class="gap">
                        <ion-col col-2>
                             <ion-avatar class="img2 com1 adjust" style=" border: 1px solid black;"> -->
-                                                  <!--image-->
-                            <!-- </ion-avatar>
+      <!--image-->
+      <!-- </ion-avatar>
                        </ion-col> -->
-    
-                       <!-- <ion-col col-10>
+
+      <!-- <ion-col col-10>
                              <ion-row class="adjust2"><b>Auditorium 2-IT</b> </ion-row> 
                              <ion-row class=" adjust1 adjust2">
                                    <ion-col col-7>01/01/01</ion-col>
@@ -49,17 +55,17 @@
                               </ion-row>
                              <ion-row><button class="b b2 com2 adjust1 adjust2" ion-button round>Accepted</button></ion-row>
                        </ion-col> -->
-<!--                       
+      <!--                       
                        <ion-col>
                              <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon>
                        </ion-col> -->
-                  <!-- </ion-row>
+      <!-- </ion-row>
  
                   <ion-row class="gap">
                        <ion-col col-2>
                             <ion-avatar class="img3 com1 adjust" style=" border: 1px solid black;"> -->
-                                                  <!--image-->
-                            <!-- </ion-avatar>
+      <!--image-->
+      <!-- </ion-avatar>
                        </ion-col>
           
                        <ion-col col-10>
@@ -71,16 +77,15 @@
                             <ion-row><button class="b b3 com2 adjust1 adjust2 " ion-button round>Rejected</button></ion-row>
                        </ion-col> -->
 
-                       <!-- <ion-col>
+      <!-- <ion-col>
                              <ion-icon (click)="alert()" class="adjust2" name="custom-delete" color="danger"></ion-icon>
                        </ion-col> -->
-                  <!-- </ion-row> -->
-            </ion-grid>
-      </div>
-  
+      <!-- </ion-row> -->
+    </ion-grid>
+  </div>
+
 </ion-content>
 
-    <ion-footer>
-           <button (click)="next1()" class="b b2 com3 " ion-button round>+ BookNew</button>
-    </ion-footer>
-   
+<ion-footer>
+  <button (click)="next1()" class="b b2 com3 " ion-button round>+ BookNew</button>
+</ion-footer>

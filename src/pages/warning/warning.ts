@@ -16,12 +16,22 @@ import { FirebaseServices } from '../../services/fireBaseService';
 })
 export class WarningPage {
 
+  // Status page
+  status: any = {};
+
+  // From flag
+  from: number;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private fire: FirebaseServices) {
 
+    // Data from status page
+    this.status = this.navParams.get('status');
+
+    // From flag
+    this.from = this.navParams.get('from');
 
   }
 
@@ -29,18 +39,30 @@ export class WarningPage {
     console.log('ionViewDidLoad WarningPage');
   }
 
-  cancel(){
+  cancel() {
   }
 
-  selected(){
-   
-     this.fire.removeField('requests','ramya.reqId')
+  selected() {
+
+    if (this.from == 1) {
+
+      // Remove the data
+      this.fire.removeField('requests', this.status.reqId)
         .then((response) => {
-          console.log("removeddd");
+          
+          console.log("Deleted");
+          
+          
         })
         .catch((error) => {
-          console.log(error);
+          
         });
-   
-  } 
+    }
+    else if (this.from == 2){
+
+
+    }
+
+
+  }
 }

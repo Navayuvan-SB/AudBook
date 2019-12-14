@@ -70,13 +70,11 @@ export class StatusPage {
       
   } 
 
-  alert(ramya:any){
-    console.log(ramya);
-    const popover= this.popoverCtrl.create(WarningPage);
-    popover.present();  
-
-
- 
+  alert(data:any){  
+    
+    // Pass the data to Warning popover
+    const popover= this.popoverCtrl.create(WarningPage, {status: data, from: 1});
+    popover.present();
   }
   
   next1(){
