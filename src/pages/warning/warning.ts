@@ -32,7 +32,8 @@ export class WarningPage {
 
 
   cancel(){
-
+    let index = this.navCtrl.getActive().index;
+      this.navCtrl.remove(index);
   }
 
   selected(){
@@ -47,6 +48,8 @@ export class WarningPage {
     this.fire.updateField(data)
     .then((response) => {
       console.log("Successssssssss");
+      let index = this.navCtrl.getActive().index;
+      this.navCtrl.remove(index);
     })
     .catch((error) => {
 

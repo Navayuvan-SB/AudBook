@@ -10,7 +10,7 @@ ion-header{
 h2{
     font: Bolder 25px Segoe UI;
     margin-top :15px ; 
-    margin-left: 1px;
+    margin-left: -5px !important;
     color: black;
 }
 
@@ -44,6 +44,14 @@ ion-grid{
 .done-cancel-icon{
     width: 37px;
     margin: 15px 0px 0px 5px;
+}
+
+
+.notfound{
+    font-weight: bolder;
+    text-align: center;
+    margin: 50% !important;
+    width: 50% !important;
 }
 
 }

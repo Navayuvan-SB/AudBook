@@ -92,17 +92,17 @@ export class RequestPage {
   doConfirm(redata: any) {
 
     let confirm = this.alerCtrl.create({
-      title: 'Use this lightsaber?',
-      message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+      title: 'Are you sure?',
+      message: 'Do you conform the to request?',
       buttons: [
         {
-          text: 'Disagree',
+          text: 'cancel',
           handler: () => {
             console.log('Disagree clicked');
           }
         },
         {
-          text: 'Agree',
+          text: 'confirm',
           handler: () => {
 
             // Change the accepted status as 1
@@ -166,10 +166,10 @@ export class RequestPage {
     popover.present();
 
     // Disable the popover
-    let index = this.navCtrl.getActive().index;
-    popover.onDidDismiss(() => {
-      this.navCtrl.remove(index);
-    })
+    // let index = this.navCtrl.getActive().index;
+    // popover.onDidDismiss(() => {
+    //   this.navCtrl.remove(index);
+    // })
 
   }
 
