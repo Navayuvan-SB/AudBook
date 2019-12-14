@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseServices } from '../../services/fireBaseService';
 
 /**
  * Generated class for the WarningPage page.
@@ -15,11 +16,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WarningPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private fire: FirebaseServices) {
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WarningPage');
   }
 
+  cancel(){
+  }
+
+  selected(){
+   
+     this.fire.removeField('requests','ramya.reqId')
+        .then((response) => {
+          console.log("removeddd");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+   
+  } 
 }

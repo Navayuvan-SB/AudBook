@@ -16,13 +16,13 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RequestPage } from '../pages/request/request';
 import { LoginPage } from '../pages/login/login';
 
-
+ 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = DashboardPage;
+  rootPage:any = StatusPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

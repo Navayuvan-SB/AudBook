@@ -151,7 +151,7 @@ toastCtrl: any;
       this.toastCtrl.setMessage("Auditorium Name and Dept should not be empty...!")
       this.toastCtrl.present();
 
-    }
+    } 
 
     else {
       
