@@ -33,8 +33,7 @@ export class DetailPage {
 
   findata: string;
 
-  text: string;
-  text1: string;
+  text: string = '';
 
   // fromtext:any='fromtext';
   // fromtext1:string;
@@ -226,20 +225,20 @@ export class DetailPage {
   // clicking book
 
   stat() {
-
-
+    
     // Req Id Generation
     var write = this.audname + this.text.substring(3, 6) + 'wr' + this.foren + this.aftern;
+    
 
     // Data to write
     let data = {
-      'AN': this.aftern,
-      'FN': this.foren,
+      'AN': this.anStatus,
+      'FN': this.fnStatus,
       'audName': this.audname,
       'audid': this.auddept,
       'date': this.findata,
-      'dept': this.dept1,
-      'phone': this.text,
+      'dept': this.department,
+      'phone': this.credentialForm.controls['text1'].value,
       'reqid': write,
       'status': 0
     }
