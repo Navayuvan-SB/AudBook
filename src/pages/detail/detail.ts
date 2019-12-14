@@ -320,7 +320,7 @@ export class DetailPage {
           let flagFN = '0';
 
           console.log("Read Once Called");
-          let obj = Object.entries(response.val());
+          let obj = Object.entries(response);
           for (var i = 0; i < obj.length; i++) {
 
 
