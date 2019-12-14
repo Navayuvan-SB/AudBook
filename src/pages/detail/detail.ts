@@ -72,9 +72,20 @@ export class DetailPage {
   anStatus: number = 0;
   fnStatus: number = 0;
 
+  // User Id
+  userId: any;
 
 
   constructor(public fire: FirebaseServices, public formBuilder: FormBuilder, public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public platform: Platform, public navParams: NavParams) {
+
+    this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
+      .then((response) => {
+        this.userId = response.userId;
+      })
+      .catch((error) => {
+
+      });
+
     this.credentialForm = this.formBuilder.group({
       text1: ['', Validators.compose([
         Validators.required,
@@ -244,6 +255,7 @@ export class DetailPage {
         'dept': this.department,
         'phone': phoneNumber,
         'reqId': write,
+        'userId': this.userId,
         'status': 0
       }
 
