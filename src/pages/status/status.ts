@@ -16,7 +16,10 @@ import { WarningPage } from '../warning/warning';
 })
 export class StatusPage {
 
-  constructor(public alertctrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  constructor(public alertctrl: AlertController,
+              public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public popoverCtrl: PopoverController,) {
   }
 
   ionViewDidLoad() {

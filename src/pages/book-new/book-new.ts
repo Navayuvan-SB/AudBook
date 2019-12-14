@@ -38,7 +38,6 @@ calendar( aud: any){
   popover.present();  
 }
 
-
 firebaseFunctions(){
   this.fire.readOnce('auditorium')
         .then((response) => {

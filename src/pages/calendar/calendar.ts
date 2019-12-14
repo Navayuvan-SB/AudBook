@@ -14,7 +14,7 @@ import { DetailPage } from '../detail/detail';
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
-
+ 
 })
 export class CalendarPage {
  public data: any;

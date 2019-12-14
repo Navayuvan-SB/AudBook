@@ -30,7 +30,7 @@ page-detail {
 
   .imgg1 {
     position: relative;
-    background-color: #35AE59;
+    background-color: var(--rocolor);
     margin-top: 50px;
     left: -90px;
     width: 23px;
@@ -38,7 +38,6 @@ page-detail {
     display: block;
     border-radius: 50%;
   }
-
   .com1 {
     position: relative;
     left: 10px;
@@ -93,7 +92,8 @@ page-detail {
 //   Common CSS class for AN and FN button
   .but,
   .but-checked-an,
-  .but-checked-fn {
+  .but-checked-fn,
+  .but-unchecked {
 
     border-radius: 5px;
     margin-top: 9px;
@@ -107,12 +107,18 @@ page-detail {
 // Button checked status indicator
   .but-checked-an {
     border: var(--button-clicked-an);
-    max-width: 50% !important;
   }
 
   .but-checked-fn {
     border: var(--button-clicked-fn);
-    max-width: 50% !important;
+  }
+
+  .but-unchecked {
+    border: 1px solid grey;
+  }
+
+  ion-item.but-unchecked ion-label {
+    color: grey;
   }
 
   .but1 {
