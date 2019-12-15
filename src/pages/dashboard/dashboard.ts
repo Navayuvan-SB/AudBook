@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,ToastController, NavParams, LoadingController } from 'ionic-angular';
 import { EditPage } from '../Edit/Edit';
 import { CreatePage } from '../create/create';
 import { FirebaseServices } from '../../services/fireBaseService';
@@ -20,8 +20,14 @@ import { RequestPage } from '../request/request';
 export class DashboardPage {
 
   dataret: any;
+  loading : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FirebaseServices) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: FirebaseServices, public toastCtrl    : ToastController,  public loadingCtrl  : LoadingController) {
+
+    this.loading = this.loadingCtrl.create({
+      content: 'please wait, logging in'
+    });
+
     this.firebaseFunctions();
   }
 
@@ -30,8 +36,10 @@ export class DashboardPage {
   }
   //variable name to store the objects from data
   firebaseFunctions() {
+    this.loading.present();
     this.fire.readOnce('auditorium')
       .then((response) => {
+        // this.loading.dismiss();
         console.log("Read Once Called");
         //objects is stored in var 
         // this.dataret = response;
@@ -47,9 +55,10 @@ export class DashboardPage {
 
         // Assigining arr to global dataret
         this.dataret = arr;
-
+        this.loading.dismiss();
       })
       .catch((error) => {
+        this.loading.dismiss();
         console.log(error);
       });
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { WarningPage } from '../warning/warning';
 import { PopoverController } from 'ionic-angular';
@@ -21,12 +21,20 @@ export class RequestPage {
   reqdata: any;
   display: any;
   present: any = 0;
+  loading: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alerCtrl: AlertController,
     private fire: FirebaseServices,
-    public popoverCtrl: PopoverController) {
+    public popoverCtrl: PopoverController,
+    public toastCtrl    : ToastController,
+    public loadingCtrl  : LoadingController) {
+
+    // loading control
+    this.loading = this.loadingCtrl.create({
+      content: 'please wait, logging in'
+    });  
 
     // geting data from dashboard page
     this.reqdata = navParams.get('data');
@@ -36,6 +44,7 @@ export class RequestPage {
     console.log(this.reqdata.audID);
 
     // here readonce function is to get data from database 
+    this.loading.present();
     this.fire.readOnce('requests')
       .then((response) => {
         console.log("Read Once Called");
@@ -69,11 +78,11 @@ export class RequestPage {
             }
           }
         }
-
-
         this.display = arr;
+        this.loading.dismiss();
       })
       .catch((error) => {
+        this.loading.dismiss();
         console.log(error);
       });
 
