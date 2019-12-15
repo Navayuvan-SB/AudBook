@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, PopoverController, LoadingController, ToastController} from 'ionic-angular';
 import { BookNewPage } from '../book-new/book-new';
 import { WarningPage } from '../warning/warning';
 import { FirebaseServices } from '../../services/fireBaseService';
@@ -21,14 +21,32 @@ export class StatusPage {
   statusinfo: any;
   userId: any;
 
+  // Loading controller
+  loadingCtrl: any;
+
+  // Toast controller
+  toastCtrl: any;
+
   constructor(
     public alertctrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
+    public loading: LoadingController,
+    public toast: ToastController,
     public popoverCtrl: PopoverController,
     private fire: FirebaseServices,
     private afAuth: AngularFireAuth,
     private alertCtrl: AlertController) {
+
+    // Initializing Loading Controller
+    this.loadingCtrl = this.loading.create({
+      content: 'Please wait...'
+    });
+
+    // Initializing Toast Controller
+    this.toastCtrl = this.toast.create({
+      duration: 3000
+    });
 
     this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
       .then((response) => {
@@ -42,15 +60,21 @@ export class StatusPage {
 
   }
 
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
-  }
 
+  }
+  
   //variable name to store the objects from data
   firebaseFunctions() {
+    
+    // Presenting loading controller
+    this.loadingCtrl.present();
 
     this.fire.readOnce('requests')
       .then((response) => {
+  
         console.log("Read Once Called");
         //objects is stored in obj
         // this.dataret = response;
@@ -62,7 +86,7 @@ export class StatusPage {
         // Loop through the received object
         for (var i = 0; i < obj.length; i++) {
 
-          //condition to compare the IDs to display the Status
+        //condition to compare the IDs to display the Status
           if (this.userId == obj[i][1].userId) {
             arr.push(obj[i][1]);
 
@@ -73,9 +97,20 @@ export class StatusPage {
 
         console.log(this.statusinfo);
 
+        // Dismissing the loading controller
+        this.loadingCtrl.dismiss();
+
       })
       .catch((error) => {
         console.log(error);
+
+      // Dismissing the loading controller
+      this.loadingCtrl.dismiss();
+
+      // Display the toast
+      this.toastCtrl.setMessage("Auditorium Name and Dept should not be empty...!")
+      this.toastCtrl.present();
+      
       });
 
   }
