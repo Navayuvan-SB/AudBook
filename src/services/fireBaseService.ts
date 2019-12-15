@@ -30,7 +30,7 @@ export class FirebaseServices {
          this.fbDatabase.database.ref(parent)
             .once("value")
             .then(function(snapshot) {
-               resolve(snapshot);
+               resolve(snapshot.val());
             })
             .catch(function(error){
                reject('Something is wrong');

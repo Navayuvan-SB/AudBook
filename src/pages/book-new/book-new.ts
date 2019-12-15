@@ -9,7 +9,7 @@ import { FirebaseServices } from '../../services/fireBaseService';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
- */ 
+ */
 
 @IonicPage()
 @Component({
@@ -17,48 +17,115 @@ import { FirebaseServices } from '../../services/fireBaseService';
   templateUrl: 'book-new.html',
 })
 export class BookNewPage {
- audinfo : any;
- 
+  audinfo: any;
 
-  constructor(public fire : FirebaseServices,public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  // Seat Count
+  sCount: any = '';
+
+  constructor(public fire: FirebaseServices, public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+
+    // Getting the Seat count from Status page
+    this.sCount = this.navParams.get('sCount');
+
     this.firebaseFunctions();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookNewPage');
   }
-next(){
-  this.navCtrl.push(DetailPage);
-}
-calendar( aud: any){
-  
-  const popover= this.popoverCtrl.create(CalendarPage,{aud:aud});
-  
-    
-  popover.present();  
-}
+  next() {
+    this.navCtrl.push(DetailPage);
+  }
+  calendar(aud: any) {
 
-firebaseFunctions(){
-  this.fire.readOnce('auditorium')
-        .then((response) => {
-          console.log("Read Once Called");
-          let obj = Object.entries(response. val());
-          //local array to store array of objects
-          let arr=[]
-          //loop through the received object
-          for(var i=0;i <obj.length; i++){
-            arr.push(obj[i][1]);
-          }
-          //assigning arr to global audinfo
-          this.audinfo = arr;
+    const popover = this.popoverCtrl.create(CalendarPage, { aud: aud });
 
-        //objects are stored in variable
-        //this.audinfo= response. val();
-        //  console.log(this.audinfo);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-       } 
- 
+
+    popover.present();
+  }
+
+  firebaseFunctions() {
+    this.fire.readOnce('auditorium')
+      .then((response) => {
+        console.log("Read Once Called");
+        let obj = Object.entries(response);
+
+        //local array to store array of objects
+        let arr = []
+
+        //loop through the received object
+        for (var i = 0; i < obj.length; i++) {
+          arr.push(obj[i][1]);
+        }
+
+        //assigning arr to global audinfo
+        this.audinfo = this.seatSort(arr);
+
+        
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+
+  // Sort the array of objects according to the seat count
+  seatSort(displayArray) {
+
+    this.sCount = 355;
+
+    // Sorting in Ascending order
+    displayArray.sort((a, b) => {
+      return (a.sCount - b.sCount)
+    });
+
+    // Array to store the sorted list
+    let sArr = [];
+
+    // Length of the array
+    let length = displayArray.length;
+
+    // Index variable for sorting function
+    let index = 0;
+
+    // Flag for completion of a cycle
+    let flag = 0;
+
+    // Sort according the seat count
+    for (var i = 0; i < length; i++) {
+
+      // Check if this is a first cycle
+      if (flag == 0) {
+
+        // Check If the Auditorium seat count is less than the entered seat count
+        if (this.sCount <= displayArray[i].sCount) {
+
+          sArr.push(displayArray[i]);
+        }
+        else {
+          index = i;
+        }
+
+        // If the 1st cycle is gonna end, set the length and reset the i variable 
+        if (i == length - 1 && index != 0) {
+          length = index + 1;
+          i = -1;
+          flag = 1;
+        }
+
+      } 
+      // If not the initial cycle
+      else if (flag == 1){
+
+        sArr.push(displayArray[i]);
+      }
+
+    }
+
+
+    return sArr;
+
+  }
+
 }
