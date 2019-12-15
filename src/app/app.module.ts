@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { UloginPage } from '../pages/Ulogin/Ulogin';
 import { StatusPage } from '../pages/status/status';
 import { EditPage } from '../pages/Edit/Edit';
 import { CreatePage } from '../pages/create/create';
@@ -28,7 +27,6 @@ import { LoginPage } from '../pages/login/login';
 @NgModule({
   declarations: [
     MyApp,
-    UloginPage,
     StatusPage,
     EditPage,
     CreatePage,
@@ -38,8 +36,7 @@ import { LoginPage } from '../pages/login/login';
     DetailPage,
     WarningPage,
     DashboardPage,
-    RequestPage,
-    UloginPage
+    RequestPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +51,6 @@ import { LoginPage } from '../pages/login/login';
     StatusPage,
     EditPage,
     CreatePage,
-    UloginPage,
     StatusPage,
     BookNewPage,
     DetailPage,
