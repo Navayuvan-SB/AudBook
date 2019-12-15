@@ -93,7 +93,7 @@ export class DetailPage {
               public navParams: NavParams,
               public loading: LoadingController,
               public toast: ToastController,
-              private afAUth: AngularFireAuth
+              public afAUth: AngularFireAuth
               ) {
 
     // Initializing Loading Controller
