@@ -1,10 +1,11 @@
 import { Component, HostBinding } from '@angular/core';
-import { IonicPage, AlertController, PopoverController, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, AlertController, PopoverController, NavController, NavParams, Platform , LoadingController,ToastController} from 'ionic-angular';
 import { StatusPage } from '../status/status';
 import { CalendarPage } from '../calendar/calendar';
 import { getParentRenderElement } from '@angular/core/src/view/util';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -23,6 +24,13 @@ import { FirebaseServices } from '../../services/fireBaseService';
 })
 // @ViewChild('Navbar') navBar: Navbar;
 export class DetailPage {
+
+   // Loading controller
+   loadingCtrl: any;
+
+   // Toast controller
+   toastCtrl: any;
+ 
   credentialForm: FormGroup
 
   data: any;
@@ -76,7 +84,27 @@ export class DetailPage {
   userId: any;
 
 
-  constructor(public fire: FirebaseServices, public formBuilder: FormBuilder, public popoverCtrl: PopoverController, public alertCtrl: AlertController, public navCtrl: NavController, public platform: Platform, public navParams: NavParams) {
+  constructor(public fire: FirebaseServices,
+              public formBuilder: FormBuilder,
+              public popoverCtrl: PopoverController, 
+              public alertCtrl: AlertController, 
+              public navCtrl: NavController, 
+              public platform: Platform, 
+              public navParams: NavParams,
+              public loading: LoadingController,
+              public toast: ToastController,
+              private afAUth: AngularFireAuth
+              ) {
+
+    // Initializing Loading Controller
+    this.loadingCtrl = this.loading.create({
+      content: 'Please wait...'
+    });
+
+    // Initializing Toast Controller
+    this.toastCtrl = this.toast.create({
+      duration: 3000
+    });
 
     this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
       .then((response) => {
@@ -244,7 +272,6 @@ export class DetailPage {
       // Req Id Generation
       var write = this.audname + this.text.substring(3, 6) + 'wr' + this.foren + this.aftern;
 
-
       // Data to write
       let data = {
         'AN': this.anStatus,
@@ -259,13 +286,24 @@ export class DetailPage {
         'status': 0
       }
 
+      // Presenting loading controller
+      this.loadingCtrl.present();
+
       // Write the request to database
       this.fire.writeInDatabase('requests/' + write, data)
         .then((response) => {
           console.log(response);
+        // Dismissing the loading controller
+        this.loadingCtrl.dismiss();
         })
         .catch((error) => {
           console.log(error);
+          // Dismissing the loading controller
+          this.loadingCtrl.dismiss();
+
+          // Display the toast
+          this.toastCtrl.setMessage("Something went wrong ....please try again")
+          this.toastCtrl.present();
         });
 
       this.navCtrl.push(StatusPage);

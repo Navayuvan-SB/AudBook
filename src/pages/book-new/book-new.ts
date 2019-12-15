@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController,LoadingController,ToastController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import { CalendarPage } from '../calendar/calendar';
 import { FirebaseServices } from '../../services/fireBaseService';
@@ -17,17 +17,41 @@ import { FirebaseServices } from '../../services/fireBaseService';
   templateUrl: 'book-new.html',
 })
 export class BookNewPage {
+
+  // Loading controller
+  loadingCtrl: any;
+
+  // Toast controller
+  toastCtrl: any;
+
   audinfo: any;
 
   // Seat Count
   sCount: any = '';
 
-  constructor(public fire: FirebaseServices, public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  constructor(public fire: FirebaseServices,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              public popoverCtrl: PopoverController,
+              public loading: LoadingController,
+              public toast: ToastController) {
 
-    // Getting the Seat count from Status page
-    this.sCount = this.navParams.get('sCount');
 
-    this.firebaseFunctions();
+      // Initializing Loading Controller
+      this.loadingCtrl = this.loading.create({
+        content: 'Please wait...'
+      });
+
+      // Initializing Toast Controller
+      this.toastCtrl = this.toast.create({
+        duration: 3000
+      });
+
+    
+      // Getting the Seat count from Status page
+      this.sCount = this.navParams.get('sCount');
+
+      this.firebaseFunctions();
   }
 
   ionViewDidLoad() {
@@ -45,6 +69,10 @@ export class BookNewPage {
   }
 
   firebaseFunctions() {
+
+    // Presenting loading controller
+    this.loadingCtrl.present();
+    
     this.fire.readOnce('auditorium')
       .then((response) => {
         console.log("Read Once Called");
@@ -61,11 +89,19 @@ export class BookNewPage {
         //assigning arr to global audinfo
         this.audinfo = this.seatSort(arr);
 
-        
+        // Dismissing the loading controller
+        this.loadingCtrl.dismiss();
 
-      })
+        })
+
       .catch((error) => {
         console.log(error);
+        // Dismissing the loading controller
+        this.loadingCtrl.dismiss();
+
+        // Display the toast
+        this.toastCtrl.setMessage("Something went wrong ...please try again")
+        this.toastCtrl.present();
       });
   }
 
