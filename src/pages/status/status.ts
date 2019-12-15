@@ -27,7 +27,8 @@ export class StatusPage {
     public navParams: NavParams,
     public popoverCtrl: PopoverController,
     private fire: FirebaseServices,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private alertCtrl: AlertController) {
 
     this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
       .then((response) => {
@@ -87,7 +88,35 @@ export class StatusPage {
   }
 
   next1() {
-    this.navCtrl.push(BookNewPage);
+
+    // Prompt alert for get the seat count from user
+    const seatAlert = this.alertCtrl.create({
+      title: "Seat Count",
+      message: 'Enter the expected Seat count',
+      inputs: [
+        {
+          name: 'count',
+          placeholder: 'Count'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+
+          }
+        },
+        {
+          text: 'Continue',
+          handler: data => {
+
+            // Pass the seat count to Book New Page
+            this.navCtrl.push(BookNewPage, { sCount: data });
+          }
+        }
+      ]
+    });
+
   }
 
 }
