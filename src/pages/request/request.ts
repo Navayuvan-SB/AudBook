@@ -31,20 +31,30 @@ export class RequestPage {
     public toastCtrl    : ToastController,
     public loadingCtrl  : LoadingController) {
 
-    // loading control
-    this.loading = this.loadingCtrl.create({
-      content: 'please wait, logging in'
-    });  
+          // loading
+          this.loading = this.loadingCtrl.create({
+            content: 'please wait'
+          }); 
+    
+    
+          // toast message
+          let toast = this.toastCtrl.create({
+            message   : 'Some error has occured. Please try agian',
+            duration  : 2000,
+            position  : 'bottom'
+          });
 
-    // geting data from dashboard page
-    this.reqdata = navParams.get('data');
+          // geting data from dashboard page
+          this.reqdata = navParams.get('data');
 
-    // from data geting audId from database
-    this.reqdata.audID;
-    console.log(this.reqdata.audID);
+          // from data geting audId from database
+          this.reqdata.audID;
+          console.log(this.reqdata.audID);
 
-    // here readonce function is to get data from database 
+    
+  
     this.loading.present();
+    // here readonce function is to get data from database 
     this.fire.readOnce('requests')
       .then((response) => {
         console.log("Read Once Called");
@@ -52,6 +62,7 @@ export class RequestPage {
         console.log(obj);
 
         let arr = [];
+        let count = 0;
 
         // Loop to get all the audid in request from database
         for (var i = 0; i < obj.length; i++) {
@@ -67,6 +78,7 @@ export class RequestPage {
               console.log(p);
 
               this.present = 1;
+              count++;
             }
             else {
               if (this.present == 1) {
@@ -80,10 +92,27 @@ export class RequestPage {
         }
         this.display = arr;
         this.loading.dismiss();
+
+        // to update request count
+        let reqcount = 'auditorium/' + this.reqdata.audID + '/requests';
+        let data = {
+          [reqcount]: count
+        }
+        this.fire.updateField(data)
+        .then((response) => {
+
+        })
+        .catch((error) => {
+
+        });
+
+
       })
       .catch((error) => {
         this.loading.dismiss();
         console.log(error);
+        toast.setMessage("Some error has occured. Please try again");
+        toast.present();
       });
 
 
