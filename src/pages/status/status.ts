@@ -108,7 +108,7 @@ export class StatusPage {
       this.loadingCtrl.dismiss();
 
       // Display the toast
-      this.toastCtrl.setMessage("Auditorium Name and Dept should not be empty...!")
+      this.toastCtrl.setMessage("Something went wrong ...please try again")
       this.toastCtrl.present();
       
       });
