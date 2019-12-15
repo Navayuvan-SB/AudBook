@@ -114,7 +114,8 @@ export class BookNewPage {
           flag = 1;
         }
 
-      } 
+      }
+       
       // If not the initial cycle
       else if (flag == 1){
 
