@@ -19,7 +19,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseServices } from '../services/fireBaseService';
 
 
-
+ 
 @Component({
   templateUrl: 'app.html'
 })
@@ -51,7 +51,7 @@ export class MyApp {
               if (response.type == 'user') {
 
                 this.rootPage = StatusPage;
-
+ 
               } else if (response.type == 'admin') {
 
                 this.rootPage = DashboardPage;

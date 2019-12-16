@@ -116,7 +116,7 @@
       <ion-row>
         <ion-col>
           <ion-item  class="but but1">
-            <ion-input formControlName="text1" type="number" placeholder="Mobilenumber" class="l1" [(ngModel)]="text">
+            <ion-input formControlName="text1" placeholder="Mobilenumber" class="l1" [(ngModel)]="text">
             </ion-input>
           </ion-item>
           <ion-item
@@ -128,7 +128,7 @@
  
       <ion-row>
         <ion-col>
-          <button ion-button class="but but2" (click)="stat()" full [disabled]="!foren && !aftern">
+          <button ion-button class="but but2" (click)="stat()" full [disabled]="!(anStatus || fnStatus) || !credentialForm.valid">
             <ion-label class="l3">Book</ion-label>
           </button>
         </ion-col>

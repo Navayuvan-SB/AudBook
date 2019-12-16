@@ -27,7 +27,7 @@ export class BookNewPage {
   audinfo: any;
 
   // Seat Count
-  sCount: any = '';
+  sCount: number = 0;
 
   constructor(public fire: FirebaseServices,
               public navCtrl: NavController,
@@ -49,7 +49,11 @@ export class BookNewPage {
 
     
       // Getting the Seat count from Status page
-      this.sCount = this.navParams.get('sCount');
+      this.sCount = this.navParams.get('sCount').count;
+
+      this.sCount = Number(this.sCount);
+
+      console.log(this.sCount);
 
       this.firebaseFunctions();
   }
@@ -109,8 +113,6 @@ export class BookNewPage {
   // Sort the array of objects according to the seat count
   seatSort(displayArray) {
 
-    this.sCount = 355;
-
     // Sorting in Ascending order
     displayArray.sort((a, b) => {
       return (a.sCount - b.sCount)
@@ -160,7 +162,7 @@ export class BookNewPage {
 
     }
 
-
+    console.log(sArr);
     return sArr;
 
   }

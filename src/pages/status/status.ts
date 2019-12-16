@@ -153,6 +153,8 @@ export class StatusPage {
       ]
     });
 
+    seatAlert.present();
+
   }
 
 }

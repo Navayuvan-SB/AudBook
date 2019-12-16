@@ -49,15 +49,20 @@ export class RequestPage {
     this.reqdata = navParams.get('data');
 
     // from data geting audId from database
-    this.reqdata.audID;
-    console.log(this.reqdata.audID);
+    // console.log(this.reqdata.audID);
 
+    this.readData();
+  }
 
+  readData() {
 
     this.loading.present();
+
     // here readonce function is to get data from database 
     this.fire.readOnce('requests')
       .then((response) => {
+
+        this.loading.dismiss();
         console.log("Read Once Called");
         let obj = Object.entries(response);
         console.log(obj);
@@ -70,7 +75,7 @@ export class RequestPage {
           let array = (obj[i][1].audid);
 
           // to check audid in dash page and audid in req from db
-          if (this.reqdata.audID == array) {
+          if (this.reqdata.audId == array) {
 
             // to check whether the status is 0 if audid matches
             if (obj[i][1].status == '0') {
@@ -92,39 +97,95 @@ export class RequestPage {
           }
         }
         this.display = arr;
-        this.loading.dismiss();
 
-        // to update request count
-        let reqcount = 'auditorium/' + this.reqdata.audID + '/requests';
-        let data = {
-          [reqcount]: count
+        if (count != 0) {
+          // to update request count
+          let reqcount = 'auditorium/' + this.reqdata.audID + '/requests';
+          let data = {
+            [reqcount]: count
+          }
+          this.fire.updateField(data)
+            .then((response) => {
+
+            })
+            .catch((error) => {
+
+            });
         }
-        this.fire.updateField(data)
-          .then((response) => {
-
-          })
-          .catch((error) => {
-
-          });
-
-
       })
       .catch((error) => {
+
         this.loading.dismiss();
         console.log(error);
         this.toast.setMessage("Some error has occured. Please try again");
         this.toast.present();
       });
-
-
-
   }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RequestPage');
   }
 
+  conform(redata) {
+
+    // Change the accepted status as 1
+    let path = 'requests/' + redata.reqId + '/status';
+
+    let data = {
+      [path]: '1'
+    }
+
+    // Get the Selected request info
+    let anStatus = redata.AN;
+    let fnStatus = redata.FN;
+    let dateSelected = redata.date;
+
+    this.fire.updateField(data)
+      .then((response) => {
+
+        // Dismiss loading & Show Toast Message
+        this.toast.setMessage("Request accepted successfully...");
+        this.toast.present();
+
+        // Reloads after updation   
+        this.navCtrl.push(RequestPage, { data: this.reqdata });
+
+        // Compare the selected info with other 
+        for (var i = 0; i < this.display.length; i++) {
+
+          if (dateSelected == this.display[i].date) {
+
+            if (anStatus == this.display[i].AN || fnStatus == this.display[i].FN) {
+
+              if (this.display[i].reqId != redata.reqId) {
+                // Set status as 2 for affected requests
+                let path = 'requests/' + this.display[i].reqId + '/status';
+                let data = {
+                  [path]: 2
+                }
+
+                this.fire.updateField(data)
+                  .then((response) => {
+
+                  })
+                  .catch((error) => {
+
+                  });
+              }
+            }
+          }
+        }
+
+
+      })
+      .catch((error) => {
+
+        // Dismiss loading & Show Toast Message
+        this.toast.setMessage("Some error has occured. Please try again...");
+        this.toast.present();
+      });
+
+  }
 
   // tick popup 
   doConfirm(redata: any) {
@@ -136,77 +197,15 @@ export class RequestPage {
         {
           text: 'cancel',
           handler: () => {
-            console.log('Disagree clicked');
+
           }
         },
         {
           text: 'confirm',
           handler: () => {
 
-            this.loading.present();
+            this.conform(redata);
 
-            // Change the accepted status as 1
-            let path = 'requests/' + redata.reqId + '/status';
-
-            let data = {
-              [path]: '1'
-            }
-
-            // Get the Selected request info
-            let anStatus = redata.AN;
-            let fnStatus = redata.FN;
-            let dateSelected = redata.date;
-
-            this.fire.updateField(data)
-              .then((response) => {
-
-              })
-              .catch((error) => {
-
-                this.toast.setMessage("Some error has occured. Please try again...");
-                this.toast.present();
-              });
-
-
-            // Compare the selected info with other 
-            for (var i = 0; i < this.display.length; i++) {
-
-              if (dateSelected == this.display[i].date) {
-
-                if (anStatus == this.display[i].AN || fnStatus == this.display[i].FN) {
-
-                  if (this.display[i].reqId != redata.reqId) {
-                    // Set status as 2 for affected requests
-                    let path = 'requests/' + this.display[i].reqId + '/status';
-                    let data = {
-                      [path]: 2
-                    }
-
-                    this.fire.updateField(data)
-                      .then((response) => {
-
-                        // Dismiss loading & Show Toast Message
-                        this.loading.dismiss();
-                        this.toast.setMessage("Request accepted successfully...");
-                        this.toast.present();
-
-                        // Reloads after updation   
-                        this.navCtrl.push(RequestPage, { data: this.reqdata });
-                        
-
-                      })
-                      .catch((error) => {
-
-
-                        // Dismiss loading & Show Toast Message
-                        this.loading.dismiss();
-                        this.toast.setMessage("Some error has occured. Please try again...");
-                        this.toast.present();
-                      });
-                  }
-                }
-              }
-            }
           }
         }
       ]
@@ -215,7 +214,7 @@ export class RequestPage {
   }
   cancel(redata: any) {
 
-    const popover = this.popoverCtrl.create(WarningPage, { requests: redata, from: 2 });
+    const popover = this.popoverCtrl.create(WarningPage, { requests: redata, from: 2, data: this.reqdata });
     popover.present();
 
   }

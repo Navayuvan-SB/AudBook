@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import { IonicPage, AlertController, PopoverController, NavController, NavParams, Platform , LoadingController,ToastController} from 'ionic-angular';
+import { IonicPage, AlertController, PopoverController, NavController, NavParams, Platform, LoadingController, ToastController } from 'ionic-angular';
 import { StatusPage } from '../status/status';
 import { CalendarPage } from '../calendar/calendar';
 import { getParentRenderElement } from '@angular/core/src/view/util';
@@ -25,12 +25,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 // @ViewChild('Navbar') navBar: Navbar;
 export class DetailPage {
 
-   // Loading controller
-   loadingCtrl: any;
+  // Loading controller
+  loadingCtrl: any;
 
-   // Toast controller
-   toastCtrl: any;
- 
+  // Toast controller
+  toastCtrl: any;
+
   credentialForm: FormGroup
 
   data: any;
@@ -42,12 +42,6 @@ export class DetailPage {
   findata: string;
 
   text: string = '';
-
-  // fromtext:any='fromtext';
-  // fromtext1:string;
-
-  // ftext:any='ftext';
-  // ftext1:string;
 
   department: string;
   dept1: string;
@@ -85,16 +79,25 @@ export class DetailPage {
 
 
   constructor(public fire: FirebaseServices,
-              public formBuilder: FormBuilder,
-              public popoverCtrl: PopoverController, 
-              public alertCtrl: AlertController, 
-              public navCtrl: NavController, 
-              public platform: Platform, 
-              public navParams: NavParams,
-              public loading: LoadingController,
-              public toast: ToastController,
-              public afAUth: AngularFireAuth
-              ) {
+    public formBuilder: FormBuilder,
+    public popoverCtrl: PopoverController,
+    public alertCtrl: AlertController,
+    public navCtrl: NavController,
+    public platform: Platform,
+    public navParams: NavParams,
+    public loading: LoadingController,
+    public toast: ToastController,
+    public afAuth: AngularFireAuth
+  ) {
+
+    this.credentialForm = this.formBuilder.group({
+      text1: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10)
+      ])]
+
+    });
 
     // Initializing Loading Controller
     this.loadingCtrl = this.loading.create({
@@ -114,33 +117,7 @@ export class DetailPage {
 
       });
 
-    this.credentialForm = this.formBuilder.group({
-      text1: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(10)
-      ])],
-
-    });
-
-    this.firebaseFunctions()
-      .then((response) => {
-
-        console.log(this.statusrec);
-        //color change of the dot in detail page
-        if (this.statusrec == 0) {
-          document.documentElement.style.setProperty(`--rocolor`, ' #FFFF00 ');
-        }
-        else if ((this.statusrec == 1) || (this.statusrec == 2)) {
-          document.documentElement.style.setProperty(`--rocolor`, ' #ff0000 ');
-        }
-
-        // })
-        // .catch((error)=> {
-        else {
-          document.documentElement.style.setProperty(`--rocolor`, '  #35AE59 ');
-        }
-      });
+    this.firebaseFunctions();
 
     // getting value from calendar page
 
@@ -151,17 +128,9 @@ export class DetailPage {
     this.text = navParams.get('text1');
 
 
-
-    // to time picker
-    //this.ftext1=navParams.get('ftext1');
-    // this.ftext= this.ftext1;
-
-    //from timepicker
-    //this.fromtext1=navParams.get('fromtext1');
-    //this.fromtext= this.fromtext1;
-
     //for department
     this.dept1 = navParams.get('dept1');
+
     if (this.dept1 == undefined) {
       this.department = 'Mech';
     }
@@ -195,10 +164,6 @@ export class DetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
-
-    this.aftern = 1;
-    this.foren = 1;
-
   }
 
   dept() {
@@ -267,17 +232,17 @@ export class DetailPage {
 
     var phoneNumber = this.credentialForm.controls['text1'].value;
 
-    if ((this.anStatus == 0) && (this.fnStatus == 0) && (phoneNumber != '')) {
+    if ((this.anStatus == 1) || (this.fnStatus == 1) && (phoneNumber != '')) {
 
       // Req Id Generation
-      var write = this.audname + this.text.substring(3, 6) + 'wr' + this.foren + this.aftern;
+      var write = this.audname + phoneNumber.substring(3, 6) + 'wr' + this.foren + this.aftern;
 
       // Data to write
       let data = {
         'AN': this.anStatus,
         'FN': this.fnStatus,
         'audName': this.audname,
-        'audId': this.auddept,
+        'audId': this.audid,
         'date': this.findata,
         'dept': this.department,
         'phone': phoneNumber,
@@ -293,8 +258,10 @@ export class DetailPage {
       this.fire.writeInDatabase('requests/' + write, data)
         .then((response) => {
           console.log(response);
-        // Dismissing the loading controller
-        this.loadingCtrl.dismiss();
+          // Dismissing the loading controller
+          this.loadingCtrl.dismiss();
+
+          this.changeRequestCount();
         })
         .catch((error) => {
           console.log(error);
@@ -309,11 +276,12 @@ export class DetailPage {
       this.navCtrl.push(StatusPage);
 
     }
-    else{
+    else {
 
+      this.toastCtrl.setMessage("Enter all the fields correctly..");
+      this.toastCtrl.present();
     }
 
-    
   }
 
   // AN button trigger
@@ -361,25 +329,28 @@ export class DetailPage {
   }
 
   firebaseFunctions() {
-    return new Promise((resolve) => {
-      this.fire.readOnce('requests')
-        .then((response) => {
+    this.fire.readOnce('requests')
+      .then((response) => {
 
-          // Flags for AN & FN
-          let flagAN = '0';
-          let flagFN = '0';
+        // Flags for AN & FN
+        let flagAN = '0';
+        let flagFN = '0';
+        let core = '0';
 
-          console.log("Read Once Called");
-          let obj = Object.entries(response);
-          for (var i = 0; i < obj.length; i++) {
+        console.log("Read Once Called");
+        let obj = Object.entries(response);
+        for (var i = 0; i < obj.length; i++) {
 
 
-            if ((this.audid == obj[i][1].audid) && (this.findata == obj[i][1].date)) {
+          if ((this.audid == obj[i][1].audId) && (this.findata == obj[i][1].date)) {
 
-              if ((String(obj[i][1].status) == '1') || (String(obj[i][1].status) == '2')) {
+            console.log("Trueeeeeee");
+            core = '1';
 
-                if (flagAN == '0')
-                  flagAN = obj[i][1].AN;
+            if ((obj[i][1].status == '1') || (obj[i][1].status == '0')) {
+
+              if (flagAN == '0') {
+                flagAN = obj[i][1].AN;
               }
 
               if (flagFN == '0') {
@@ -387,48 +358,48 @@ export class DetailPage {
               }
 
               if (flagFN == '1' && flagAN == '1') {
-                this.statusrec = 1;
-                break;
+                // this.statusrec = 1;
+                document.documentElement.style.setProperty(`--rocolor`, ' #ff0000 ');
               }
-
-              else {
-                this.statusrec = 0
-              }
-
-              resolve();
-              //break;
 
             }
-            else {
+            else if (obj[i][1].status == '0') {
+              if (this.statusrec != 1) {
+                // this.statusrec = 0;
+                document.documentElement.style.setProperty(`--rocolor`, ' #FFFF00 ');
+              }
 
-              this.statusrec = 3;
-              resolve();
             }
 
           }
 
-
-          if ((flagAN == '0' && flagFN == '1') || (flagAN == '1' && flagFN == '0')) {
-            this.statusrec = 0;
+          if (this.statusrec == 1) {
+            break;
           }
 
-          if (flagFN == '1') {
-            this.foren = 0;
-          }
+        }
 
-          if (flagAN == '1') {
-            this.aftern = 0;
-          }
+        if (core == '0') {
+          // this.statusrec = 3;
+          document.documentElement.style.setProperty(`--rocolor`, '  #35AE59 ');
+        }
 
-        })
-        //objects are stored in variable
-        //this.audinfo= response. val();
-        //  console.log(this.audinfo);
+        if ((flagAN == '0' && flagFN == '1') || (flagAN == '1' && flagFN == '0')) {
+          // this.statusrec = 0;
+          document.documentElement.style.setProperty(`--rocolor`, ' #FFFF00 ');
+        }
 
-        .catch((error) => {
-          console.log(error);
-        });
-    });
+        if (flagFN == '1') {
+          this.foren = 0;
+        }
+
+        if (flagAN == '1') {
+          this.aftern = 0;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   cal() {
@@ -445,5 +416,38 @@ export class DetailPage {
     pop.present();
   }
 
+  // TO change the request count in booked aud
+  changeRequestCount(){
 
+    // Read the current value in the request of aud
+    this.fire.readOnce('auditorium/' + this.aud.audID)
+    .then((response) => {
+
+      // Count of requests
+      let count = response.requests;
+
+      // Path string and data to update
+      let path = 'auditorium/' + this.aud.audID + '/requests';
+
+      let data = {
+        [path] : count + 1
+      }
+
+      // Update function
+      this.fire.updateField(data)
+      .then((response) => {
+
+      })
+      .catch((error) => {
+
+        // Show toast message
+        this.toastCtrl.setMessage("Some error has occured. Please try again");
+        this.toastCtrl.present();
+      });
+
+    })
+    .catch((error) => {
+
+    });
+  }
 } 

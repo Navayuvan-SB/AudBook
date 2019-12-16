@@ -32,6 +32,9 @@ export class WarningPage {
   loading: any;
   toast: any;
 
+  // aud data from requestpage
+  data: any;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public fire: FirebaseServices,
@@ -46,6 +49,9 @@ export class WarningPage {
 
     // From flag
     this.from = this.navParams.get('from');
+
+    // Data from req page
+    this.data = this.navParams.get('data');
 
     // Initialising toast and loading instance
     this.toast = this.toastCtrl.create({
@@ -76,7 +82,7 @@ export class WarningPage {
       // Dismiss the popover
       let index = this.navCtrl.getActive().index;
       this.navCtrl.remove(index);
-      this.navCtrl.push(RequestPage);
+      this.navCtrl.push(RequestPage, { data: this.data});
     }
 
   }
@@ -86,7 +92,7 @@ export class WarningPage {
     if (this.from == 1) {
 
       // Presenting loading controller
-      this.loadingCtrl.present();
+      this.loading.present();
 
       // Remove the data
       this.fire.removeField('requests', this.status.reqId)
@@ -98,22 +104,22 @@ export class WarningPage {
           this.navCtrl.push(StatusPage);
 
           // Dismissing the loading controller
-          this.loadingCtrl.dismiss();
+          this.loading.dismiss();
 
           // Display the toast
-          this.toastCtrl.setMessage("Done successfully...!")
-          this.toastCtrl.present();
+          this.toast.setMessage("Done successfully...!")
+          this.toast.present();
 
 
         })
         .catch((error) => {
 
           // Dismissing the loading controller
-          this.loadingCtrl.dismiss();
+          this.loading.dismiss();
 
           // Display the toast
-          this.toastCtrl.setMessage("Something is wrong. Please try again later...!")
-          this.toastCtrl.present();
+          this.toast.setMessage("Something is wrong. Please try again later...!")
+          this.toast.present();
 
 
         });
