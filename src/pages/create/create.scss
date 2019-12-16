@@ -1,103 +1,92 @@
 page-create {
 
   //style for navbar
-   ion-navbar
-    {
+  ion-navbar {
     margin-top: 15px;
-    }
-  
-  //style for content
-   ion-content
-    {
-    background-color: #FFFFFF;
-    margin-top: 125px;
-    }
-
-  //style for toolbar title
-  .toolbar-title.toolbar-title-md
-    { 
-      color:#000000;
-      text-align: left;
-    }
-  
-  //style for text
-  h2
-    {
-      font: bold 25px Segoe UI;
-    }
-
-  //style for toolbar-background
-  .toolbar-background 
-    {
-      background-color: transparent;
-    }
-
-  //style for image
-   ion-img
-    {
-      top: 400px;
-      width: 98% !important; 
-      height: 90px;
-      border: 1px solid #707070;
-      border-radius: 5px;  
-      background: transparent;
-      margin-bottom: 30px;
-  
-    }
-  
-  //style for round-border
-   .round-border
-  {
-      border: 1px solid grey;
-      border-radius: 5px;
-      margin-left: 15px;
-
-   }
-
-    .width
-   {
-      max-width: 91% !important;
-      margin-bottom: 5%;
-      max-height: 13%;
-   }
-
-  //style for button
-   .btn-prop
-   {
-      height: 15%;
-      margin-top:5px;
-      border-radius: 5px;
-      margin-left: 15px;
-   }
-
-   //style for grid
-   ion-grid
-  {
-      height: 50%; 
-      justify-content: center; 
   }
 
-  .arrow
-  {
+  //style for content
+  ion-content {
+    background-color: #FFFFFF;
+    margin-top: 125px;
+  }
+
+  //style for toolbar title
+  .toolbar-title.toolbar-title-md {
+    padding-left: 5px;
+    color: black;
+    font-size: 20px;
+  }
+
+  //style for text
+  h2 {
+    font: bold 25px Segoe UI;
+  }
+
+  //style for toolbar-background
+  .toolbar-background {
+    background-color: transparent;
+  }
+
+  //style for image
+  ion-img {
+    top: 400px;
+    width: 98% !important;
+    height: 90px;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    background: transparent;
+    margin-bottom: 30px;
+
+  }
+
+  //style for round-border
+  .round-border {
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-left: 15px;
+
+  }
+
+  .width {
+    max-width: 91% !important;
+    margin-bottom: 5%;
+    max-height: 13%;
+  }
+
+  //style for button
+  .btn-prop {
+    height: 15%;
+    margin-top: 5px;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+
+  //style for grid
+  ion-grid {
+    height: 50%;
+    justify-content: center;
+  }
+
+  .arrow {
     padding-right: 15px;
   }
 
- .resize-icon
- {
-  height: 10px;
-  widows: 10px;
-  font-size: 10px;
-  color: #35AE59;
- }
+  .resize-icon {
+    height: 10px;
+    widows: 10px;
+    font-size: 10px;
+    color: #35AE59;
+  }
 
- //style for creat button
- .create-button {
-  background-color: #35AE59;
-  text-transform: none;
-  font-weight: normal;
-  height: 40px;
-  width: 40%;
-  margin-bottom: 40px;
-}
+  //style for creat button
+  .create-button {
+    background-color: #35AE59;
+    text-transform: none;
+    font-weight: normal;
+    height: 40px;
+    width: 40%;
+    margin-bottom: 40px;
+  }
 
 }

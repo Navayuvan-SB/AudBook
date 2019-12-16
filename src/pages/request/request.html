@@ -7,58 +7,58 @@
 <!--header-->
 <!--header-->
 <ion-header no-border>
-    <ion-navbar class="toolbar-background">
-      <ion-title>
-        <h2> Requests</h2>
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  
-  
-  
-  <!--content-->
-  <ion-content padding>
-  
-  
-    <!--grid for rows and cols(1row & 3cols)-->
-    <ion-grid>
-      <div *ngIf="present">
-        <div *ngFor="let redata of display">
+
+  <ion-navbar class="toolbar-title.toolbar-title-md">
+    <ion-title class="toolbar-title.toolbar-title-md"><b>Requests</b></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+
+<!--content-->
+<ion-content padding>
+
+
+  <!--grid for rows and cols(1row & 3cols)-->
+  <ion-grid>
+    <div *ngIf="present">
+      <div *ngFor="let redata of display">
         <ion-row align-items-center>
           <!--col 1 & 3rows for text-->
           <ion-col col-8 class="space">
             <ion-row>
               <p class="font-style1">{{ redata.audName }}</p>
             </ion-row>
-  
+
             <ion-row>
               <p class="font-style1 space0">{{ redata.dept }} - {{ redata.phone }}</p>
             </ion-row>
-  
+
             <ion-row>
               <ion-col>
                 <p class="date">{{ redata.date }}</p>
               </ion-col>
-  
+
               <ion-col *ngIf="redata.AN == '1'">
                 <p class="Noon-align">AN</p>
               </ion-col>
-  
+
               <ion-col *ngIf="redata.FN == '1'">
                 <p class="Noon-align">FN</p>
               </ion-col>
             </ion-row>
-  
+
           </ion-col>
-  
+
           <!--col 2 for done icon-->
           <ion-col col-2>
             <div class="done-cancel-icon">
               <ion-icon (click)="doConfirm(redata)"> <img src="../../assets/imgs/done.svg"> </ion-icon>
             </div>
           </ion-col>
-  
+
           <!--col 3 for cancel icon-->
           <ion-col col-2>
             <div class="done-cancel-icon">
@@ -68,14 +68,13 @@
         </ion-row>
       </div>
     </div>
-    </ion-grid>
-  
-    <div class="notfound" *ngIf="!present">
-      <p>Request not found</p>
-    </div>
-  
-  
-  
-  
-  </ion-content>
-  
+  </ion-grid>
+
+  <div class="notfound" *ngIf="!present">
+    <p>Request not found</p>
+  </div>
+
+
+
+
+</ion-content>

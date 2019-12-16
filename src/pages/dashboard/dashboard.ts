@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,ToastController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, NavParams, LoadingController } from 'ionic-angular';
 import { EditPage } from '../Edit/Edit';
 import { CreatePage } from '../create/create';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { RequestPage } from '../request/request';
 import { LoginPage } from '../login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the DashboardPage page.
@@ -19,22 +20,30 @@ import { LoginPage } from '../login/login';
 export class DashboardPage {
 
 
-  dataret : any;
-  loading : any;
+  dataret: any;
+  loading: any;
+  toast: any;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private fire: FirebaseServices,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController,
+    public afAuth: AngularFireAuth) {
+
+    // loading
+    this.loading = this.loadingCtrl.create({
+      content: 'please wait'
+    });
 
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private fire: FirebaseServices, 
-              public toastCtrl    : ToastController,  
-              public loadingCtrl  : LoadingController) {
+    this.toast = this.toastCtrl.create({
+      message: 'Some error has occured. Please try agian',
+      duration: 2000,
+      position: 'bottom'
+    });
 
-              // loading
-              this.loading = this.loadingCtrl.create({
-                 content: 'please wait'
-              });
-
-              this.firebaseFunctions();
+    this.firebaseFunctions();
   }
 
 
@@ -47,45 +56,38 @@ export class DashboardPage {
 
   firebaseFunctions() {
 
-          // loading control
-          this.loading.present();
-
-          // toast message
-          let toast = this.toastCtrl.create({
-                message   : 'Some error has occured. Please try agian',
-                duration  : 2000,
-                position  : 'bottom'
-          });
+    // loading control
+    this.loading.present();
 
 
-          // fb function to get dept and aud name from db
-          this.fire.readOnce('auditorium')
-              .then((response) => {
-                  // console.log("Read Once Called");
-                  //objects is stored in var 
-                  // this.dataret = response;
-                  let obj = Object.entries(response);
+    // fb function to get dept and aud name from db
+    this.fire.readOnce('auditorium')
+      .then((response) => {
+        // console.log("Read Once Called");
+        //objects is stored in var 
+        // this.dataret = response;
+        let obj = Object.entries(response);
 
-                  // Local array to store the array of objects
-                  let arr = []
+        // Local array to store the array of objects
+        let arr = []
 
-                  // Loop through the received object
-                  for (var i = 0; i < obj.length; i++) {
-                        arr.push(obj[i][1]);
-                  }
+        // Loop through the received object
+        for (var i = 0; i < obj.length; i++) {
+          arr.push(obj[i][1]);
+        }
 
-                  // Assigining arr to global dataret
-                  this.dataret = arr;
+        // Assigining arr to global dataret
+        this.dataret = arr;
 
-                  // loading dismiss
-                  this.loading.dismiss();
-              })
-              .catch((error) => {
-                  this.loading.dismiss();
-                  toast.setMessage("Some error has occured. Please try again");
-                  toast.present();
-                  // console.log(error);
-              });
+        // loading dismiss
+        this.loading.dismiss();
+      })
+      .catch((error) => {
+        this.loading.dismiss();
+        this.toast.setMessage("Some error has occured. Please try again");
+        this.toast.present();
+        // console.log(error);
+      });
   }
 
 
@@ -103,11 +105,23 @@ export class DashboardPage {
     this.navCtrl.push(RequestPage, { data: data });
   }
 
-  logout(){
-    this.navCtrl.push(LoginPage);
+  logout() {
+
+    // Present loading
+    this.afAuth.auth.signOut()
+      .then((response) => {
+
+        // Dismiss loading and set login page as root
+        this.navCtrl.setRoot(LoginPage);
+      })
+      .catch((error) => {
+
+        // Dismiss loading and show error toast message
+        this.toast.setMessage("Some error has occured. Please try again");
+        this.toast.present();
+      });
   }
 
 
 
 }
-    
