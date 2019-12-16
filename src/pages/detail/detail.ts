@@ -272,7 +272,7 @@ export class DetailPage {
           this.toastCtrl.present();
         });
 
-      this.navCtrl.push(StatusPage);
+      this.navCtrl.setRoot(StatusPage);
 
     }
     else {
