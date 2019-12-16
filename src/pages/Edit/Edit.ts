@@ -10,7 +10,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
  * Ionic pages and navigation. 
  */
 
-@IonicPage()
 @Component({
   selector: 'page-Edit',  
   templateUrl: 'Edit.html',

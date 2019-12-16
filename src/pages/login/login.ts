@@ -57,18 +57,18 @@ export class LoginPage {
         loading.dismiss();
 
         // Get the UID of Logged in user
-        let uid = response.uid;
+        let uid = response['uid'];
 
         // get the user type and navigate to according to it.
         this.fbService.readOnce('users/' + uid)
         .then((response) => {
 
           // Check the user type and navigate to the apt page.
-          if (response.type == 'user'){
+          if (response['type'] == 'user'){
 
             this.navCtrl.push(StatusPage);
 
-          }else if (response.type == 'admin'){
+          }else if (response['type'] == 'admin'){
 
             this.navCtrl.push(DashboardPage);
 

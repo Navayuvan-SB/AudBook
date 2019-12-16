@@ -12,7 +12,6 @@ import { RequestPage } from '../request/request';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-warning',
   templateUrl: 'warning.html',

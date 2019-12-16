@@ -11,7 +11,6 @@ import { FirebaseServices } from '../../services/fireBaseService';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-book-new',
   templateUrl: 'book-new.html',

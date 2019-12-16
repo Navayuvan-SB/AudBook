@@ -48,11 +48,11 @@ export class MyApp {
             .then((response) => {
 
               // Check the user type and navigate to the apt page.
-              if (response.type == 'user') {
+              if (response['type'] == 'user') {
 
                 this.rootPage = StatusPage;
  
-              } else if (response.type == 'admin') {
+              } else if (response['type'] == 'admin') {
 
                 this.rootPage = DashboardPage;
 

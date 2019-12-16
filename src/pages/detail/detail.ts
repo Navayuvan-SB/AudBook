@@ -16,7 +16,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-detail',
   templateUrl: 'detail.html',
@@ -111,7 +110,7 @@ export class DetailPage {
 
     this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
       .then((response) => {
-        this.userId = response.userId;
+        this.userId = response['userId'];
       })
       .catch((error) => {
 
@@ -424,7 +423,7 @@ export class DetailPage {
     .then((response) => {
 
       // Count of requests
-      let count = response.requests;
+      let count = response['requests'];
 
       // Path string and data to update
       let path = 'auditorium/' + this.aud.audID + '/requests';

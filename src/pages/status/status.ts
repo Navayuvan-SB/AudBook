@@ -51,7 +51,7 @@ export class StatusPage {
     //read the userId from database
     this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
       .then((response) => {
-        this.userId = response.userId;
+        this.userId = response['userId'];
       })
       .catch((error) => {
 
