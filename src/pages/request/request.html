@@ -28,15 +28,27 @@
         <!--col 1 & 3rows for text-->
         <ion-col col-8 class="space">
           <ion-row>
-              <p class="font-style1">ABC</p> 
+              <p class="font-style1">{{ redata.audName }}</p> 
           </ion-row>
-              <p class="font-style1 space0">Information Technology</p> 
+              <p class="font-style1 space0">{{ redata.dept }}</p> 
           <ion-row>
               <p class="font-lighter1">{{ redata.phone }}</p>
           </ion-row>
+
           <ion-row>
-              <p class="font-lighter1">01/02/02  8:30 AM to 10:30 PM</p>
+            <ion-col>
+              <p class="date">{{ redata.date }}</p>
+            </ion-col>
+          
+            <ion-col *ngIf = "redata.AN == '1'">
+              <p class="font-lighter1">AN</p>
+            </ion-col>
+
+            <ion-col *ngIf = "redata.FN == '1'">
+             <p class="font-lighter1">FN</p>
+           </ion-col>
           </ion-row>
+
         </ion-col>
        
         <!--col 2 for done icon-->
