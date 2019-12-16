@@ -5,6 +5,8 @@
   Ionic pages and navigation.
 -->
 
+<!-- header -->
+
 <ion-header no-border>
   <ion-navbar class="toolbar-background">
     <ion-toolbar class="toolbar-title.toolbar-title-md">
@@ -14,6 +16,7 @@
   </ion-navbar>
 </ion-header>
 
+<!-- content -->
 
 <ion-content padding>
   <form [formGroup]="credentialForm">
@@ -23,6 +26,7 @@
         <ion-item>
           <ion-img src="assets/imgs/AuditImageView.jpeg"></ion-img>
         </ion-item>
+
         <ion-item class="round-border width">
           <ion-input type="text" placeholder='Name' formControlName="name">
           </ion-input>
@@ -37,8 +41,9 @@
       </ion-row>
     </ion-grid>
   </form>
-
 </ion-content>
+
+<!-- footer -->
 
 <ion-footer no-border>
   <!--create button-->

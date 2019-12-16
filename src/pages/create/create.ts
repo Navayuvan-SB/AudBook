@@ -21,7 +21,6 @@ export class CreatePage {
 testRadioOpen: boolean;
 testRadioResult;
 Department: string;
-
 credentialForm: FormGroup;
 
 // Loading controller
@@ -67,6 +66,7 @@ toastCtrl: any;
     console.log('ionViewDidLoad CreatePage');
   }
   
+  //Drop-down using alert component
   Dept() {
     let alert = this.alert.create();
     alert.setTitle('Departments');
@@ -130,7 +130,7 @@ toastCtrl: any;
     });
   }
 
- 
+  // Saving process of edit page
   save(){
 
     // Presenting loading controller
@@ -165,9 +165,11 @@ toastCtrl: any;
         dept: dept,
         requests: 0
       };
- 
+
+    //write in Database
      this.fire.writeInDatabase('auditorium/' + audId, data)
         .then((response) => {
+
            // Dismissing the loading controller
            this.loadingCtrl.dismiss();
 
@@ -184,8 +186,8 @@ toastCtrl: any;
           this.toastCtrl.present();
 
         });         
-    console.log('save button clicked');
+    // console.log('save button clicked');
     this.navCtrl.push(DashboardPage)
   }
-}
+ }
 }

@@ -1,9 +1,12 @@
 page-edit {
+
+  //style for navbar
   ion-navbar {
     margin-left: 30px;
     margin-top: 15px;
   }
 
+  //style for content
   ion-content {
     background-color: #FFFFFF;
     margin-top: 125px;
@@ -19,23 +22,26 @@ page-edit {
     margin-bottom: 40px;
   }
 
+  //style for toolbar title
   .toolbar-title.toolbar-title-md {
     color: #000000;
     text-align: left;
     letter-spacing: 0;
     opacity: 1;
   }
-
+  
+  //style for text
   h2 {
     font: bold 25px Segoe UI;
   }
-
+   
+  //style for toolbar background
   .toolbar-background {
     background-color: transparent;
   }
 
+  //style for image
   ion-img {
-
     top: 400px;
     width: 330px;
     height: 90px;
@@ -43,14 +49,13 @@ page-edit {
     border-radius: 5px;
     background: transparent;
     margin-bottom: 30px;
-
   }
-
+ 
+  //style for round-border
   .round-border {
     border: 1px solid grey;
     border-radius: 5px;
     margin-left: 15px;
-
   }
 
   .width {
@@ -59,6 +64,7 @@ page-edit {
     max-height: 13%;
   }
 
+   //style for button
   .btn-prop {
     height: 15%;
     margin-top: 5px;
@@ -66,10 +72,12 @@ page-edit {
     margin-left: 15px;
   }
 
+  //style for grid
   ion-grid {
     height: 50%;
     justify-content: center;
   }
+
 
   .arrow {
     padding-right: 15px;

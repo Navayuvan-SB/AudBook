@@ -4,16 +4,18 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
+<!-- header -->
 <ion-header no-border>
     <ion-navbar class="toolbar-background">
-    <ion-toolbar class="toolbar-title.toolbar-title-md"><h2>Let's create one...
-    </h2> </ion-toolbar>
-      </ion-navbar>
-    </ion-header> 
+      <ion-toolbar class="toolbar-title.toolbar-title-md"><h2>Let's create one...</h2> 
+      </ion-toolbar>
+    </ion-navbar>
+</ion-header> 
     
-  
-  <ion-content padding>
-      <form [formGroup]="credentialForm">
+<!-- content -->
+<ion-content padding>
+    <form [formGroup]="credentialForm">
       <ion-grid>
           <ion-row>
             
@@ -35,14 +37,17 @@
           </ion-row>  
       </ion-grid>
     </form>
-  </ion-content>
-  <ion-footer no-border>
-      <!--create button-->
+</ion-content>
+
+<!-- footer -->
+<ion-footer no-border>
+      
+   <!--create button-->
       <div text-center (click)="save()">
         <button ion-button color="secondary" round class="create-button">
           Save
         </button>
       </div>
-    </ion-footer>
+</ion-footer>
 
   

@@ -30,15 +30,13 @@ export class EditPage {
   toastCtrl: any;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    private fire: FirebaseServices,
-    public form: FormBuilder,
-    public loading: LoadingController,
-    public toast: ToastController,
-    public alert: AlertController ) {
+              public navParams: NavParams,
+              private fire: FirebaseServices,
+              public form: FormBuilder,
+              public loading: LoadingController,
+              public toast: ToastController,
+              public alert: AlertController ) {
 
-      
- 
     // Getting the data from source page
     this.aud = this.navParams.get('data');
 
@@ -49,6 +47,7 @@ export class EditPage {
       ])]
     });
 
+    
     this.Department = this.aud.dept;
 
     // Initializing Loading Controller
@@ -67,6 +66,7 @@ export class EditPage {
     console.log('ionViewDidLoad EditPage');
   }
 
+  // Drop-down using alert component
   Dept() {
     let alert = this.alert.create();
     alert.setTitle('Departments');
@@ -131,7 +131,7 @@ export class EditPage {
   }
 
 
-
+  // Saving process of edit page
   save() {
 
     // Presenting loading controller
@@ -152,18 +152,19 @@ export class EditPage {
       this.toastCtrl.present();
 
     } else {
+
       // Keys
       var deptKey = 'auditorium/' + this.aud.id + '/dept';
       var nameKey = 'auditorium/' + this.aud.id + '/name';
 
       var data = {
-        [deptKey]: dept,
-        [nameKey]: name
-      };
+          [deptKey]: dept,
+          [nameKey]: name
+        };
 
       // Update the info.
       this.fire.updateField(data)
-        .then((response) => {
+          .then((response) => {
 
           // Dismissing the loading controller
           this.loadingCtrl.dismiss();
@@ -184,7 +185,7 @@ export class EditPage {
 
         });
 
-        console.log('save button clicked');
+        // console.log('save button clicked');
         this.navCtrl.push(DashboardPage)
     }
 

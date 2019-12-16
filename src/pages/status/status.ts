@@ -48,6 +48,7 @@ export class StatusPage {
       duration: 3000
     });
 
+    //read the userId from database
     this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
       .then((response) => {
         this.userId = response.userId;
@@ -71,11 +72,11 @@ export class StatusPage {
     
     // Presenting loading controller
     this.loadingCtrl.present();
-
+  
     this.fire.readOnce('requests')
       .then((response) => {
-  
         console.log("Read Once Called");
+        
         //objects is stored in obj
         // this.dataret = response;
         let obj = Object.entries(response);
