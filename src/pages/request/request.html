@@ -7,131 +7,73 @@
 <!--header-->
 <!--header-->
 <ion-header no-border>
-  <ion-navbar class="toolbar-background"> 
+  <ion-navbar class="toolbar-background">
     <ion-title>
-      <h2> Requests for Auditorium 1 </h2>
+      <h2> Requests</h2>
     </ion-title>
   </ion-navbar>
-</ion-header> 
+</ion-header>
 
 
-  
-  
+
+
 <!--content-->
 <ion-content padding>
 
 
-<!--grid for rows and cols(1row & 3cols)-->
-<ion-grid>
-  <div *ngIf = "present">
-    <ion-row align-items-center *ngFor="let redata of display">
+  <!--grid for rows and cols(1row & 3cols)-->
+  <ion-grid>
+    <div *ngIf="present">
+      <div *ngFor="let redata of display">
+      <ion-row align-items-center>
         <!--col 1 & 3rows for text-->
         <ion-col col-8 class="space">
           <ion-row>
-              <p class="font-style1">{{ redata.audName }}</p> 
+            <p class="font-style1">{{ redata.audName }}</p>
           </ion-row>
-              <p class="font-style1 space0">{{ redata.dept }}</p> 
+
           <ion-row>
-              <p class="font-lighter1">{{ redata.phone }}</p>
+            <p class="font-style1 space0">{{ redata.dept }} - {{ redata.phone }}</p>
           </ion-row>
 
           <ion-row>
             <ion-col>
               <p class="date">{{ redata.date }}</p>
             </ion-col>
-          
-            <ion-col *ngIf = "redata.AN == '1'">
-              <p class="font-lighter1">AN</p>
+
+            <ion-col *ngIf="redata.AN == '1'">
+              <p class="Noon-align">AN</p>
             </ion-col>
 
-            <ion-col *ngIf = "redata.FN == '1'">
-             <p class="font-lighter1">FN</p>
-           </ion-col>
+            <ion-col *ngIf="redata.FN == '1'">
+              <p class="Noon-align">FN</p>
+            </ion-col>
           </ion-row>
 
         </ion-col>
-       
+
         <!--col 2 for done icon-->
-        <ion-col   col-2>
-          <div class="done-cancel-icon"><ion-icon (click)="doConfirm(redata)"> <img src="../../assets/imgs/done.svg"> </ion-icon> </div>
+        <ion-col col-2>
+          <div class="done-cancel-icon">
+            <ion-icon (click)="doConfirm(redata)"> <img src="../../assets/imgs/done.svg"> </ion-icon>
+          </div>
         </ion-col>
 
         <!--col 3 for cancel icon-->
         <ion-col col-2>
-          <div class="done-cancel-icon"><ion-icon (click)="cancel(redata)"> <img src="../../assets/imgs/cancel.svg"> </ion-icon> </div>
+          <div class="done-cancel-icon">
+            <ion-icon (click)="cancel(redata)"> <img src="../../assets/imgs/cancel.svg"> </ion-icon>
+          </div>
         </ion-col>
-    </ion-row>
+      </ion-row>
+    </div>
   </div>
-</ion-grid>
+  </ion-grid>
 
-<div class="notfound" *ngIf = "!present">
-<p>Request not found</p>
-</div>
+  <div class="notfound" *ngIf="!present">
+    <p>Request not found</p>
+  </div>
 
-
-<!--grid for rows and cols(1row & 3cols)-->
-<!-- <ion-grid>
-
-    <ion-row align-items-center > -->
-        <!--col 1 & 3rows for text-->
-        <!-- <ion-col col-8 class="space">
-          <ion-row>
-              <p class="font-style1">ABC</p> 
-          </ion-row>  
-              <p class="font-style1 space0">Information Technology</p> 
-          <ion-row>
-              <p class="font-lighter1">+91 9988556622</p>
-          </ion-row>
-          <ion-row>
-              <p class="font-lighter1">01/02/02  8:30 AM to 10:30 PM</p>
-          </ion-row>
-        </ion-col> -->
-       
-        <!--col 2 for done icon-->
-        <!-- <ion-col   col-2>
-          <div class="done-cancel-icon"><ion-icon> <img src="../../assets/imgs/done.svg"> </ion-icon> </div>
-        </ion-col> -->
-
-        <!--col 3 for cancel icon-->
-        <!-- <ion-col col-2>
-          <div class="done-cancel-icon"><ion-icon> <img src="../../assets/imgs/cancel.svg"> </ion-icon> </div>
-        </ion-col>
-    </ion-row>
-
-</ion-grid> -->
-
-
-
-<!--grid for rows and cols(1row & 3cols)-->
-<!-- <ion-grid>
-
-    <ion-row align-items-center > -->
-        <!--col 1 & 3rows for text-->
-        <!-- <ion-col col-8 class="space">
-          <ion-row>
-              <p class="font-style1">ABC</p> 
-          </ion-row>
-              <p class="font-style1 space0">Information Technology</p> 
-          <ion-row>
-              <p class="font-lighter1">+91 9988556622</p>
-          </ion-row>
-          <ion-row>
-              <p class="font-lighter1">01/02/02  8:30 AM to 10:30 PM</p>
-          </ion-row>
-        </ion-col> -->
-       
-        <!--col 2 for done icon-->
-        <!-- <ion-col   col-2>
-          <div class="done-cancel-icon"><ion-icon> <img src="../../assets/imgs/done.svg"> </ion-icon> </div>
-        </ion-col> -->
-
-        <!--col 3 for cancel icon-->
-        <!-- <ion-col col-2>
-          <div class="done-cancel-icon"><ion-icon> <img src="../../assets/imgs/cancel.svg"> </ion-icon> </div>
-        </ion-col>
-    </ion-row>
-
-</ion-grid> -->
 
 
 
