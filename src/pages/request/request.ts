@@ -82,7 +82,7 @@ export class RequestPage {
               console.log(p);
 
               this.present = 1;
-              count++;
+              count = count + 1;
             }
             else {
               if (this.present == 1) {
