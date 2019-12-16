@@ -18,6 +18,7 @@ import { PopoverController } from 'ionic-angular';
 })
 export class RequestPage {
 
+<<<<<<< HEAD
   reqdata : any;
   display : any;
   present : any = 0;
@@ -49,9 +50,44 @@ export class RequestPage {
               // from data geting audId from database
               this.reqdata.audID;
               // console.log(this.reqdata.audID);
+=======
+  reqdata: any;
+  display: any;
+  present: any = 0;
+  loading: any;
+  toast: any;
 
-    
-  
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public alerCtrl: AlertController,
+    private fire: FirebaseServices,
+    public popoverCtrl: PopoverController,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController) {
+
+    // loading
+    this.loading = this.loadingCtrl.create({
+      content: 'please wait'
+    });
+
+
+    // toast message
+    this.toast = this.toastCtrl.create({
+      message: 'Some error has occured. Please try agian',
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    // geting data from dashboard page
+    this.reqdata = navParams.get('data');
+
+    // from data geting audId from database
+    this.reqdata.audID;
+    console.log(this.reqdata.audID);
+
+
+>>>>>>> 82539ba1f8539964acb37ae6c7f9d463fa68ac39
+
     this.loading.present();
     // here readonce function is to get data from database 
     this.fire.readOnce('requests')
@@ -98,20 +134,20 @@ export class RequestPage {
           [reqcount]: count
         }
         this.fire.updateField(data)
-        .then((response) => {
+          .then((response) => {
 
-        })
-        .catch((error) => {
+          })
+          .catch((error) => {
 
-        });
+          });
 
 
       })
       .catch((error) => {
         this.loading.dismiss();
         console.log(error);
-        toast.setMessage("Some error has occured. Please try again");
-        toast.present();
+        this.toast.setMessage("Some error has occured. Please try again");
+        this.toast.present();
       });
 
 
@@ -141,6 +177,8 @@ export class RequestPage {
           text: 'confirm',
           handler: () => {
 
+            this.loading.present();
+
             // Change the accepted status as 1
             let path = 'requests/' + redata.reqId + '/status';
 
@@ -159,6 +197,8 @@ export class RequestPage {
               })
               .catch((error) => {
 
+                this.toast.setMessage("Some error has occured. Please try again...");
+                this.toast.present();
               });
 
 
@@ -179,12 +219,23 @@ export class RequestPage {
                     this.fire.updateField(data)
                       .then((response) => {
 
+                        // Dismiss loading & Show Toast Message
+                        this.loading.dismiss();
+                        this.toast.setMessage("Request accepted successfully...");
+                        this.toast.present();
+
                         // Reloads after updation   
                         this.navCtrl.push(RequestPage, { data: this.reqdata });
+                        
 
                       })
                       .catch((error) => {
-                        // Show Toast Message
+
+
+                        // Dismiss loading & Show Toast Message
+                        this.loading.dismiss();
+                        this.toast.setMessage("Some error has occured. Please try again...");
+                        this.toast.present();
                       });
                   }
                 }
@@ -198,7 +249,7 @@ export class RequestPage {
   }
   cancel(redata: any) {
 
-    const popover = this.popoverCtrl.create(WarningPage, {requests: redata, from: 2});
+    const popover = this.popoverCtrl.create(WarningPage, { requests: redata, from: 2 });
     popover.present();
 
   }
