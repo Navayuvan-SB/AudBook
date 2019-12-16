@@ -24,7 +24,8 @@
   <!--grid for rows and cols(1row & 3cols)-->
   <ion-grid>
     <div *ngIf="present">
-      <ion-row align-items-center *ngFor="let redata of display">
+      <div *ngFor="let redata of display">
+      <ion-row align-items-center>
         <!--col 1 & 3rows for text-->
         <ion-col col-8 class="space">
           <ion-row>
@@ -66,6 +67,7 @@
         </ion-col>
       </ion-row>
     </div>
+  </div>
   </ion-grid>
 
   <div class="notfound" *ngIf="!present">
