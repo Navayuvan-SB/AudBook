@@ -18,38 +18,37 @@ import { PopoverController } from 'ionic-angular';
 })
 export class RequestPage {
 
-  reqdata: any;
-  display: any;
-  present: any = 0;
-  loading: any;
+  reqdata : any;
+  display : any;
+  present : any = 0;
+  loading : any;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    public alerCtrl: AlertController,
-    private fire: FirebaseServices,
-    public popoverCtrl: PopoverController,
-    public toastCtrl    : ToastController,
-    public loadingCtrl  : LoadingController) {
+    public navParams    :   NavParams,
+    public alerCtrl     :   AlertController,
+    private fire        :   FirebaseServices,
+    public popoverCtrl  :   PopoverController,
+    public toastCtrl    :   ToastController,
+    public loadingCtrl  :   LoadingController) {
 
-          // loading
-          this.loading = this.loadingCtrl.create({
-            content: 'please wait'
-          }); 
+              // loading
+              this.loading = this.loadingCtrl.create({
+                  content: 'please wait'
+              }); 
     
-    
-          // toast message
-          let toast = this.toastCtrl.create({
-            message   : 'Some error has occured. Please try agian',
-            duration  : 2000,
-            position  : 'bottom'
-          });
+              // toast message
+              let toast = this.toastCtrl.create({
+                  message   : 'Some error has occured. Please try agian',
+                  duration  : 2000,
+                  position  : 'bottom'
+              });
 
-          // geting data from dashboard page
-          this.reqdata = navParams.get('data');
+              // geting data from dashboard page
+              this.reqdata = navParams.get('data');
 
-          // from data geting audId from database
-          this.reqdata.audID;
-          console.log(this.reqdata.audID);
+              // from data geting audId from database
+              this.reqdata.audID;
+              // console.log(this.reqdata.audID);
 
     
   
