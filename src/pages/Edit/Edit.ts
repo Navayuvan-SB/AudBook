@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController, Navbar } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
  */
 
 @Component({
-  selector: 'page-Edit',  
+  selector: 'page-Edit',
   templateUrl: 'Edit.html',
 })
 export class EditPage {
@@ -29,12 +29,12 @@ export class EditPage {
   toastCtrl: any;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private fire: FirebaseServices,
-              public form: FormBuilder,
-              public loading: LoadingController,
-              public toast: ToastController,
-              public alert: AlertController ) {
+    public navParams: NavParams,
+    private fire: FirebaseServices,
+    public form: FormBuilder,
+    public loading: LoadingController,
+    public toast: ToastController,
+    public alert: AlertController) {
 
     // Getting the data from source page
     this.aud = this.navParams.get('data');
@@ -43,10 +43,13 @@ export class EditPage {
     this.credentialForm = this.form.group({
       name: [this.aud.name, Validators.compose([
         Validators.required
+      ])],
+      sCount: [this.aud.sCount, Validators.compose([
+        Validators.required
       ])]
     });
 
-    
+
     this.Department = this.aud.dept;
 
     // Initializing Loading Controller
@@ -57,7 +60,7 @@ export class EditPage {
     // Initializing Toast Controller
     this.toastCtrl = this.toast.create({
       duration: 3000
-    }); 
+    });
 
   }
 
@@ -139,15 +142,16 @@ export class EditPage {
     // Getting the field values
     var dept = this.Department;
     var name = this.credentialForm.controls['name'].value;
+    var sCount = this.credentialForm.controls['sCount'].value;
 
     // Condition to check, If the field are empty
-    if (dept.trim() == '' || name.trim() == '') {
+    if (dept.trim() == '' || name.trim() == '' || sCount.trim() == '') {
 
       // Dismissing the loading controller
       this.loadingCtrl.dismiss();
 
       // Display the toast
-      this.toastCtrl.setMessage("Auditorium Name and Dept should not be empty...!")
+      this.toastCtrl.setMessage("Fill all the fields...")
       this.toastCtrl.present();
 
     } else {
@@ -155,15 +159,17 @@ export class EditPage {
       // Keys
       var deptKey = 'auditorium/' + this.aud.id + '/dept';
       var nameKey = 'auditorium/' + this.aud.id + '/name';
+      var sCountKey = 'auditorium/' + this.aud.id + '/sCount';
 
       var data = {
-          [deptKey]: dept,
-          [nameKey]: name
-        };
+        [deptKey]: dept,
+        [nameKey]: name,
+        [sCountKey]: sCount
+      };
 
       // Update the info.
       this.fire.updateField(data)
-          .then((response) => {
+        .then((response) => {
 
           // Dismissing the loading controller
           this.loadingCtrl.dismiss();
@@ -184,8 +190,8 @@ export class EditPage {
 
         });
 
-        // console.log('save button clicked');
-        this.navCtrl.push(DashboardPage)
+      // console.log('save button clicked');
+      this.navCtrl.push(DashboardPage)
     }
 
   }

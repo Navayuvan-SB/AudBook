@@ -7,47 +7,60 @@
 
 <!-- header -->
 <ion-header no-border>
-    <ion-navbar class="toolbar-background">
-      <ion-toolbar class="toolbar-title.toolbar-title-md"><h2>Let's create one...</h2> 
-      </ion-toolbar>
-    </ion-navbar>
-</ion-header> 
-    
+  <ion-navbar class="toolbar-background" hideBackButton>
+
+    <ion-buttons>
+      <button ion-button icon-only (click)="back()" start>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+    <ion-title class="toolbar-title.toolbar-title-md">
+      <h2>Let's create one...</h2>
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
 <!-- content -->
 <ion-content padding>
-    <form [formGroup]="credentialForm">
-      <ion-grid>
-          <ion-row>
-            
-            <ion-item>
-             <ion-img src="assets/imgs/AuditImageView.jpeg"></ion-img>
-            </ion-item>
-            <ion-item class="round-border width">
-                <ion-input type="text" placeholder='Name'  formControlName="name">
-                </ion-input>
-              </ion-item>
-        
-            <ion-item  (click)="Dept()" class="round-border width">
-              <ion-label>{{Department}}</ion-label>
-              <ion-icon name="custom-aw" class="resize-icon" item-right></ion-icon>
-            </ion-item>
-            
-            <button ion-button block class='width btn-prop' (click)="save()">Save</button>
-          
-          </ion-row>  
-      </ion-grid>
-    </form>
+  <form [formGroup]="credentialForm">
+    <ion-grid>
+      <ion-row>
+
+        <ion-item>
+          <ion-img src="assets/imgs/AuditImageView.jpeg"></ion-img>
+        </ion-item>
+        <ion-item class="round-border width">
+          <ion-input type="text" placeholder='Name' formControlName="name">
+          </ion-input>
+        </ion-item>
+
+        <ion-item (click)="Dept()" class="round-border width">
+          <ion-label>{{Department}}</ion-label>
+          <ion-icon name="custom-aw" class="resize-icon" item-right></ion-icon>
+        </ion-item>
+
+        <ion-item class="round-border width">
+          <ion-input type="tel" placeholder='Seat Count' formControlName="sCount">
+          </ion-input>
+        </ion-item>
+
+        <button ion-button block class='width btn-prop' (click)="save()">Save</button>
+
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
 
 <!-- footer -->
 <ion-footer no-border>
-      
-   <!--create button-->
-      <div text-center (click)="save()">
-        <button ion-button color="secondary" round class="create-button">
-          Save
-        </button>
-      </div>
-</ion-footer>
 
-  
+  <!--create button-->
+  <div text-center (click)="save()">
+    <button ion-button color="secondary" round class="create-button">
+      Save
+    </button>
+  </div>
+</ion-footer>

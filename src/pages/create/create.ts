@@ -36,7 +36,8 @@ toastCtrl: any;
               public form: FormBuilder, 
               public alert: AlertController) {
 
-   
+                
+    this.Department = "Mech";
 
     // Form Validation
     this.credentialForm = this.form.group({
@@ -44,6 +45,9 @@ toastCtrl: any;
         Validators.required
       ])],
       dept: ['', Validators.compose([
+        Validators.required
+      ])],
+      sCount: ['', Validators.compose([
         Validators.required
       ])]
     });
@@ -137,16 +141,17 @@ toastCtrl: any;
     // Getting the field values
     var dept = this.Department;
     var name = this.credentialForm.controls['name'].value;
+    var sCount = this.credentialForm.controls['sCount'].value;
 
 
     // Condition to check, If the field are empty
-    if (dept.trim() == '' || name.trim() == '') {
+    if (dept.trim() == '' || name.trim() == '' || sCount.trim() == '') {
 
       // Dismissing the loading controller
       this.loadingCtrl.dismiss();
 
       // Display the toast
-      this.toastCtrl.setMessage("Auditorium Name and Dept should not be empty...!")
+      this.toastCtrl.setMessage("Fill all the fields...")
       this.toastCtrl.present();
 
     } 
@@ -161,7 +166,8 @@ toastCtrl: any;
         audID: audId,
         name: name,
         dept: dept,
-        requests: 0
+        requests: 0,
+        sCount: sCount
       };
 
     //write in Database
@@ -187,5 +193,9 @@ toastCtrl: any;
     // console.log('save button clicked');
     this.navCtrl.push(DashboardPage)
   }
+ }
+
+ back(){
+   this.navCtrl.pop();
  }
 }

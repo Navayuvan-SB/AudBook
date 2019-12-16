@@ -4,6 +4,7 @@ import { BookNewPage } from '../book-new/book-new';
 import { WarningPage } from '../warning/warning';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the StatusPage page.
@@ -155,6 +156,24 @@ export class StatusPage {
 
     seatAlert.present();
 
+  }
+
+
+  logout(){
+
+    // Present loading
+    this.afAuth.auth.signOut()
+    .then((response) => {
+
+      // Dismiss loading and set login page as root
+      this.navCtrl.setRoot(LoginPage);
+    })
+    .catch((error) => {
+
+      // Dismiss loading and show error toast message
+      this.toastCtrl.setMessage("Some error has occured. Please try again");
+      this.toastCtrl.present();
+    });
   }
 
 }
