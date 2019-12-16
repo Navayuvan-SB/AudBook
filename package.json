@@ -25,7 +25,7 @@
     "@ionic-native/status-bar": "~4.20.0",
     "@ionic/storage": "2.2.0",
     "angularfire2": "^5.0.0-rc.3",
-    "cordova-android": "8.1.0",
+    "cordova-android": "^8.1.0",
     "cordova-res": "^0.8.1",
     "destroy": "^1.0.4",
     "firebase": "^4.8.0",
