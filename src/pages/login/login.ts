@@ -70,7 +70,7 @@ export class LoginPage {
 
           }else if (response.type == 'admin'){
 
-            this.navCtrl.push(StatusPage);
+            this.navCtrl.push(DashboardPage);
 
           }
         })
