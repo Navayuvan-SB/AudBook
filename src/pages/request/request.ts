@@ -70,10 +70,10 @@ export class RequestPage {
 
         // Loop to get all the audid in request from database
         for (var i = 0; i < obj.length; i++) {
-          let array = (obj[i][1].audid);
+          let array = (obj[i][1].audId);
 
           // to check audid in dash page and audid in req from db
-          if (this.reqdata.audId == array) {
+          if (this.reqdata.audID == array) {
 
             // to check whether the status is 0 if audid matches
             if (obj[i][1].status == '0') {
@@ -82,7 +82,7 @@ export class RequestPage {
               console.log(p);
 
               this.present = 1;
-              count++;
+              count = count + 1;
             }
             else {
               if (this.present == 1) {

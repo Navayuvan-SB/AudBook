@@ -4,6 +4,7 @@ import { EditPage } from '../Edit/Edit';
 import { CreatePage } from '../create/create';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { RequestPage } from '../request/request';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the DashboardPage page.
@@ -18,7 +19,7 @@ import { RequestPage } from '../request/request';
 export class DashboardPage {
 
 
-  dataret: any;
+  dataret : any;
   loading : any;
 
 
@@ -56,6 +57,8 @@ export class DashboardPage {
                 position  : 'bottom'
           });
 
+
+          // fb function to get dept and aud name from db
           this.fire.readOnce('auditorium')
               .then((response) => {
                   // console.log("Read Once Called");
@@ -98,6 +101,10 @@ export class DashboardPage {
 
   req(data: any) {
     this.navCtrl.push(RequestPage, { data: data });
+  }
+
+  logout(){
+    this.navCtrl.push(LoginPage);
   }
 
 

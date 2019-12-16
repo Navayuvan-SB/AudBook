@@ -4,6 +4,11 @@
     <ion-title>
       <h2>Dashboard</h2>
     </ion-title>
+    <ion-buttons right class="logout" >
+      <button ion-button icon-only (click) = "logout()"  >
+        <ion-icon name = "md-log-out" color="danger"></ion-icon> 
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -27,7 +32,7 @@
         <div class="margin-left">
           <ion-row>
             <ion-col col-10>
-              <p class="font-style">{{ data.dept }}</p>
+              <p class="font-style">{{ data.name }}</p>
             </ion-col>
             <ion-col col-2>
               <span class="notification-circle">
@@ -37,7 +42,7 @@
           </ion-row>
           <ion-row>
             <ion-col col-12>
-              <p class="font-lighter">{{ data.name }}</p>
+              <p class="font-lighter">{{ data.dept }}</p>
             </ion-col>
           </ion-row>
         </div>
@@ -52,85 +57,6 @@
 
   </ion-grid>
 
-
-
-  <!--grid for rows and cols(1row & 3cols)-->
-  <!-- <ion-grid> -->
-
-  <!-- <ion-row align-items-start > -->
-  <!--col 1 for image-->
-  <!-- <ion-col col-2>
-           <ion-card>
-             <img src= "../../assets/imgs/AuditImageView@2x.png">
-           </ion-card>
-        </ion-col> -->
-  <!-- col 3 for text & notifi (1 col-> (2rows) -> (1row(2col)) & 1row(1col) ) -->
-  <!-- <ion-col col-9>
-            <div class="margin-left">
-                  <ion-row>
-                      <ion-col col-10 >
-                          <p class="font-style">Auditorimum 2</p>
-                      </ion-col>
-                     <ion-col col-2>
-                          <span class="notification-circle">
-                            <p class="notify-nums">1</p>
-                          </span>
-                      </ion-col>
-                  </ion-row>
-                  <ion-row>
-                      <ion-col col-12>
-                          <p class="font-lighter">Mechanical Engineerging</p>
-                      </ion-col>
-                  </ion-row>
-            </div>
-        </ion-col> -->
-  <!--col 3 for pen icon-->
-  <!-- <ion-col col-1 (click)="edit()" >
-            <div class="pen-icon"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
-        </ion-col>
-    </ion-row>
-
-</ion-grid> -->
-
-
-
-  <!--grid for rows and cols(1row & 3cols)-->
-  <!-- <ion-grid> -->
-
-  <!-- <ion-row align-items-start > -->
-  <!--col 1 for image-->
-  <!-- <ion-col col-2>
-           <ion-card>
-             <img src= "../../assets/imgs/AuditImageView@2x.png">
-           </ion-card>
-        </ion-col> -->
-  <!-- col 3 for text & notifi (1 col-> (2rows) -> (1row(2col)) & 1row(1col) ) -->
-  <!-- <ion-col col-9>
-            <div class="margin-left">
-                  <ion-row>
-                      <ion-col col-10 >
-                          <p class="font-style">Auditorimum 3</p>
-                      </ion-col>
-                     <ion-col col-2>
-                          <span class="notification-circle">
-                            <p class="notify-nums">1</p>
-                          </span>
-                      </ion-col>
-                  </ion-row>
-                  <ion-row>
-                      <ion-col col-12>
-                          <p class="font-lighter">Mechanical Engineerging</p>
-                      </ion-col>
-                  </ion-row>
-            </div>
-        </ion-col> -->
-  <!--col 3 for pen icon-->
-  <!-- <ion-col col-1 (click)="edit()">
-            <div class="pen-icon"><ion-icon> <img src="../../assets/imgs/icon.svg"> </ion-icon> </div>
-        </ion-col>
-    </ion-row> -->
-
-  <!-- </ion-grid> -->
 
 </ion-content>
 

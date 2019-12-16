@@ -8,9 +8,9 @@ ion-header{
   background-color:white;
 }
 h2{
-    font: Bolder 25px Segoe UI;
+    font: Bolder 20px Segoe UI;
     margin-top :15px ; 
-    margin-left: -5px !important;
+    margin-left: -12px !important;
     color: black;
 }
 
@@ -31,27 +31,38 @@ ion-grid{
 
 }
 .font-style1{
-    font-weight: bolder; 
+    font-weight: bold; 
     font-size: 120%;
 }
 .space0{
-    margin-top : -15px;
+    margin-top : -6px;
 }
 .font-lighter1{
     margin-top : -8px; 
     font-weight: lighter;
 }
+.Noon-align{
+    font-weight: lighter;
+    margin-top: -10%;
+    margin-left: -20%;
+    
+}
+.date{
+    font-weight: lighter;
+    margin-left: -5%;
+    margin-top: -10%;
+}
 .done-cancel-icon{
     width: 37px;
-    margin: 15px 0px 0px 5px;
+    margin: 5px 0px 0px 5px;
 }
 
 
 .notfound{
     font-weight: bolder;
     text-align: center;
-    margin: 50% !important;
-    width: 50% !important;
+    // margin: 50% !important;
+    // width: 50% !important;
 }
 
 }

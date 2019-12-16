@@ -195,4 +195,7 @@ export class EditPage {
     }
 
   }
+  back(){
+    this.navCtrl.pop();
+  }
 }
