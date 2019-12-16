@@ -14,25 +14,26 @@
 <ion-content padding>
 
     <ion-grid> 
-        <div class="c1" (click)="next()" >
-          <ion-row>
+               
+        <div class="c1"   >
+          <ion-row (click)="calendar(aud)" *ngFor="let aud of audinfo">
               <ion-col>
-                      <ion-avatar   class="img1 com1 adjust5 " >
-                                   <!--image-->
+                      <ion-avatar  class="img1 com1 adjust5 " >
+                                   
                       </ion-avatar>
               </ion-col>
 
               <ion-col col-8>
-                      <ion-row class="adjust1 adjust3"><b>Auditorium 1</b> </ion-row> 
-                      <ion-row class="adjust1 adjust2 ">Mechanical Engineering</ion-row>
+                      <ion-row class="adjust1 adjust3"><b>{{ aud.name }}</b> </ion-row> 
+                      <ion-row class="adjust1 adjust2 ">{{ aud.dept }}</ion-row>
               </ion-col>
           </ion-row>
         </div>
-        <div class="c1" (click)="next()" >
+        <!-- <div class="c1" (click)="calendar()" >
           <ion-row>
                 <ion-col>
                         <ion-avatar  class="img2 com1 adjust5 " >
-                                      <!--image-->
+                                      
                         </ion-avatar>
                 </ion-col>
                 
@@ -42,11 +43,11 @@
                 </ion-col>
           </ion-row>
         </div>
-        <div class="c1" (click)="next()">
+        <div class="c1" (click)="calendar()">
           <ion-row>
                 <ion-col>
                         <ion-avatar (click)="next()" class="img3 com1 adjust5 " >
-                                    <!--image-->
+                                    
                         </ion-avatar>
                 </ion-col>
 
@@ -55,6 +56,6 @@
                         <ion-row class="adjust1 adjust2">Computer Science Engineering</ion-row>           
                 </ion-col>
           </ion-row>
-        </div>
+        </div> -->
       </ion-grid>
 </ion-content>

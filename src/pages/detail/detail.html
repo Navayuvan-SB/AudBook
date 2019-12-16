@@ -5,92 +5,136 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-    <ion-navbar>
-        <ion-title class="toolbar-title.toolbar-title-md"><b>One more step...</b></ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title class="toolbar-title.toolbar-title-md"><b>One more step...</b></ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <div class="one" >
-     
+  <div class="one">
+
     <ion-grid>
-          <ion-row>
-              <ion-col>
-                  <ion-avatar class="img1 com1 " >
-                          <!--image-->
-                  </ion-avatar>
-              </ion-col>
-            
-              <ion-col col-8>
-                  <ion-row class="adjust1 adjust3"><b>Auditorium 1</b> </ion-row> 
-                  <ion-row class="adjust1 adjust2 ">Mechanical Engineering</ion-row>
-              </ion-col>
-          </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-avatar class="img1 com1 ">
+            <!--image-->
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col col-7>
+          <ion-row class="adjust1 adjust3"><b>{{ audname }}</b> </ion-row>
+          <ion-row class="adjust1 adjust2 ">{{ auddept }}</ion-row>
+        </ion-col>
+
+        <ion-col col-1>
+          <ion-avatar class="imgg1">
+          </ion-avatar>
+        </ion-col>
+
+      </ion-row>
     </ion-grid>
 
     <ion-grid>
-          <ion-row row-12>
-              <ion-col>
-            <ion-item class="but but1" style=" border: 1px solid #707070;" >
-                <ion-label class="l1">Date</ion-label>
-                              <ion-icon class="icon1" name="custom-calendar" item-end ></ion-icon>                                                 
-                            </ion-item></ion-col>
-          </ion-row>
+      <ion-row row-12>
+        <ion-col>
+          <ion-item  (click)="cal()" class="but but1">
+            <ion-label class="l1"> {{ findata }}</ion-label>
+            <ion-icon class="icon1"  name="custom-calendar" item-end></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-          <ion-row  row-12 class="a1">
-              <ion-col col-2>
-                   <ion-avatar class="imgg1" >                     
-                   </ion-avatar>
-              </ion-col>
+      <!-- <ion-row row-12 class="a1">
+        <ion-col col-2>
+          <ion-avatar class="imgg1">
+          </ion-avatar>
+        </ion-col>
 
-              <ion-col col-10><ion-label class="c1">Available</ion-label></ion-col>
-          </ion-row>
+        <ion-col col-10>
+          <ion-label class="c1">Available</ion-label>
+        </ion-col> 
+      </ion-row> -->
+      <form [formGroup]="credentialForm">
+      <ion-row row-12>
 
-          <ion-row row-12>
-              <ion-col col-6>
-                  <ion-item class="but but1" style=" border: 1px solid #707070;" >
-                      <!-- <ion-label class="l1">From</ion-label> -->
-                      <ion-input class="l1" placeholder="From"></ion-input>
-                      <ion-datetime displayFormat="h:mmA" pickerFormat="h mm A" ></ion-datetime>
-                                <ion-icon class="icon1" name="custom-fromclock" item-end ></ion-icon>
-                            </ion-item>
-              </ion-col>
 
-              <ion-col col-6>
-                    <ion-item class="but but1" style=" border: 1px solid #707070;">
-                            <!-- <ion-label class="l1">To</ion-label> -->
-                             <ion-input class="l1" placeholder="To"></ion-input>
-                      <ion-datetime  displayFormat="h:mmA" pickerFormat="h mm A" ></ion-datetime>
-                                      <ion-icon class="icon1" name="custom-fromclock" item-end ></ion-icon>
-                                  </ion-item>
-              </ion-col>         
-          </ion-row>
+        <ion-col col-6 *ngIf="!foren">
+          <ion-item class="but-unchecked but1">
+            <!-- <button ion-button class="but but2 " (click)="color()" full >
+                        <ion-label  class="l1">FN</ion-label>                                       
+                </button> -->
+            <ion-label class="l4">FN</ion-label>
+            <!-- <ion-input placeholder="From" class="l1"></ion-input> -->
+            <!-- <ion-datetime displayFormat="h:mmA" pickerFormat="h mm A" name="fromtext" [(ngModel)]="fromtext" ></ion-datetime> -->
+            <!-- <ion-icon class="icon1" name="custom-fromclock" item-end></ion-icon> -->
+          </ion-item>
+        </ion-col>
 
-          <ion-row>
-                <ion-col>
-                        <ion-item (click)="dept()" class="but but1" style=" border: 1px solid #707070;" >
-                                <ion-label class="l1">Department</ion-label>
-                                    <ion-icon class="icon1" name="custom-dwarr" item-end></ion-icon> 
-                        </ion-item>
-                </ion-col>
-          </ion-row>
-          
-          <ion-row>
-              <ion-col>
-                    <ion-item class="but but1" style=" border: 1px solid #707070;">
-                            <ion-input class="l1" type="number" placeholder="Mobilenumber"></ion-input>
-                                  </ion-item>               
-              </ion-col>
-          </ion-row>
-          <ion-row >
-              <ion-col>
-                  <button  ion-button class="but but2 " full >
-                          <ion-label  class="l3">Book</ion-label>                                       
-                  </button>
-              </ion-col>
-          </ion-row>
+        <ion-col col-6 *ngIf="foren">
+          <ion-item class="but-checked-fn but1" (click)="mycolorFn()">
+            <!-- <button ion-button class="but but2 " (click)="color()" full >
+                        <ion-label  class="l1">FN</ion-label>                                       
+                </button> -->
+            <ion-label class="l4">FN</ion-label>
+            <!-- <ion-input placeholder="From" class="l1"></ion-input> -->
+            <!-- <ion-datetime displayFormat="h:mmA" pickerFormat="h mm A" name="fromtext" [(ngModel)]="fromtext" ></ion-datetime> -->
+            <!-- <ion-icon class="icon1" name="custom-fromclock" item-end></ion-icon> -->
+          </ion-item>
+        </ion-col>
 
-    </ion-grid>
+
+        <ion-col col-6 *ngIf="!aftern">
+          <ion-item class="but1 but-unchecked">
+            <ion-label class="l4" id="bocolor">AN</ion-label>
+            <!-- <ion-input  placeholder="To" class="l1"  ></ion-input>
+                      <ion-datetime  displayFormat="h:mmA" pickerFormat="h mm A"  name="ftext" [(ngModel)]="ftext" ></ion-datetime> -->
+            <!-- <ion-icon class="icon1" name="custom-fromclock" item-end></ion-icon> -->
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-6 *ngIf="aftern">
+          <ion-item class="but1 but-checked-an" (click)="mycolorAn()">
+            <ion-label class="l4" id="bocolor">AN</ion-label>
+            <!-- <ion-input  placeholder="To" class="l1"  ></ion-input>
+                      <ion-datetime  displayFormat="h:mmA" pickerFormat="h mm A"  name="ftext" [(ngModel)]="ftext" ></ion-datetime> -->
+            <!-- <ion-icon class="icon1" name="custom-fromclock" item-end></ion-icon> -->
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-item (click)="dept()" class="but but1">
+            <ion-label  class="ll1 l1">{{ department }}</ion-label>
+            <ion-icon class="icon1" name="custom-dwarr" item-end></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item  class="but but1">
+            <ion-input formControlName="text1" type="number" placeholder="Mobilenumber" class="l1" [(ngModel)]="text">
+            </ion-input>
+          </ion-item>
+          <ion-item
+            *ngIf="!credentialForm.controls.text1.valid && (credentialForm.controls.text1.dirty || submitAttempt)">
+            <p>Enter valid Phone number</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+ 
+      <ion-row>
+        <ion-col>
+          <button ion-button class="but but2" (click)="stat()" full [disabled]="!foren && !aftern">
+            <ion-label class="l3">Book</ion-label>
+          </button>
+        </ion-col>
+      </ion-row>
+
+   </form>
+    </ion-grid> 
   </div>
 </ion-content>
