@@ -2,12 +2,23 @@ page-book-new {
     .toolbar-title.toolbar-title-md{ padding-left:5px; color:black; font-size: 20px;
     }
 
+    // topic background
+
     .toolbar-background {
         background-color: white;
     }
+  
+    // Badge displaying seating capacity 
 
+    .badge{
 
-    .c1{
+        border-radius: 10px;
+        font-size:11px;
+    }
+
+    //total area for a single content
+
+    .div1{
         width: 100%;
         height: 110px;
         margin: 0;
@@ -16,7 +27,9 @@ page-book-new {
         
        }
 
-    .com1{
+    // Contents inside the division
+
+    .imgPicDisplay{
             position:relative;
             left:5px;
             width:90px;
@@ -31,28 +44,18 @@ page-book-new {
             
     }
 
-    .img2{
-            background-image: url(../assets/imgs/twoaud.png); 
-             
-    }
-
-    .img3{
-            background-image: url(../assets/imgs/threeaud.png);  
-           
-    }
-
-    .adjust1{
+    .leftDistance{
             margin-left: 11px;
     }
 
-    .adjust3{
-            margin-top:32px;
+    .distFromTop{
+            margin-top:22px;
     }
 
-    .adjust2{
+    .textDistance{
             margin-top:10px;
     }
-    .adjust5{
+    .imgDistance{
             margin-top:10px;
     }
 

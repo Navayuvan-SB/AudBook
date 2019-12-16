@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController,LoadingController,ToastController } from 'ionic-angular';
-import { DetailPage } from '../detail/detail';
 import { CalendarPage } from '../calendar/calendar';
 import { FirebaseServices } from '../../services/fireBaseService';
 
@@ -22,7 +21,8 @@ export class BookNewPage {
 
   // Toast controller
   toastCtrl: any;
-
+  
+  // data from database
   audinfo: any;
 
   // Seat Count
@@ -60,17 +60,17 @@ export class BookNewPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookNewPage');
   }
-  next() {
-    this.navCtrl.push(DetailPage);
-  }
+  
+
+  //passing data to calendar
   calendar(aud: any) {
 
     const popover = this.popoverCtrl.create(CalendarPage, { aud: aud });
-
-
     popover.present();
+
   }
 
+  //getting data from firebase
   firebaseFunctions() {
 
     // Presenting loading controller

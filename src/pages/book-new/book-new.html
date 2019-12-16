@@ -6,56 +6,46 @@
 -->
 
 <ion-header no-border>
-      <ion-navbar>
+      
+        <ion-navbar>
+
             <ion-title class="toolbar-title.toolbar-title-md"><b>Book New</b></ion-title>
-      </ion-navbar>
+     
+        </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
 
     <ion-grid> 
                
-        <div class="c1"   >
+        <div class="div1"   >
           <ion-row (click)="calendar(aud)" *ngFor="let aud of audinfo">
+
               <ion-col>
-                      <ion-avatar  class="img1 com1 adjust5 " >
+                      <ion-avatar  class="img1 imgPicDisplay imgDistance" >
                                    
                       </ion-avatar>
               </ion-col>
 
               <ion-col col-8>
-                      <ion-row class="adjust1 adjust3"><b>{{ aud.name }}</b> </ion-row> 
-                      <ion-row class="adjust1 adjust2 ">{{ aud.dept }}</ion-row>
-              </ion-col>
-          </ion-row>
-        </div>
-        <!-- <div class="c1" (click)="calendar()" >
-          <ion-row>
-                <ion-col>
-                        <ion-avatar  class="img2 com1 adjust5 " >
-                                      
-                        </ion-avatar>
-                </ion-col>
-                
-                <ion-col col-8>
-                        <ion-row class="adjust1 adjust3"><b>Auditorium 2</b> </ion-row> 
-                        <ion-row class="adjust1 adjust2">Information Technology</ion-row> 
-                </ion-col>
-          </ion-row>
-        </div>
-        <div class="c1" (click)="calendar()">
-          <ion-row>
-                <ion-col>
-                        <ion-avatar (click)="next()" class="img3 com1 adjust5 " >
-                                    
-                        </ion-avatar>
-                </ion-col>
 
-                <ion-col col-8>
-                        <ion-row class="adjust1 adjust3 "><b>Auditorium 3</b> </ion-row> 
-                        <ion-row class="adjust1 adjust2">Computer Science Engineering</ion-row>           
-                </ion-col>
+                      <ion-row class=" leftDistance distFromTop "><b>{{ aud.name }}</b></ion-row> 
+
+                      <ion-row class=" leftDistance textDistance ">{{ aud.dept }}</ion-row>
+
+                      <ion-row class=" leftDistance textDistance ">
+
+                                <ion-badge class= "badge" item-end>{{ aud.sCount }}</ion-badge>
+
+                      </ion-row>
+
+              </ion-col>
+
           </ion-row>
-        </div> -->
+
+        </div>
+
       </ion-grid>
+
 </ion-content>
