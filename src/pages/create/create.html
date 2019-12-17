@@ -7,9 +7,9 @@
 
 <!-- header -->
 <ion-header no-border>
-    <ion-navbar class="toolbar-title.toolbar-title-md">
-        <ion-title class="toolbar-title.toolbar-title-md"><b>Let's create one...</b></ion-title>
-      </ion-navbar>
+  <ion-navbar class="toolbar-title.toolbar-title-md">
+    <ion-title class="toolbar-title.toolbar-title-md"><b>Let's create one...</b></ion-title>
+  </ion-navbar>
 </ion-header>
 
 <!-- content -->
@@ -36,20 +36,14 @@
           </ion-input>
         </ion-item>
 
-        <button ion-button block class='width btn-prop' (click)="save()">Save</button>
+        <!-- create button -->
+        <div text-center (click)="save()">
+          <button ion-button color="secondary" round class="create-button">
+            Save
+          </button>
+        </div>
 
       </ion-row>
     </ion-grid>
   </form>
 </ion-content>
-
-<!-- footer -->
-<ion-footer no-border>
-
-  <!--create button-->
-  <div text-center (click)="save()">
-    <button ion-button color="secondary" round class="create-button">
-      Save
-    </button>
-  </div>
-</ion-footer>

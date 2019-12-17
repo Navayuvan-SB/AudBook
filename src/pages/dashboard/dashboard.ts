@@ -7,6 +7,7 @@ import { RequestPage } from '../request/request';
 import { LoginPage } from '../login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -19,7 +20,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class DashboardPage {
 
-
+  items: any;
   dataret: any;
   loading: any;
   toast: any;
@@ -29,7 +30,8 @@ export class DashboardPage {
     private fire: FirebaseServices,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    public afAuth: AngularFireAuth) {
+    public afAuth: AngularFireAuth,
+    ) {
 
     // loading
     this.loading = this.loadingCtrl.create({
@@ -44,6 +46,7 @@ export class DashboardPage {
     });
 
     this.firebaseFunctions();
+    this.doRefresh(event);
   }
 
 
@@ -55,7 +58,7 @@ export class DashboardPage {
 
 
   firebaseFunctions() {
-
+ 
     // loading control
     this.loading.present();
 
@@ -122,6 +125,42 @@ export class DashboardPage {
       });
   }
 
+  doRefresh(refresher: any){
 
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.dismiss();
+    }, 2000);
+    
+    
+
+
+ // fb function to get dept and aud name from db
+ this.fire.readOnce('auditorium')
+ .then((response) => {
+   // console.log("Read Once Called");
+   //objects is stored in var 
+   // this.dataret = response;
+   let obj = Object.entries(response);
+
+   // Local array to store the array of objects
+   let arr = []
+
+   // Loop through the received object
+   for (var i = 0; i < obj.length; i++) {
+     arr.push(obj[i][1]);
+   }
+
+   // Assigining arr to global dataret
+   this.dataret = arr;
+
+   
+ })
+ .catch((error) => {
+  
+ });
+
+      
+}
 
 }
