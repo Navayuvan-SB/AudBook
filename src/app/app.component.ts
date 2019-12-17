@@ -25,7 +25,7 @@ import { FirebaseServices } from '../services/fireBaseService';
 })
 export class MyApp {
 
-  rootPage= DashboardPage;
+  rootPage :  any;
 
   constructor(platform: Platform,
     statusBar: StatusBar,
@@ -36,35 +36,35 @@ export class MyApp {
     platform.ready().then(() => {
 
 
-      // this.angularFire.authState.subscribe(user => {
+      this.angularFire.authState.subscribe(user => {
 
-      //   if (user) {
+        if (user) {
 
-      //     // Get the UID of Logged in user
-      //     let uid = user.uid;
+          // Get the UID of Logged in user
+          let uid = user.uid;
 
-      //     // get the user type and navigate to according to it.
-      //     this.fbService.readOnce('users/' + uid)
-      //       .then((response) => {
+          // get the user type and navigate to according to it.
+          this.fbService.readOnce('users/' + uid)
+            .then((response) => {
 
-      //         // Check the user type and navigate to the apt page.
-      //         if (response['type'] == 'user') {
+              // Check the user type and navigate to the apt page.
+              if (response['type'] == 'user') {
 
-      //           this.rootPage = StatusPage;
+                this.rootPage = StatusPage;
  
-      //         } else if (response['type'] == 'admin') {
+              } else if (response['type'] == 'admin') {
 
-      //           this.rootPage = DashboardPage;
+                this.rootPage = DashboardPage;
 
-      //         }
-      //       })
-      //       .catch((error) => {
+              }
+            })
+            .catch((error) => {
 
-      //       });
-      //   }else{
-      //     this.rootPage = LoginPage;
-      //   }
-      // });
+            });
+        }else{
+          this.rootPage = LoginPage;
+        }
+      });
     
 
 
