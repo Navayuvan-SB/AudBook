@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController, 
 import { FirebaseServices } from '../../services/fireBaseService';
 import { WarningPage } from '../warning/warning';
 import { PopoverController } from 'ionic-angular';
+import { DashboardPage } from '../dashboard/dashboard';
 
 /**
  * Generated class for the RequestPage page.
@@ -146,7 +147,7 @@ export class RequestPage {
         this.toast.present();
 
         // Reloads after updation   
-        this.navCtrl.push(RequestPage, { data: this.reqdata });
+        this.navCtrl.setRoot(DashboardPage);
 
         // Compare the selected info with other 
         for (var i = 0; i < this.display.length; i++) {
@@ -156,6 +157,7 @@ export class RequestPage {
             if (anStatus == this.display[i].AN || fnStatus == this.display[i].FN) {
 
               if (this.display[i].reqId != redata.reqId) {
+
                 // Set status as 2 for affected requests
                 let path = 'requests/' + this.display[i].reqId + '/status';
                 let data = {

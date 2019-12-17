@@ -157,9 +157,9 @@ export class EditPage {
     } else {
 
       // Keys
-      var deptKey = 'auditorium/' + this.aud.id + '/dept';
-      var nameKey = 'auditorium/' + this.aud.id + '/name';
-      var sCountKey = 'auditorium/' + this.aud.id + '/sCount';
+      var deptKey = 'auditorium/' + this.aud.ID + '/dept';
+      var nameKey = 'auditorium/' + this.aud.ID + '/name';
+      var sCountKey = 'auditorium/' + this.aud.ID + '/sCount';
 
       var data = {
         [deptKey]: dept,
