@@ -1,4 +1,6 @@
 page-detail {
+  
+  // title details
 
   .toolbar-title.toolbar-title-md {
     padding-left: 5px;
@@ -14,26 +16,33 @@ page-detail {
     color: black !important;
   }
 
+  // icons details for detail page
+  
+  .icon-display{
+    color: #35AE59;
+    font-size: 120%;
+  }
+
+  // common details
+
+  .common {
+    color: black;
+  }
+
+  //division display
+
   .one {
     height: 600px;
   }
 
-  .c1 {
-    text-align: start;
-    color: #35AE59;
-    margin-top: 3px;
-  }
-
-  .a1 {
-    height: 27px;
-  }
+  //Auditorium pic details
 
   .avail-display {
     position: relative;
     background-color: var(--rocolor);
-    margin-top: 50px;
-    left: -90px;
-    width: 23px;
+    margin-top: 73px;
+    left: -95px;
+    width: 20px;
     height: 20px;
     display: block;
     border-radius: 50%;
@@ -48,7 +57,7 @@ page-detail {
     border-radius: 7%;
   }
 
-  .img1 {
+  .image {
     background-image: url(../assets/imgs/oneaud.png);
     margin-top: 30px;
   }
@@ -57,39 +66,23 @@ page-detail {
     margin-left: 20px;
   }
 
-  .top-dist-one {
+  .name-distance {
     margin-top: 49px;
   }
 
-  .top-dist-two {
+  .dept-distance {
     margin-top: 10px;
   }
 
+  //Booking details
+  // fore-afer-noon details
 
-  .l1 {
-    color: black;
-  }
-  .l4{
+  .fore-after-noon{
     color: black;
     text-align: center !important;
   }
 
-  .ll1 {
-    margin-left: 2.5%;
-  }
-
-  .l2 {
-    margin-right: 50%;
-  }
-
-  .l3 {
-    font-size: 13px;
-    text-align: center;
-    color: white;
-
-  }
-
-//   Common CSS class for AN and FN button
+  //   Common CSS class for AN and FN button
   .but,
   .but-checked-an,
   .but-checked-fn,
@@ -103,6 +96,12 @@ page-detail {
   .but {
     border: 1px solid #000;
   }
+
+  // department details
+  .dept-display {
+    margin-left: 2.5%;
+  }
+
 
 // Button checked status indicator
   .but-checked-an {
@@ -121,7 +120,9 @@ page-detail {
     color: grey;
   }
 
-  .but1 {
+  // common css for all labels
+
+  .button-display {
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
@@ -129,14 +130,19 @@ page-detail {
     margin-bottom: 1%;
   }
 
-  .but2 {
+  //booking button details
+
+  .book-display{
     margin-left: auto;
     margin-right: auto;
     height: 5.6ch;
   }
 
-  .icon1 {
-    color: #35AE59;
-    font-size: 120%;
+  .book-label {
+    font-size: 13px;
+    text-align: center;
+    color: white;
+
   }
+ 
 }
