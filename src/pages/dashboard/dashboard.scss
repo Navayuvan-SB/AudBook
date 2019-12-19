@@ -1,96 +1,145 @@
-
 page-dashboard {
 
-    // header part styles
-    ion-header{
-        height: 10% !important;
-    }
-    .toolbar-background {
-      background-color: white;
-    }
-    h2{
-        font: Bold 25px Segoe UI;
-        margin-top :15px ; 
-        margin-left: 1px;
-        color: black;
-    }
-    .logout{
-        margin-right : 5%;
-        margin-top   : 2.5%;
-    }
+  //style for navbar
+  ion-navbar {
+    margin-top: 15px;
+    margin-left: 30px;
+  }
 
 
 
-    //ion content styles
-    ion-content{
-        margin-top: -20px;
-    }
+
+  .toolbar-title.toolbar-title-md {
+    padding-left: 5px;
+    color: black;
+    font-size: 20px;
+  }
+
+  .toolbar-background {
+    background-color: white;
+  }
+
+  h2 {
+    font: Bold 25px Segoe UI;
+    margin-top: 15px;
+    margin-left: 1px;
+    color: black;
+  }
+
+  .logout {
+    margin-right: 55px;
+    // margin-top: 2.5%;
+  }
 
 
 
-    //styles inside grid
-    ion-grid{
-        margin: 50px 0px -50px 10px;
+  //ion content styles
+  ion-content {
+    margin-top: -20px;
+  }
+
+
+
+  //styles inside grid
+  ion-grid {
+    margin: 50px 0px -50px 10px;
+  }
+
+  ion-card {
+    width: 80px !important;
+  }
+
+  .margin-left {
+    margin-left: 50px;
+    margin-top: 5px;
+  }
+
+  .font-style {
+    margin-top: 19px;
+    margin-bottom: -20px !important;
+    font-weight: bolder;
+    font-size: 120%;
+  }
+
+  .font-lighter {
+    margin-top: 6px;
+    font-weight: lighter;
+    font-size: small;
+  }
+
+  .notification-circle {
+    height: 20px;
+    width: 20px;
+    background-color: #35AE59;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: -30px;
+    margin-top: 16px;
+  }
+
+  .notify-nums {
+    margin-top: 2px;
+    margin-left: 6.3px;
+    font-size: small;
+    color: #FFFFFF !important;
+  }
+
+  .pen-icon {
+    width: 27px !important;
+    margin: 33px 0px 0px -2px;
+
+  }
+
+
+
+
+  //style for creat button
+  .create-button {
+    background-color: #35AE59;
+    text-transform: none;
+    font-weight: normal;
+    height: 40px;
+    width: 40%;
+  }
+
+  .add-icon {
+    margin-top: 2px;
+    margin-right: 8px;
+  }
+
+
+
+  // adjust footer height
+  ion-footer {
+    height: 10%;
+  }
+
+  // Responsive design
+  @media (min-width: 550px) {
+
+    ion-header ion-navbar {
+      width: 550px !important;
+      margin: 0 auto;
     }
-    ion-card{
-        width : 80px !important;
-    }
-    .margin-left{
-        margin-left: 50px;
-        margin-top: 5px;
-    }
-    .font-style{
-        margin-top : 19px;
-        margin-bottom : -20px !important; 
-        font-weight: bolder; 
-        font-size: 120%;
-    }
-    .font-lighter{
-        margin-top : 6px; 
-        font-weight: lighter;
-        font-size: small;
-    }
-    .notification-circle {
-        height: 20px;
-        width: 20px;
-        background-color:#35AE59;
-        border-radius: 50%;
-        display: inline-block;
-        margin-left: -30px;
-        margin-top: 16px;
-    }
-    .notify-nums{
-        margin-top: 2px; 
-        margin-left: 6.3px; 
-        font-size: small;
-        color: #FFFFFF !important;
-    }
-    .pen-icon{
-        width: 27px !important;
-        margin: 33px 0px 0px -2px;
+
+    ion-content ion-grid {
+      width: 550px !important;
 
     }
 
-
-   
-     
-    //style for creat button
-    .create-button{
-        background-color:#35AE59;
-        text-transform: none; 
-        font-weight: normal;
-        height: 40px;
-        width: 40%;
+    ion-footer {
+      width: 100%;
     }
-    .add-icon{
-        margin-top: 2px;
-        margin-right: 8px;
-    }
-    
 
-
-    // adjust footer height
-    ion-footer{
-        height:10%;
+    ion-footer div {
+      width: 550px;
+      margin: 0 auto;
     }
+
+    .logout {
+      margin-right: 0px;
+
+    }
+
+  }
 }
