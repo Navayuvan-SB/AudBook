@@ -8,7 +8,6 @@ page-create {
   //style for content
   ion-content {
     background-color: #FFFFFF;
-    margin-top: 125px;
   }
 
   //style for toolbar title
@@ -32,11 +31,12 @@ page-create {
   ion-img {
     top: 400px;
     width: 98% !important;
-    height: 90px;
+    height: 85px;
     border: 1px solid #707070;
     border-radius: 5px;
     background: transparent;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    margin-top: 20%;
 
   }
 
@@ -54,13 +54,13 @@ page-create {
     max-height: 13%;
   }
 
-  //style for button
-  .btn-prop {
-    height: 15%;
-    margin-top: 5px;
-    border-radius: 5px;
-    margin-left: 15px;
-  }
+  // //style for button
+  // .btn-prop {
+  //   height: 15%;
+  //   margin-top: 5px;
+  //   border-radius: 5px;
+  //   margin-left: 15px;
+  // }
 
   //style for grid
   ion-grid {
@@ -85,8 +85,9 @@ page-create {
     text-transform: none;
     font-weight: normal;
     height: 40px;
-    width: 40%;
-    margin-bottom: 40px;
+    width:40%;
+    margin-top: 30%;
+    margin-left: 120px;
   }
 
  // Responsive design
