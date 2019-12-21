@@ -16,14 +16,15 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RequestPage } from '../pages/request/request';
 import { FirebaseServices } from '../services/fireBaseService'
 import { CalendarModule } from 'ionic3-calendar-en';
-
-
+import { ProfilePage } from '../pages/profile/profile';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
+
+
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { CalendarPage } from '../pages/calendar/calendar';
     WarningPage,
     DashboardPage,
     RequestPage,
-    CalendarPage
+    CalendarPage,
+    ProfilePage,
+    
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,9 @@ import { CalendarPage } from '../pages/calendar/calendar';
     StatusPage,
     DashboardPage,
     RequestPage,
-    CalendarPage
+    CalendarPage,
+    ProfilePage,
+   
   ],
   providers: [
   

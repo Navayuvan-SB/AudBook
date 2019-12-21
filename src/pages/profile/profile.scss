@@ -1,0 +1,58 @@
+page-profile {
+  .toolbar-title.toolbar-title-md {
+    padding-left: 5px;
+    color: black;
+    font-size: 20px;
+  }
+
+      .toolbar-background {
+        background-color: white;
+      }
+
+      ::-webkit-input-placeholder {
+        color: black !important;
+      }
+      .imgPicDisplay {
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        border-radius: 50%;
+      }
+    
+      .image {
+        background-image: url(../assets/imgs/oneaud.png);
+        margin-top: 10px;
+      }
+      .common{
+          margin-top:35px;
+      }
+
+  .but {
+    margin-top:10px;
+    border: 1px solid  grey;
+    border-radius: 20px;
+  }
+
+  .button-display {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 25%;
+    
+
+  }
+  .book-display{
+    margin-left: auto;
+    margin-right: auto;
+    height: 5.6ch;
+  }
+//   .book-label {
+//     font-size: 13px;
+//     text-align: center;
+//     color: white;
+
+//   }
+}
