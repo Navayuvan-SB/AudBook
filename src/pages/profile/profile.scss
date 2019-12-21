@@ -1,34 +1,46 @@
 page-profile {
+
+  //for toolbar styling
+
   .toolbar-title.toolbar-title-md {
     padding-left: 5px;
     color: black;
     font-size: 20px;
   }
 
-      .toolbar-background {
-        background-color: white;
-      }
+  .toolbar-background {
+    background-color: white;
+  }
 
-      ::-webkit-input-placeholder {
-        color: black !important;
-      }
-      .imgPicDisplay {
-        display: block;
-        margin: 0 auto;
-        position: relative;
-        width: 100px;
-        height: 100px;
-        background-size: cover;
-        border-radius: 50%;
-      }
+  //For styling the placeholder
+
+  ::-webkit-input-placeholder {
+    color: black !important;
+  }
+
+  //For profile image styling
+
+  .imgPicDisplay {
+   display: block;
+   margin: 0 auto;
+   position: relative;
+   width: 100px;
+   height: 100px;
+   background-size: cover;
+   border-radius: 50%;
+  }
     
-      .image {
-        background-image: url(../assets/imgs/oneaud.png);
-        margin-top: 10px;
-      }
-      .common{
-          margin-top:35px;
-      }
+  .image {
+   background-image: url(../assets/imgs/oneaud.png);
+   margin-top: 10px;
+  }
+     
+  //For positioning the first row from the profile pic
+  .common{
+    margin-top:35px;
+  }
+
+  // item styling for all
 
   .but {
     margin-top:10px;
@@ -36,23 +48,20 @@ page-profile {
     border-radius: 20px;
   }
 
+  //area occupied by both name and number
+
   .button-display {
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
     max-height: 25%;
-    
+  } 
 
-  }
-  .book-display{
+  // area occupied by the change password button display
+  
+  .password-display{
     margin-left: auto;
     margin-right: auto;
     height: 5.6ch;
   }
-//   .book-label {
-//     font-size: 13px;
-//     text-align: center;
-//     color: white;
-
-//   }
 }

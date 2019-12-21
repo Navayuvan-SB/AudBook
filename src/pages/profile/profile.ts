@@ -74,6 +74,7 @@ export class ProfilePage {
             // console.log(data.new);
                
             //getting the current user
+
             this.user = this.fbAuth.auth.currentUser;
             // console.log(this.user['uid']);
             this.userID=this.user['uid'];
@@ -84,6 +85,7 @@ export class ProfilePage {
             this.fire.login(this.user.email, this.oldPwd)
 
             //if login is successful
+
             .then((response) => {
              //update password if login is successful
 
@@ -139,7 +141,7 @@ export class ProfilePage {
   firebaseFunctions() {
     
     //this.user = this.fbAuth.auth.currentUser;
-     console.log(this.user);
+     //console.log(this.user);
     // this.userID=this.user['uid'];
     // console.log(this.userID);
     // this.userID=this.fbAuth.auth.currentUser.uid;
