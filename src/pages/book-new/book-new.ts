@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController,LoadingController,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, LoadingController, ToastController } from 'ionic-angular';
 import { CalendarPage } from '../calendar/calendar';
 import { FirebaseServices } from '../../services/fireBaseService';
 
@@ -21,7 +21,7 @@ export class BookNewPage {
 
   // Toast controller
   toastCtrl: any;
-  
+
   // data from database
   audinfo: any;
 
@@ -29,45 +29,46 @@ export class BookNewPage {
   sCount: number = 0;
 
   constructor(public fire: FirebaseServices,
-              public navCtrl: NavController,
-              public navParams: NavParams,
-              public popoverCtrl: PopoverController,
-              public loading: LoadingController,
-              public toast: ToastController) {
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public popoverCtrl: PopoverController,
+    public loading: LoadingController,
+    public toast: ToastController) {
 
 
-      // Initializing Loading Controller
-      this.loadingCtrl = this.loading.create({
-        content: 'Please wait...'
-      });
+    // Initializing Loading Controller
+    this.loadingCtrl = this.loading.create({
+      content: 'Please wait...'
+    });
 
-      // Initializing Toast Controller
-      this.toastCtrl = this.toast.create({
-        duration: 3000
-      });
+    // Initializing Toast Controller
+    this.toastCtrl = this.toast.create({
+      duration: 3000
+    });
 
-    
-      // Getting the Seat count from Status page
-      this.sCount = this.navParams.get('sCount').count;
 
-      this.sCount = Number(this.sCount);
+    // Getting the Seat count from Status page
+    this.sCount = this.navParams.get('sCount').count;
 
-      console.log(this.sCount);
+    this.sCount = Number(this.sCount);
 
-      this.firebaseFunctions();
+    console.log(this.sCount);
+
+    this.firebaseFunctions();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookNewPage');
   }
-  
+
 
   //passing data to calendar
   calendar(aud: any) {
-
-    const popover = this.popoverCtrl.create(CalendarPage, { aud: aud });
-    popover.present();
-
+    this.fire.readOnce('requests')
+      .then((response) => {
+        const popover = this.popoverCtrl.create(CalendarPage, { aud: aud, data: response });
+        popover.present();
+      });
   }
 
   //getting data from firebase
@@ -75,7 +76,7 @@ export class BookNewPage {
 
     // Presenting loading controller
     this.loadingCtrl.present();
-    
+
     this.fire.readOnce('auditorium')
       .then((response) => {
         console.log("Read Once Called");
@@ -95,7 +96,7 @@ export class BookNewPage {
         // Dismissing the loading controller
         this.loadingCtrl.dismiss();
 
-        })
+      })
 
       .catch((error) => {
         console.log(error);
@@ -152,9 +153,9 @@ export class BookNewPage {
         }
 
       }
-       
+
       // If not the initial cycle
-      else if (flag == 1){
+      else if (flag == 1) {
 
         sArr.push(displayArray[i]);
       }

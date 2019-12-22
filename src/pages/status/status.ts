@@ -5,6 +5,7 @@ import { WarningPage } from '../warning/warning';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the StatusPage page.
@@ -161,19 +162,21 @@ export class StatusPage {
 
   logout(){
 
-    // Present loading
-    this.afAuth.auth.signOut()
-    .then((response) => {
+    // // Present loading
+    // this.afAuth.auth.signOut()
+    // .then((response) => {
 
-      // Dismiss loading and set login page as root
-      this.navCtrl.setRoot(LoginPage);
-    })
-    .catch((error) => {
+    //   // Dismiss loading and set login page as root
+    //   this.navCtrl.setRoot(LoginPage);
+    // })
+    // .catch((error) => {
 
-      // Dismiss loading and show error toast message
-      this.toastCtrl.setMessage("Some error has occured. Please try again");
-      this.toastCtrl.present();
-    });
+    //   // Dismiss loading and show error toast message
+    //   this.toastCtrl.setMessage("Some error has occured. Please try again");
+    //   this.toastCtrl.present();
+    // });
+
+    this.navCtrl.push(ProfilePage);
   }
 
 }

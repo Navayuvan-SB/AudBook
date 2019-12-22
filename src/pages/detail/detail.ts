@@ -343,7 +343,6 @@ export class DetailPage {
 
           if ((this.audid == obj[i][1].audId) && (this.findata == obj[i][1].date)) {
 
-            console.log("Trueeeeeee");
             core = '1';
 
             if ((obj[i][1].status == '1') || (obj[i][1].status == '0')) {
