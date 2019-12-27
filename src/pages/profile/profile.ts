@@ -3,6 +3,7 @@ import { IonicPage, ToastController, AlertController, NavController, NavParams }
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { AngularFireDatabase } from 'angularfire2/database'
 
 
 /**
@@ -25,6 +26,9 @@ export class ProfilePage {
 
   // getting data using uid
   user: any;
+  profileinfo:any;
+  public name: string;
+  
 
   constructor(public fire: FirebaseServices,
     public alertCtrl: AlertController,
@@ -32,6 +36,7 @@ export class ProfilePage {
     public navParams: NavParams,
     public fbAuth: AngularFireAuth,
     public fb: AngularFireModule,
+     public fbDatabase    : AngularFireDatabase,
     public toastCtrl: ToastController) {
 
     this.user = this.fbAuth.auth.currentUser;
@@ -44,7 +49,7 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
-  changePwd() {
+  changePwd() {      
     const prompt = this.alertCtrl.create({
 
       inputs: [
@@ -127,40 +132,34 @@ export class ProfilePage {
     prompt.present();
 
   }
-
-
-  firebaseFunctions() {
-
-    this.fire.readOnce('users/' + this.user['uid'])
-
-      .then((response) => {
-        console.log("Read Once Called");
-        //objects is stored in obj
-        // this.dataret = response;
-        let obj = Object.entries(response);
-
-        // Local array to store the array of objects
-        let arr = []
-
-        // Loop through the received object
-        for (var i = 0; i < obj.length; i++) {
-
-            arr.push(obj[i][1]);
-            console.log(arr);
-
-        //console.log(obj[i][1]);
-        }
-        // // Assigining arr to global datar
-        // this.statusinfo = arr;
-
-        // console.log(this.statusinfo);
-
-
+ 
+  
+     firebaseFunctions() {
+     if(this.name !==undefined){
+       console.log('dkgjdk');
+       return;
+     }
+    //  this.fire.readOnce('users/' + this.user['uid'])
+     else{
+       return new Promise((resolve, reject) => {
+      this.fbDatabase.database.ref('users/' + this.user['uid'])
+      .once("value")
+      .then(function(snapshot) {   
+         resolve(snapshot.val());
+         console.log(snapshot.val().Name);
+         console.log(snapshot.val().Phone);
+          let profileName=snapshot.val().Name;
+          console.log(profileName);
+         this.name=snapshot.val().Name;
+                
       })
-      .catch((error) => {
-        console.log(error);
-
+      .catch(function(error){
+         reject('Something is wrong');
       });
 
+});
+}
+     
   }
+ 
 }
