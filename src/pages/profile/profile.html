@@ -28,7 +28,7 @@
       <!-- For name display -->
       <ion-row row-12 class="common">
         <ion-col>
-          <ion-item class="but button-display">
+          <ion-item class="but button-display" (click)="profileUpdate()">
             <ion-input placeholder="Name" formControlName="name">
             </ion-input>
           </ion-item>
@@ -41,7 +41,7 @@
       <!-- For number display -->
       <ion-row row-12>
         <ion-col>
-          <ion-item class="but button-display">
+          <ion-item class="but button-display" (click)="profileUpdate()">
             <ion-input type="number" placeholder="Mobilenumber" formControlName="phone">
             </ion-input>
           </ion-item>
@@ -53,9 +53,20 @@
 
       <!-- For change password display -->
       <ion-row row-12>
+
+
         <ion-col>
           <button ion-button class="but password-display" (click)="changePwd()" full>
             <ion-label>Change password</ion-label>
+          </button>
+        </ion-col>
+      </ion-row>
+
+       <ion-row row-12>
+         <ion-col>
+          <button ion-button class="but password-display" (click)="save()" full 
+          [disabled]="!(profupdate)|| !detailForm.valid" >
+            <ion-label>Save</ion-label>
           </button>
         </ion-col>
       </ion-row>

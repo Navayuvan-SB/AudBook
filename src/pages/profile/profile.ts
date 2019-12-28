@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ToastController, AlertController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ToastController, AlertController,LoadingController, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { FirebaseServices } from '../../services/fireBaseService';
@@ -26,13 +26,22 @@ export class ProfilePage {
 
   // getting data using uid
   user: any;
-  profileinfo:any;
   public name: string;
-  
+
+  //enabling the save button
+  profupdate:number=0;
+ 
+  // Loading controller
+  loadingCtrl: any;
+
+  //toast controller
+  toast:any;
 
   // user detail form
   detailForm: FormGroup;
 
+  //profile user
+  prouser:any;
 
   constructor(public fire: FirebaseServices,
     public alertCtrl: AlertController,
@@ -40,13 +49,11 @@ export class ProfilePage {
     public navParams: NavParams,
     public fbAuth: AngularFireAuth,
     public fb: AngularFireModule,
+    public loading: LoadingController,
     public toastCtrl: ToastController,
     public formBuilder: FormBuilder ) {
 
-    // Toast controller
-    let toast = this.toastCtrl.create({
-      duration: 3000
-    });
+   
 
     // Get the user details from status page
     this.user = this.navParams.get('response');
@@ -62,7 +69,12 @@ export class ProfilePage {
         Validators.maxLength(10)
       ])]
     });
-    
+
+     // Toast controller
+     this.toast = this.toastCtrl.create({
+      duration: 3000
+    });
+
 
   }
 
@@ -94,10 +106,6 @@ export class ProfilePage {
           text: 'Save',
           handler: data => {
 
-            // Toast controller
-            let toast = this.toastCtrl.create({
-              duration: 3000
-            });
 
             // Local scoped user crdentials
             let user = this.fbAuth.auth.currentUser
@@ -120,29 +128,29 @@ export class ProfilePage {
                     .then((response) => {
 
                       // Display the toast message
-                      toast.setMessage("Password changed successfully");
-                      toast.present();
+                      this.toast.setMessage("Password changed successfully");
+                      this.toast.present();
                     })
                     .catch(function (error) {
 
 
                       // Display the toast message
-                      toast.setMessage("Some problem occured...Please try again later");
-                      toast.present();
+                      this.toast.setMessage("Some problem occured...Please try again later");
+                      this.toast.present();
                     });
                 }
                 else {
 
                   // Display the toast message
-                  toast.setMessage("Password should be minimum of 6 characters");
-                  toast.present();
+                  this.toast.setMessage("Password should be minimum of 6 characters");
+                  this.toast.present();
                 }
               })
               .catch((error) => {
 
                 // Display the toast message
-                toast.setMessage("Enter the correct old password");
-                toast.present();
+                this.toast.setMessage("Enter the correct old password");
+                this.toast.present();
               });
 
           }
@@ -150,6 +158,53 @@ export class ProfilePage {
       ]
     });
     prompt.present();
+
+  }
+
+  profileUpdate(){
+    this.profupdate=1;
+    console.log(this.profupdate);
+  }
+
+  save(){
+      // Toast controller
+     this.toast = this.toastCtrl.create({
+        duration: 3000
+      });
+
+
+    var name = this.detailForm.controls['name'].value;
+    var phone = this.detailForm.controls['phone'].value;
+
+     // Keys
+     var nameKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/name';
+     var phoneKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/phone';
+
+     var data = {
+      [nameKey]: name,
+      [phoneKey]: phone,
+    };
+
+
+     // Update the info.
+     this.fire.updateField(data)
+     .then((response) => {
+
+
+       // Display the toast
+       this.toast.setMessage("user name and phone Updated Successfully...!")
+       this.toast.present();
+
+     })
+     .catch((error) => {
+
+
+       // Display the toast
+       this.toast.setMessage("Something is wrong. Please try again later...!")
+       this.toast.present();
+
+     });
+
 
   }
 }
