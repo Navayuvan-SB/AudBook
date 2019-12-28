@@ -34,8 +34,6 @@ export class ProfilePage {
   // user detail form
   detailForm: FormGroup;
 
-  //profile user
-  prouser: any;
 
   constructor(public fire: FirebaseServices,
     public alertCtrl: AlertController,

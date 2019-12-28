@@ -27,7 +27,7 @@ import { ProfilePage } from '../pages/profile/profile';
 })
 export class MyApp {
 
-  rootPage :any;
+  rootPage : any;
   // rootPage = ProfilePage;
 
   constructor(platform: Platform,
