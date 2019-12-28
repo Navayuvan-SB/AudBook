@@ -3,6 +3,7 @@ import { IonicPage, ToastController, AlertController, NavController, NavParams }
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 /**
@@ -26,17 +27,39 @@ export class ProfilePage {
   // getting data using uid
   user: any;
 
+  // user detail form
+  detailForm: FormGroup;
+
+
   constructor(public fire: FirebaseServices,
     public alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public fbAuth: AngularFireAuth,
     public fb: AngularFireModule,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public formBuilder: FormBuilder ) {
 
-    this.user = this.fbAuth.auth.currentUser;
-    this.firebaseFunctions();
+    // Toast controller
+    let toast = this.toastCtrl.create({
+      duration: 3000
+    });
 
+    // Get the user details from status page
+    this.user = this.navParams.get('response');
+
+    this.detailForm = this.formBuilder.group({
+      name: [this.user['name'], Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      ])],
+      phone: [this.user['phone'], Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10)
+      ])]
+    });
+    
 
   }
 
@@ -67,56 +90,55 @@ export class ProfilePage {
         {
           text: 'Save',
           handler: data => {
-            this.oldPwd = data.old;
-            this.newPwd = data.new;
-            // console.log(data.old);
-            // console.log(data.new);
 
+            // Toast controller
+            let toast = this.toastCtrl.create({
+              duration: 3000
+            });
 
-            this.fire.login(this.user.email, this.oldPwd)
+            // Local scoped user crdentials
+            let user = this.fbAuth.auth.currentUser
+
+            console.log(user.email, data.old);
+            // Reauthenticate to check if the old 
+            // password entered is correct.
+            this.fire.login(user.email, data.old)
 
               //if login is successful
-
               .then((response) => {
+
                 //update password if login is successful
-
                 //checking new password characters length for 6
-
                 if (this.newPwd.length >= 6) {
 
-                  this.user.updatePassword(this.newPwd)
+                  user.updatePassword(data.new)
 
                     //if update password is successful
-
                     .then((response) => {
-                      const toastSuccess = this.toastCtrl.create({
-                        message: 'Password successfully changed',
-                        duration: 3000,
 
-                      });
-                      toastSuccess.present();
-                      console.log("successfully added!");
-
+                      // Display the toast message
+                      toast.setMessage("Password changed successfully");
+                      toast.present();
                     })
                     .catch(function (error) {
-                      console.log("unsuccessful");
+
+
+                      // Display the toast message
+                      toast.setMessage("Some problem occured...Please try again later");
+                      toast.present();
                     });
                 }
                 else {
-                  const toastFailure = this.toastCtrl.create({
-                    message: 'Password sholud be minimum of 6 characters',
-                    duration: 3000,
 
-                  });
-                  toastFailure.present();
+                  // Display the toast message
+                  toast.setMessage("Password should be minimum of 6 characters");
+                  toast.present();
                 }
               })
               .catch((error) => {
-                console.log('not successful');
-                const toast = this.toastCtrl.create({
-                  message: 'Enter the correct password',
-                  duration: 3000,
-                });
+
+                // Display the toast message
+                toast.setMessage("Enter the correct old password");
                 toast.present();
               });
 
@@ -125,42 +147,6 @@ export class ProfilePage {
       ]
     });
     prompt.present();
-
-  }
-
-
-  firebaseFunctions() {
-
-    this.fire.readOnce('users/' + this.user['uid'])
-
-      .then((response) => {
-        console.log("Read Once Called");
-        //objects is stored in obj
-        // this.dataret = response;
-        let obj = Object.entries(response);
-
-        // Local array to store the array of objects
-        let arr = []
-
-        // Loop through the received object
-        for (var i = 0; i < obj.length; i++) {
-
-            arr.push(obj[i][1]);
-            console.log(arr);
-
-        //console.log(obj[i][1]);
-        }
-        // // Assigining arr to global datar
-        // this.statusinfo = arr;
-
-        // console.log(this.statusinfo);
-
-
-      })
-      .catch((error) => {
-        console.log(error);
-
-      });
 
   }
 }

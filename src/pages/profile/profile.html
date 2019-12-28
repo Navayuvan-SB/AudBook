@@ -14,44 +14,53 @@
 <ion-content padding>
   <!-- For profile pic creation -->
 
-<ion-grid>
-  <ion-row>
-    <ion-avatar class="image imgPicDisplay ">
-      <!--image-->
-    </ion-avatar>
-  </ion-row>
-</ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-avatar class="image imgPicDisplay ">
+        <!--image-->
+      </ion-avatar>
+    </ion-row>
+  </ion-grid>
 
-<ion-grid>
+  <ion-grid>
 
-  <!-- For name display -->
-  <ion-row row-12 class="common">
-    <ion-col>
-      <ion-item class="but button-display">
-        <ion-input placeholder="Name" >
-        </ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+    <form [formGroup]="detailForm">
+      <!-- For name display -->
+      <ion-row row-12 class="common">
+        <ion-col>
+          <ion-item class="but button-display">
+            <ion-input placeholder="Name" formControlName="name">
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="!detailForm.controls.name.valid && (detailForm.controls.name.dirty || submitAttempt)">
+            <p>Name should be minimun of 6 characters long</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-  <!-- For number display -->
-  <ion-row row-12>
-    <ion-col>
-      <ion-item class="but button-display">
-        <ion-input type="number" placeholder="Mobilenumber" >
-        </ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+      <!-- For number display -->
+      <ion-row row-12>
+        <ion-col>
+          <ion-item class="but button-display">
+            <ion-input type="number" placeholder="Mobilenumber" formControlName="phone">
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="!detailForm.controls.phone.valid && (detailForm.controls.phone.dirty || submitAttempt)">
+            <p>Phone Number must have length of 10 numbers</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-  <!-- For change password display -->
-  <ion-row row-12>
-    <ion-col>
-      <button ion-button class="but password-display" (click)="changePwd()" full >
-        <ion-label>Change password</ion-label>
-      </button>
-    </ion-col>
-  </ion-row>
- 
-</ion-grid>
+      <!-- For change password display -->
+      <ion-row row-12>
+        <ion-col>
+          <button ion-button class="but password-display" (click)="changePwd()" full>
+            <ion-label>Change password</ion-label>
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+
 </ion-content>
