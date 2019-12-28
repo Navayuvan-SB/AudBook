@@ -59,9 +59,14 @@ page-profile {
 
   // area occupied by the change password button display
   
-  .password-display{
+  .password-display,
+  .save{
     margin-left: auto;
     margin-right: auto;
     height: 5.6ch;
+  }
+
+  .password-display {
+    background-color: rgb(255, 0, 0);
   }
 }

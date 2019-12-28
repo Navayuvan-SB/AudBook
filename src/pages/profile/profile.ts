@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ToastController, AlertController,LoadingController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ToastController, AlertController, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { FirebaseServices } from '../../services/fireBaseService';
@@ -29,19 +29,13 @@ export class ProfilePage {
   public name: string;
 
   //enabling the save button
-  profupdate:number=0;
- 
-  // Loading controller
-  loadingCtrl: any;
-
-  //toast controller
-  toast:any;
+  profupdate: number = 0;
 
   // user detail form
   detailForm: FormGroup;
 
   //profile user
-  prouser:any;
+  prouser: any;
 
   constructor(public fire: FirebaseServices,
     public alertCtrl: AlertController,
@@ -51,9 +45,9 @@ export class ProfilePage {
     public fb: AngularFireModule,
     public loading: LoadingController,
     public toastCtrl: ToastController,
-    public formBuilder: FormBuilder ) {
+    public formBuilder: FormBuilder) {
 
-   
+
 
     // Get the user details from status page
     this.user = this.navParams.get('response');
@@ -70,10 +64,7 @@ export class ProfilePage {
       ])]
     });
 
-     // Toast controller
-     this.toast = this.toastCtrl.create({
-      duration: 3000
-    });
+
 
 
   }
@@ -82,7 +73,13 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
-  changePwd() {      
+  changePwd() {
+
+    // Toast controller
+    let toast = this.toastCtrl.create({
+      duration: 3000
+    });
+
     const prompt = this.alertCtrl.create({
 
       inputs: [
@@ -110,17 +107,17 @@ export class ProfilePage {
             // Local scoped user crdentials
             let user = this.fbAuth.auth.currentUser
 
-            console.log(user.email, data.old);
             // Reauthenticate to check if the old 
             // password entered is correct.
-            this.fire.login(user.email, data.old)
+
+            this.fire.login(user['email'], data.old)
 
               //if login is successful
               .then((response) => {
 
                 //update password if login is successful
                 //checking new password characters length for 6
-                if (this.newPwd.length >= 6) {
+                if (data.new.length >= 6) {
 
                   user.updatePassword(data.new)
 
@@ -128,29 +125,30 @@ export class ProfilePage {
                     .then((response) => {
 
                       // Display the toast message
-                      this.toast.setMessage("Password changed successfully");
-                      this.toast.present();
+                      toast.setMessage("Password changed successfully");
+                      toast.present();
                     })
                     .catch(function (error) {
 
 
                       // Display the toast message
-                      this.toast.setMessage("Some problem occured...Please try again later");
-                      this.toast.present();
+                      toast.setMessage("Some problem occured...Please try again later");
+                      toast.present();
                     });
                 }
                 else {
 
                   // Display the toast message
-                  this.toast.setMessage("Password should be minimum of 6 characters");
-                  this.toast.present();
+                  toast.setMessage("Password should be minimum of 6 characters");
+                  toast.present();
                 }
               })
               .catch((error) => {
 
+                console.log(error);
                 // Display the toast message
-                this.toast.setMessage("Enter the correct old password");
-                this.toast.present();
+                toast.setMessage("Enter the correct old password");
+                toast.present();
               });
 
           }
@@ -161,49 +159,49 @@ export class ProfilePage {
 
   }
 
-  profileUpdate(){
-    this.profupdate=1;
+  profileUpdate() {
+    this.profupdate = 1;
     console.log(this.profupdate);
   }
 
-  save(){
-      // Toast controller
-     this.toast = this.toastCtrl.create({
-        duration: 3000
-      });
+  save() {
+    // Toast controller
+    let toast = this.toastCtrl.create({
+      duration: 3000
+    });
 
 
     var name = this.detailForm.controls['name'].value;
     var phone = this.detailForm.controls['phone'].value;
 
-     // Keys
-     var nameKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/name';
-     var phoneKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/phone';
+    // Keys
+    var nameKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/name';
+    var phoneKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/phone';
 
-     var data = {
+    var data = {
       [nameKey]: name,
       [phoneKey]: phone,
     };
 
 
-     // Update the info.
-     this.fire.updateField(data)
-     .then((response) => {
+    // Update the info.
+    this.fire.updateField(data)
+      .then((response) => {
 
 
-       // Display the toast
-       this.toast.setMessage("user name and phone Updated Successfully...!")
-       this.toast.present();
+        // Display the toast
+        toast.setMessage("user name and phone Updated Successfully...!")
+        toast.present();
 
-     })
-     .catch((error) => {
+      })
+      .catch((error) => {
 
 
-       // Display the toast
-       this.toast.setMessage("Something is wrong. Please try again later...!")
-       this.toast.present();
+        // Display the toast
+        toast.setMessage("Something is wrong. Please try again later...!")
+        toast.present();
 
-     });
+      });
 
 
   }
