@@ -26,6 +26,9 @@ export class ProfilePage {
 
   // getting data using uid
   user: any;
+  profileinfo:any;
+  public name: string;
+  
 
   // user detail form
   detailForm: FormGroup;
@@ -67,7 +70,7 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
-  changePwd() {
+  changePwd() {      
     const prompt = this.alertCtrl.create({
 
       inputs: [
