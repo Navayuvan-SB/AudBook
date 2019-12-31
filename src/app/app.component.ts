@@ -17,15 +17,17 @@ import { LoginPage } from '../pages/login/login';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseServices } from '../services/fireBaseService';
-
-
+import {Nav} from 'ionic-angular';
+import {ViewChild} from '@angular/core';
  
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
 
-  rootPage :  any;
+  rootPage: any;
+  condi: any = 0;
 
   constructor(platform: Platform,
     statusBar: StatusBar,
@@ -51,10 +53,12 @@ export class MyApp {
               if (response['type'] == 'user') {
 
                 this.rootPage = StatusPage;
+                this.condi = 1
  
               } else if (response['type'] == 'admin') {
 
                 this.rootPage = DashboardPage;
+                this.condi = 0
 
               }
             })
@@ -73,5 +77,9 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+    
+  }
+  sample(){
+    this.nav.setRoot(CreatePage);
   }
 }

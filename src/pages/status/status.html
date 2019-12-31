@@ -2,6 +2,12 @@
 <ion-header no-border>
   <ion-navbar  hideBackButton>
     <ion-title class="toolbar-title.toolbar-title-md" ><b>Status</b></ion-title>
+    <ion-buttons left class = "menu">
+      <button ion-button icon-only menuToggle color="dark">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+
     <ion-buttons right class="logout" >
       <button ion-button icon-only (click) = "logout()"  >
         <ion-icon name = "md-log-out" color="danger"></ion-icon> 

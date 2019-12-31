@@ -46,7 +46,7 @@ export class DashboardPage {
     });
 
     this.firebaseFunctions();
-    this.doRefresh(event);
+    
   }
 
 
@@ -91,6 +91,7 @@ export class DashboardPage {
         this.toast.present();
         // console.log(error);
       });
+      
   }
 
 
@@ -125,42 +126,12 @@ export class DashboardPage {
       });
   }
 
-  doRefresh(refresher: any){
+  // doRefresh(refresher: any){
 
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.dismiss();
-    }, 2000);
+  //   setTimeout(() => {
+  //     console.log('Async operation has ended');
+  //     refresher.dismiss();
+  //   }, 2000);
     
-    
 
-
- // fb function to get dept and aud name from db
- this.fire.readOnce('auditorium')
- .then((response) => {
-   // console.log("Read Once Called");
-   //objects is stored in var 
-   // this.dataret = response;
-   let obj = Object.entries(response);
-
-   // Local array to store the array of objects
-   let arr = []
-
-   // Loop through the received object
-   for (var i = 0; i < obj.length; i++) {
-     arr.push(obj[i][1]);
-   }
-
-   // Assigining arr to global dataret
-   this.dataret = arr;
-
-   
- })
- .catch((error) => {
-  
- });
-
-      
-}
-
-}
+}     
