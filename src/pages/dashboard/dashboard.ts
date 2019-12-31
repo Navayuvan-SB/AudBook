@@ -129,7 +129,7 @@ export class DashboardPage {
 
     setTimeout(() => {
       console.log('Async operation has ended');
-      refresher.dismiss();
+      refresher.complete();
     }, 2000);
     
     
