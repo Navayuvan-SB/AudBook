@@ -26,6 +26,7 @@ import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     MyApp,
