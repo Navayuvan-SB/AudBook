@@ -128,10 +128,18 @@ export class DashboardPage {
 
   // doRefresh(refresher: any){
 
+<<<<<<< HEAD
   //   setTimeout(() => {
   //     console.log('Async operation has ended');
   //     refresher.dismiss();
   //   }, 2000);
+=======
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+    
+>>>>>>> 2e67f38844cdf378d31455730a97956bfd75ad05
     
 
 }     

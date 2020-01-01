@@ -26,6 +26,7 @@ import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AdminHistoryPage } from '../pages/admin-history/admin-history';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     WarningPage,
     DashboardPage,
     RequestPage,
-    CalendarPage
+    CalendarPage,
+    AdminHistoryPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusPage,
     DashboardPage,
     RequestPage,
-    CalendarPage
+    CalendarPage,
+    AdminHistoryPage
   ],
   providers: [
   
