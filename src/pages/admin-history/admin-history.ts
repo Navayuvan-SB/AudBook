@@ -18,14 +18,10 @@ import { FirebaseServices } from '../../services/fireBaseService';
 })
 export class AdminHistoryPage {
 
-  // public event = {
-  //   month: '1/12/2019',
-  //   // timeStarts: '07:43',
-  //   // timeEnds: '1990-02-20'
-  // }
   
-  date: any="19/12/2019";
-  // Date: any="19/12/2019";
+
+  date: any;
+  
   historyInfo: any;
 
   // Loading controller
@@ -42,7 +38,8 @@ export class AdminHistoryPage {
     public alert: AlertController,
   ) {
 
-  console.log(this.date);
+   
+  
   // Initializing Loading Controller
   this.loadingCtrl = this.load.create({
     content: 'Please wait...'
@@ -53,7 +50,7 @@ export class AdminHistoryPage {
     duration: 3000
   });
 
-    this.firebaseFunctions();
+   
   }
 
 
@@ -63,7 +60,13 @@ export class AdminHistoryPage {
   }
 
 
+  dateChanged(){
 
+    if (this.date){
+      this.firebaseFunctions();
+    }
+    }
+    
 
   //variable name to store the objects from data
   firebaseFunctions() {
@@ -77,20 +80,19 @@ export class AdminHistoryPage {
         // this.dataret = response;
         let obj = Object.entries(response);
 
-
-        // Local array to store the array of objects
+       // Local array to store the array of objects
         let arr = []
+
         // Presenting loading controllSer
         this.loadingCtrl.present();
+
         // Loop through the received object
-        console.log(this.date);
         for (var i = 0; i < obj.length; i++) {
-console.log(obj[i][1].date);
 
-          if (this.date == obj[i][1].date)
-          console.log("hfgfggg");
+
+          if (this.dateChanged== obj[i][1].date)
             arr.push(obj[i][1]);
-
+console.log(this.date);
         }
         // Assigining arr to global datar
         this.historyInfo = arr;
