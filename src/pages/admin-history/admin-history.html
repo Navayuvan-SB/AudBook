@@ -16,9 +16,9 @@
   <!-- <ion-datetime [(ngModel)]="date"> -->
       <ion-item>
           <ion-label>Date</ion-label>
-          <ion-datetime displayFormat= "DD MM YYYY" [(ngModel)]="date"></ion-datetime>
+          <ion-datetime displayFormat= "D/M/YYYY" [(ngModel)]="date" (ionChange)="dateChanged()"></ion-datetime>
         </ion-item>
-        
+
 
  
   <div class="total-alignment">

@@ -19,10 +19,10 @@ import { DashboardPage } from '../dashboard/dashboard';
 })
 export class AdminHistoryPage {
 
+  
 
-
-  date: any = "19/12/2019";
-  // Date: any="19/12/2019";
+  date: any;
+  
   historyInfo: any;
 
   // Loading controller
@@ -41,18 +41,19 @@ export class AdminHistoryPage {
     public alert: AlertController,
   ) {
 
-    console.log(this.date);
-    // Initializing Loading Controller
-    this.loadingCtrl = this.load.create({
-      content: 'Please wait...'
-    });
+   
+  
+  // Initializing Loading Controller
+  this.loadingCtrl = this.load.create({
+    content: 'Please wait...'
+  });
 
     // Initializing Toast Controller
     this.toastCtrl = this.toast.create({
       duration: 3000
     });
 
-    this.firebaseFunctions();
+   
   }
 
 
@@ -62,8 +63,14 @@ export class AdminHistoryPage {
   }
 
 
+  dateChanged(){
 
-  
+    if (this.date){
+      this.firebaseFunctions();
+    }
+    }
+    
+
   //variable name to store the objects from data
   firebaseFunctions() {
     
@@ -86,22 +93,18 @@ export class AdminHistoryPage {
 
         // Presenting loading controllSer
         this.loadingCtrl.present();
-        // Loop through the received object
         let arr = []
-        console.log(this.date);
+        // Loop through the received object
         for (var i = 0; i < obj.length; i++) {
-          console.log(obj[i][1].date);
 
-          if (this.date == obj[i][1].date)
-            console.log("hfgfggg");
-          arr.push(obj[i][1]);
 
+          if (this.dateChanged== obj[i][1].date)
+            arr.push(obj[i][1]);
+console.log(this.date);
         }
         // Assigining arr to global datar
-        this.historyInfo = arr;
-        console.log("===============================================");
+        this.historyInfo = arr; 
         console.log(this.historyInfo);
-        console.log("===============================================");
         // Dismissing the loading controller
         this.loadingCtrl.dismiss();
 
@@ -121,70 +124,6 @@ export class AdminHistoryPage {
   }
 
 
-
-
-
-  // conform(clickedData){
-  //       if ( clickedData.status == '2') {
-            
-  //             let path = 'requests/' + clickedData.reqId + '/status';
-  //             let data = {
-  //               [path]: '0'
-  //             }
-  //             this.fire.updateField(data)
-  //               .then((response) => {
-
-  //               })
-  //               .catch((error) => {
-
-  //               });
-              
-  //           }
-            
-  //           else if( clickedData.status == '1'){
-
-  //             let path = 'requests/' + clickedData.reqId + '/status';
-  //             let data = {
-  //               [path]: '0'
-  //             }
-  //             this.fire.updateField(data)
-  //               .then((response) => {
-
-  //               })
-  //               .catch((error) => {
-
-  //               });
-  //             for (var i = 0; i < this.historyInfo.length; i++){
-  //             if (clickedData.date == this.historyInfo[i].date) {
-
-  //               if (clickedData.AN == this.historyInfo[i].AN || clickedData.AN != this.historyInfo[i].AN 
-  //                 && clickedData.FN == this.historyInfo[i].FN || clickedData.FN != this.historyInfo[i].FN) {
-    
-  //                 if (this.historyInfo[i].reqId != clickedData.reqId) {
-
-  //                   if(this.historyInfo[i].status == 2){
-  //                   // Set status as 2 for affected requests
-  //                   let path = 'requests/' + this.historyInfo[i].reqId + '/status';
-  //                   let data = {
-  //                     [path]: 0
-  //                   }
-    
-  //                   this.fire.updateField(data)
-  //                     .then((response) => {
-    
-  //                     })
-  //                     .catch((error) => {
-    
-  //                     });
-  //                   }  
-  //                 }
-  //               }
-  //             }
-  //           }
-  //           }
-  // }
-
-
   showConfirm(clickedData : any) {
 
     const confirm = this.alert.create({
@@ -201,6 +140,7 @@ export class AdminHistoryPage {
           text: 'Yes',
           handler: () => {
             console.log('Agree clicked');
+            console.log(clickedData);
 
             if ( clickedData.status == '2') {
             
@@ -217,6 +157,22 @@ export class AdminHistoryPage {
                 });
               
             }
+            else if ( clickedData.status == '3'){
+            
+              let path = 'requests/' + clickedData.reqId + '/status';
+              let data = {
+                [path]: '0'
+              }
+              this.fire.updateField(data)
+                .then((response) => {
+                    console.log("======================dbhjsdbh=======sdh")
+                })
+                .catch((error) => {
+
+                });
+               
+            }
+            
             
             else if( clickedData.status == '1'){
 
