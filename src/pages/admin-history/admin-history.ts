@@ -18,10 +18,15 @@ import { FirebaseServices } from '../../services/fireBaseService';
 })
 export class AdminHistoryPage {
 
-  
-
+  // getting the date from datepicker 
   date: any;
-  
+
+  //getting date acc to our format
+  split: any;
+  splitDate: any;
+  splitMonth: any;
+  finaldate: any;
+
   historyInfo: any;
 
   // Loading controller
@@ -38,19 +43,19 @@ export class AdminHistoryPage {
     public alert: AlertController,
   ) {
 
-   
-  
-  // Initializing Loading Controller
-  this.loadingCtrl = this.load.create({
-    content: 'Please wait...'
-  });
 
-  // Initializing Toast Controller
-  this.toastCtrl = this.toast.create({
-    duration: 3000
-  });
 
-   
+    // Initializing Loading Controller
+    this.loadingCtrl = this.load.create({
+      content: 'Please wait...'
+    });
+
+    // Initializing Toast Controller
+    this.toastCtrl = this.toast.create({
+      duration: 3000
+    });
+
+
   }
 
 
@@ -59,14 +64,31 @@ export class AdminHistoryPage {
     console.log('ionViewDidLoad AdminHistoryPage');
   }
 
+  //To get  the date from date picker and to modify the date format
+  dateChanged() {
 
-  dateChanged(){
+    // to split the date,month,year from currentformat
+    this.split = this.date.split("-");
 
-    if (this.date){
-      this.firebaseFunctions();
+    // converting date from number to string to seperate
+    this.splitDate = this.split[2].toString();
+    if ((this.splitDate.charAt(0)) == '0') {
+      this.splitDate = this.splitDate.charAt(1);
     }
+
+    // converting month from number to string to seperate
+    this.splitMonth = this.split[1].toString();
+    if ((this.splitMonth.charAt(0)) == '0') {
+      this.splitMonth = this.splitMonth.charAt(1);
     }
-    
+
+    //concatenating the date according to our format
+    this.finaldate = this.splitDate + "/" + this.splitMonth + "/" + this.split[0];
+    console.log(this.finaldate);
+
+    this.firebaseFunctions();
+  }
+
 
   //variable name to store the objects from data
   firebaseFunctions() {
@@ -80,7 +102,7 @@ export class AdminHistoryPage {
         // this.dataret = response;
         let obj = Object.entries(response);
 
-       // Local array to store the array of objects
+        // Local array to store the array of objects
         let arr = []
 
         // Presenting loading controllSer
@@ -90,10 +112,11 @@ export class AdminHistoryPage {
         for (var i = 0; i < obj.length; i++) {
 
 
-          if (this.dateChanged== obj[i][1].date)
+          if (this.finaldate == obj[i][1].date)
             arr.push(obj[i][1]);
-console.log(this.date);
+
         }
+
         // Assigining arr to global datar
         this.historyInfo = arr;
         console.log(this.historyInfo);
@@ -115,7 +138,8 @@ console.log(this.date);
       });
 
   }
-
+ 
+  //UNDO confirmation prompt
   showConfirm() {
 
     const confirm = this.alert.create({
