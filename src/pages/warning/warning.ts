@@ -132,7 +132,7 @@ export class WarningPage {
       let path = 'requests/' + this.requests.reqId + '/status';
 
       let data = {
-        [path]: 2
+        [path]: 3
       }
 
       this.fire.updateField(data)

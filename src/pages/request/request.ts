@@ -85,7 +85,8 @@ export class RequestPage {
               this.present = 1;
               count = count + 1;
             }
-            else {
+            else {this.toast.setMessage("Some error has occured. Please try again...");
+            this.toast.present();
               if (this.present == 1) {
                 this.present = 1
               }
@@ -191,7 +192,7 @@ export class RequestPage {
 
     let confirm = this.alerCtrl.create({
       title: 'Are you sure?',
-      message: 'Do you conform the to request?',
+      message: 'Do you conform the request?',
       buttons: [
         {
           text: 'cancel',
