@@ -40,9 +40,10 @@
                 color="danger"></ion-icon>  
               </ion-col>
             </ion-row>
-            <ion-row *ngIf="data.status == 3 || 2"><button class="b b3 com2 adjust1 adjust2 " ion-button round>Rejected</button></ion-row>
+            <ion-row *ngIf="data.status == 2"><button class="b b3 com2 adjust1 adjust2 " ion-button round>Rejected</button></ion-row>
           <ion-row *ngIf="data.status == 0"><button class="b b1 com2 adjust1 adjust2" ion-button round>Waiting</button></ion-row>
           <ion-row *ngIf="data.status == 1"><button class="b b2 com2 adjust1 adjust2" ion-button round>Accepted</button></ion-row>
+          <ion-row *ngIf="data.status == 3"><button class="b b3 com2 adjust1 adjust2 " ion-button round>Rejected</button></ion-row>
         </ion-col>
 
       </ion-row>

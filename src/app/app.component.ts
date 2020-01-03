@@ -33,10 +33,10 @@ import { ProfilePage } from '../pages/profile/profile';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = AdminHistoryPage;
-  // loading: any;
-  // toast: any;
-  // pages: Array<{title: string , component: any, icon: string, color: string}>
+  rootPage: any;
+  loading: any;
+  toast: any;
+  pages: Array<{title: string , component: any, icon: string, color: string}>
 
   constructor(platform: Platform,
     statusBar: StatusBar,
@@ -48,54 +48,54 @@ export class MyApp {
     public afAuth: AngularFireAuth,) {
 
     // // loading  
-    // this.loading = this.loadingCtrl.create({
-    //   content: 'please wait'
-    // });
+    this.loading = this.loadingCtrl.create({
+      content: 'please wait'
+    });
 
-    // // toast
-    // this.toast = this.toastCtrl.create({
-    //   message: 'Some error has occured. Please try agian',
-    //   duration: 2000,
-    //   position: 'bottom'
-    // });
+    // toast
+    this.toast = this.toastCtrl.create({
+      message: 'Some error has occured. Please try agian',
+      duration: 2000,
+      position: 'bottom'
+    });
 
     platform.ready().then(() => {
 
-      // this.angularFire.authState.subscribe(user => {
+      this.angularFire.authState.subscribe(user => {
 
-      //   if (user) {
+        if (user) {
 
-      //     // Get the UID of Logged user
-      //     let uid = user.uid;
+          // Get the UID of Logged user
+          let uid = user.uid;
 
-      //     // get the user type and navigate according to it.
-      //     this.fbService.readOnce('users/' + uid)
-      //       .then((response) => {
+          // get the user type and navigate according to it.
+          this.fbService.readOnce('users/' + uid)
+            .then((response) => {
 
-      //         // Check the user type and navigate to the apt page.
-      //         if (response['type'] == 'user') {
+              // Check the user type and navigate to the apt page.
+              if (response['type'] == 'user') {
 
-      //           this.rootPage = StatusPage;
+                this.rootPage = StatusPage;
                 
-      //         } 
-      //         else if (response['type'] == 'admin') {
+              } 
+              else if (response['type'] == 'admin') {
 
-      //           this.rootPage = DashboardPage;
+                this.rootPage = DashboardPage;
         
-      //           this.pages = [
-      //             { title: 'History', component: DashboardPage, icon: "time", color: '' },
-      //             ]
-      //         }
-      //       })
-      //       .catch((error) => {
+                this.pages = [
+                  { title: 'History', component: AdminHistoryPage, icon: "time", color: '' },
+                  ]
+              }
+            })
+            .catch((error) => {
 
-      //       });
-      //   }
+            });
+        }
         
-      //   else{
-      //     this.rootPage = LoginPage;
-      //   }
-      // });
+        else{
+          this.rootPage = LoginPage;
+        }
+      });
     
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -106,29 +106,29 @@ export class MyApp {
   }
 
 
-  // navigation to pages
-  // navPages(pages){
-  //   this.nav.setRoot(pages.component);
-  // }
+  //navigation to pages
+  navPages(pages){
+    this.nav.setRoot(pages.component);
+  }
 
 
-  // // logout for both user and admin
-  // logout() {
+  // logout for both user and admin
+  logout() {
 
-  //   // Present loading
-  //   this.afAuth.auth.signOut()
-  //     .then((response) => {
+    // Present loading
+    this.afAuth.auth.signOut()
+      .then((response) => {
 
-  //       // Dismiss loading and set login page as root
-  //       this.nav.setRoot(LoginPage);
-  //     })
-  //     .catch((error) => {
+        // Dismiss loading and set login page as root
+        this.nav.setRoot(LoginPage);
+      })
+      .catch((error) => {
 
-  //       // Dismiss loading and show error toast message
-  //       this.toast.setMessage("Some error has occured. Please try again");
-  //       this.toast.present();
-  //     });
-  // }
+        // Dismiss loading and show error toast message
+        this.toast.setMessage("Some error has occured. Please try again");
+        this.toast.present();
+      });
+  }
 
 
 }

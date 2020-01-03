@@ -69,6 +69,7 @@ export class RequestPage {
         let arr = [];
         let count = 0;
 
+
         // Loop to get all the audid in request from database
         for (var i = 0; i < obj.length; i++) {
           let array = (obj[i][1].audId);
@@ -84,6 +85,8 @@ export class RequestPage {
 
               this.present = 1;
               count = count + 1;
+              
+      
             }
             else {this.toast.setMessage("Some error has occured. Please try again...");
             this.toast.present();
@@ -97,6 +100,9 @@ export class RequestPage {
           }
         }
         this.display = arr;
+
+
+
 
         // to update request count
         let reqcount = 'auditorium/' + this.reqdata.audID + '/requests';

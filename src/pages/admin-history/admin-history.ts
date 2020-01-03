@@ -47,13 +47,6 @@ export class AdminHistoryPage {
   ) {
 
 
-<<<<<<< HEAD
-    // Initializing Toast Controller
-    this.toastCtrl = this.toast.create({
-      duration: 3000
-    });
-=======
->>>>>>> cfcebd213a82158289bc0622500e91247bbec26a
 
     // Initializing Loading Controller
     this.loadingCtrl = this.load.create({
@@ -111,7 +104,6 @@ export class AdminHistoryPage {
         // this.dataret = response;
         let obj = Object.entries(response);
 
-<<<<<<< HEAD
 
         // Local array to store the array of objects
         let undoArr = []
@@ -120,10 +112,6 @@ export class AdminHistoryPage {
           console.log(this.req);
           
         }
-=======
-        // Local array to store the array of objects
-        let arr = []
->>>>>>> cfcebd213a82158289bc0622500e91247bbec26a
 
         // Presenting loading controllSer
         this.loadingCtrl.present();
@@ -157,15 +145,9 @@ export class AdminHistoryPage {
       });
 
   }
-<<<<<<< HEAD
 
 
   showConfirm(clickedData : any) {
-=======
- 
-  //UNDO confirmation prompt
-  showConfirm() {
->>>>>>> cfcebd213a82158289bc0622500e91247bbec26a
 
     const confirm = this.alert.create({
       title: 'Warning',
