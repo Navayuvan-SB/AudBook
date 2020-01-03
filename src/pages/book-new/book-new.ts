@@ -64,11 +64,13 @@ export class BookNewPage {
 
   //passing data to calendar
   calendar(aud: any) {
+
     this.fire.readOnce('requests')
       .then((response) => {
         const popover = this.popoverCtrl.create(CalendarPage, { aud: aud, data: response });
         popover.present();
       });
+
   }
 
   //getting data from firebase

@@ -39,7 +39,7 @@ export class DetailPage {
   oldMonth: string;
   month: number;
   year: string;
- 
+
   //final concatenated date
   findata: string;
 
@@ -406,50 +406,56 @@ export class DetailPage {
 
   cal() {
 
-    //passing data to calendar page
-    let pop = this.popoverCtrl.create(CalendarPage, { text: this.text, dept: this.department, aud: this.aud });//fromtext: this.fromtext, ftext:this.ftext
+    
+    this.fire.readOnce('requests')
+      .then((response) => {
 
-    //for terminating previous pages
-    let currentindex = this.navCtrl.getActive().index;
-    pop.onDidDismiss(() => {
-      this.navCtrl.remove(currentindex);
-    });
+        //passing data to calendar page
+        let pop = this.popoverCtrl.create(CalendarPage, { text: this.text, dept: this.department, aud: this.aud, data: response });//fromtext: this.fromtext, ftext:this.ftext
 
-    pop.present();
+        //for terminating previous pages
+        let currentindex = this.navCtrl.getActive().index;
+        pop.onDidDismiss(() => {
+          this.navCtrl.remove(currentindex);
+        });
+
+        pop.present();
+      });
+
   }
 
   // TO change the request count in booked aud
-  changeRequestCount(){
+  changeRequestCount() {
 
     // Read the current value in the request of aud
     this.fire.readOnce('auditorium/' + this.aud.audID)
-    .then((response) => {
-
-      // Count of requests
-      let count = response['requests'];
-
-      // Path string and data to update
-      let path = 'auditorium/' + this.aud.audID + '/requests';
-
-      let data = {
-        [path] : count + 1
-      }
-
-      // Update function
-      this.fire.updateField(data)
       .then((response) => {
+
+        // Count of requests
+        let count = response['requests'];
+
+        // Path string and data to update
+        let path = 'auditorium/' + this.aud.audID + '/requests';
+
+        let data = {
+          [path]: count + 1
+        }
+
+        // Update function
+        this.fire.updateField(data)
+          .then((response) => {
+
+          })
+          .catch((error) => {
+
+            // Show toast message
+            this.toastCtrl.setMessage("Some error has occured. Please try again");
+            this.toastCtrl.present();
+          });
 
       })
       .catch((error) => {
 
-        // Show toast message
-        this.toastCtrl.setMessage("Some error has occured. Please try again");
-        this.toastCtrl.present();
       });
-
-    })
-    .catch((error) => {
-
-    });
   }
 } 
