@@ -1,0 +1,77 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title class="toolbar-title.toolbar-title-md"><b>Profile</b></ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <!-- For profile pic creation -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-avatar class="image imgPicDisplay ">
+        <!--image-->
+      </ion-avatar>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+
+    <form [formGroup]="detailForm">
+      <!-- For name display -->
+      <ion-row row-12 class="common">
+        <ion-col>
+          <ion-item class="but button-display" (click)="profileUpdate()">
+            <ion-input placeholder="Name" formControlName="name">
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="!detailForm.controls.name.valid && (detailForm.controls.name.dirty || submitAttempt)">
+            <p>Name should be minimun of 6 characters long</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!-- For number display -->
+      <ion-row row-12>
+        <ion-col>
+          <ion-item class="but button-display" (click)="profileUpdate()">
+            <ion-input type="number" placeholder="Mobilenumber" formControlName="phone">
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="!detailForm.controls.phone.valid && (detailForm.controls.phone.dirty || submitAttempt)">
+            <p>Phone Number must have length of 10 numbers</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!-- For change password display -->
+      <ion-row row-12>
+
+
+        <ion-col>
+          <button ion-button class="but password-display" (click)="changePwd()" full>
+            <ion-label>Change password</ion-label>
+          </button>
+        </ion-col>
+      </ion-row>
+
+       <ion-row row-12>
+         <ion-col>
+          <button ion-button class="but save" (click)="save()" full 
+          [disabled]="!(profupdate)|| !detailForm.valid" >
+            <ion-label>Save</ion-label>
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+
+</ion-content>

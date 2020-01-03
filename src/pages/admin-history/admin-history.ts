@@ -165,7 +165,7 @@ console.log(this.date);
               }
               this.fire.updateField(data)
                 .then((response) => {
-                    console.log("======================dbhjsdbh=======sdh")
+                    
                 })
                 .catch((error) => {
 

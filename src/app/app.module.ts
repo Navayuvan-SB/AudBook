@@ -16,8 +16,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RequestPage } from '../pages/request/request';
 import { FirebaseServices } from '../services/fireBaseService'
 import { CalendarModule } from 'ionic3-calendar-en';
-
-
+import { ProfilePage } from '../pages/profile/profile';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -27,6 +26,9 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AdminHistoryPage } from '../pages/admin-history/admin-history';
+import { FormGroup } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AdminHistoryPage } from '../pages/admin-history/admin-history';
     DashboardPage,
     RequestPage,
     CalendarPage,
-    AdminHistoryPage
+    AdminHistoryPage,
+    ProfilePage
+    
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,9 @@ import { AdminHistoryPage } from '../pages/admin-history/admin-history';
     DashboardPage,
     RequestPage,
     CalendarPage,
-    AdminHistoryPage
+    AdminHistoryPage,
+    ProfilePage
+   
   ],
   providers: [
   

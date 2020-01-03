@@ -21,7 +21,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: 'detail.html',
 
 })
-// @ViewChild('Navbar') navBar: Navbar;
+
 export class DetailPage {
 
   // Loading controller
@@ -30,14 +30,17 @@ export class DetailPage {
   // Toast controller
   toastCtrl: any;
 
+  //form validation
   credentialForm: FormGroup
 
-  data: any;
-  data1: string;
-  data2: string;
-  data3: string;
-  data4: number;
-
+  // date declaration
+  calenDateData: any;
+  date: string;
+  oldMonth: string;
+  month: number;
+  year: string;
+ 
+  //final concatenated date
   findata: string;
 
   text: string = '';
@@ -121,7 +124,7 @@ export class DetailPage {
     // getting value from calendar page
 
     //for getting the date,month,time
-    this.data = navParams.get('getdata');
+    this.calenDateData = navParams.get('getdata');
 
     // for mobile number
     this.text = navParams.get('text1');
@@ -138,12 +141,12 @@ export class DetailPage {
     }
 
     //for seperating the values from the array of date, time , month 
-    this.data1 = this.data.date;
-    this.data2 = this.data.month;
-    this.data4 = Number(this.data2);
-    this.data4 = this.data4 + 1;
-    this.data3 = this.data.year;
-    this.findata = String(this.data1 + '/' + this.data4 + '/' + this.data3);
+    this.date = this.calenDateData.date;
+    this.oldMonth = this.calenDateData.month;
+    this.month = Number(this.oldMonth);
+    this.month = this.month + 1;
+    this.year = this.calenDateData.year;
+    this.findata = String(this.date + '/' + this.month + '/' + this.year);
     console.log(this.findata);
 
     //getting aud values of aud from calendar page
@@ -156,6 +159,7 @@ export class DetailPage {
     this.audid = String(this.aud.audID);
     console.log(this.audid);
 
+    // for-after-noon border color back to normal when visiting page again 
     document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
     document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
 
@@ -343,7 +347,6 @@ export class DetailPage {
 
           if ((this.audid == obj[i][1].audId) && (this.findata == obj[i][1].date)) {
 
-            console.log("Trueeeeeee");
             core = '1';
 
             if ((obj[i][1].status == '1') || (obj[i][1].status == '0')) {

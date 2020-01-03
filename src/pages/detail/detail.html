@@ -16,124 +16,124 @@
 
   <div class="one">
 
-  <!-- Starting grid aud pic details -->
+    <!-- Starting grid aud pic details -->
 
     <ion-grid>
-      
+
       <ion-row>
 
-  <!--aud image -->
+        <!--aud image -->
 
-          <ion-col>
-             <ion-avatar class="image imgPicDisplay ">
-                  <!--image-->
-             </ion-avatar>
-          </ion-col>
+        <ion-col>
+          <ion-avatar class="image imgPicDisplay ">
+            <!--image-->
+          </ion-avatar>
+        </ion-col>
 
-  <!--aud image details -->
+        <!--aud image details -->
 
-          <ion-col col-6>
-             <ion-row class="leftDistance name-distance"><b>{{ audname }}</b> </ion-row>
-             <ion-row class="leftDistance dept-distance ">{{ auddept }}</ion-row>
-          </ion-col>
+        <ion-col col-6>
+          <ion-row class="leftDistance name-distance"><b>{{ audname }}</b> </ion-row>
+          <ion-row class="leftDistance dept-distance ">{{ auddept }}</ion-row>
+        </ion-col>
 
-  <!--green round details  -->
-          <ion-col col-2>
-             <ion-avatar class="avail-display">
-             </ion-avatar>
-          </ion-col>
+        <!--green round details  -->
+        <ion-col col-2>
+          <ion-avatar class="avail-display">
+          </ion-avatar>
+        </ion-col>
 
       </ion-row>
 
     </ion-grid>
-   
-  <!-- Ending grid of aud pic details -->
 
-  <!--Starting grid booking details -->
+    <!-- Ending grid of aud pic details -->
+
+    <!--Starting grid booking details -->
 
     <ion-grid>
 
-  <!--Date display details  -->
+      <!--Date display details  -->
 
       <ion-row row-12>
 
-          <ion-col>
-             <ion-item  (click)="cal()" class="but button-display">
-                  <ion-label class="common"> {{ findata }}</ion-label>
-                  <ion-icon class="icon-display"  name="custom-calendar" item-end></ion-icon>
-             </ion-item>
+        <ion-col>
+          <ion-item (click)="cal()" class="but button-display">
+            <ion-label class="common"> {{ findata }}</ion-label>
+            <ion-icon class="icon-display" name="custom-calendar" item-end></ion-icon>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+
+      <!-- Starting of form -->
+
+      <form [formGroup]="credentialForm">
+
+        <!-- Fore-after-noon details -->
+
+        <ion-row row-12>
+
+          <ion-col col-6 *ngIf="!foren">
+            <ion-item class="but-unchecked button-display">
+              <ion-label class="fore-after-noon">FN</ion-label>
+            </ion-item>
           </ion-col>
 
-      </ion-row>
+          <ion-col col-6 *ngIf="foren">
+            <ion-item class="but-checked-fn button-display" (click)="mycolorFn()">
+              <ion-label class="fore-after-noon">FN</ion-label>
+            </ion-item>
+          </ion-col>
 
-  <!-- Starting of form -->
+          <ion-col col-6 *ngIf="!aftern">
+            <ion-item class="button-display but-unchecked">
+              <ion-label class="fore-after-noon" id="bocolor">AN</ion-label>
+            </ion-item>
+          </ion-col>
 
-    <form [formGroup]="credentialForm">
+          <ion-col col-6 *ngIf="aftern">
+            <ion-item class="button-display but-checked-an" (click)="mycolorAn()">
+              <ion-label class="fore-after-noon" id="bocolor">AN</ion-label>
+            </ion-item>
+          </ion-col>
 
-  <!-- Fore-after-noon details -->
+        </ion-row>
 
-      <ion-row row-12>
+        <!-- Department details -->
 
-           <ion-col col-6 *ngIf="!foren">
-                <ion-item class="but-unchecked button-display">
-                      <ion-label class="fore-after-noon">FN</ion-label>  
-                </ion-item>
-           </ion-col>
-
-           <ion-col col-6 *ngIf="foren">
-                <ion-item class="but-checked-fn button-display" (click)="mycolorFn()">            
-                     <ion-label class="fore-after-noon">FN</ion-label>
-                </ion-item>
-           </ion-col>
-
-           <ion-col col-6 *ngIf="!aftern">
-                <ion-item class="button-display but-unchecked">
-                     <ion-label class="fore-after-noon" id="bocolor">AN</ion-label>
-                </ion-item>
-           </ion-col>
-
-           <ion-col col-6 *ngIf="aftern">
-               <ion-item class="button-display but-checked-an" (click)="mycolorAn()">
-                     <ion-label class="fore-after-noon" id="bocolor">AN</ion-label>
-               </ion-item>
-           </ion-col>
-
-      </ion-row>
-
-  <!-- Department details -->
-
-      <ion-row>
-
-           <ion-col>
-               <ion-item (click)="dept()" class="but book-display">
-                    <ion-label  class="dept-display common">{{ department }}</ion-label>
-                    <ion-icon class="icon-display" name="custom-aw" item-end></ion-icon>
-               </ion-item>
-           </ion-col>
-
-      </ion-row>
-
-  <!-- Mobile number details -->
-
-      <ion-row>
+        <ion-row>
 
           <ion-col>
-               <ion-item  class="but button-display">
-                    <ion-input formControlName="passMobileNum" placeholder="Mobilenumber" class="common" [(ngModel)]="mobileNum">
-                    </ion-input>
-               </ion-item>
-
-               <ion-item
-                   *ngIf="!credentialForm.controls.passMobileNum.valid && (credentialForm.controls.passMobileNum.dirty || submitAttempt)">
-                   <p>Enter valid Phone number</p>
-               </ion-item>
+            <ion-item (click)="dept()" class="but book-display">
+              <ion-label class="dept-display common">{{ department }}</ion-label>
+              <ion-icon class="icon-display" name="custom-aw" item-end></ion-icon>
+            </ion-item>
           </ion-col>
-          
-      </ion-row>
 
-  <!--Purpose details  -->
+        </ion-row>
 
-      <ion-row>
+        <!-- Mobile number details -->
+
+        <ion-row>
+
+          <ion-col>
+            <ion-item class="but button-display">
+              <ion-input formControlName="text1" placeholder="Mobilenumber" class="common" [(ngModel)]="text">
+              </ion-input>
+            </ion-item>
+
+            <ion-item
+              *ngIf="!credentialForm.controls.text1.valid && (credentialForm.controls.text1.dirty || submitAttempt)">
+              <p>Enter valid Phone number</p>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+        <!--Purpose details  -->
+
+        <!-- <ion-row>
           <ion-col>
                <ion-item  class="but button-display">
                     <ion-input formControlName="purpose" placeholder="Purpose" class="common"> </ion-input>
@@ -144,25 +144,26 @@
                <p >Minimum length should be 10 &<br>Maximum length should be 25</p>
            </ion-item>
           </ion-col>
-      </ion-row>
+      </ion-row> -->
 
-    <!-- Book button details -->
-      <ion-row>
-         <ion-col>
-                   <button ion-button class="but book-display" (click)="stat()" full [disabled]="!(anStatus || fnStatus) || !credentialForm.valid">
-                         <ion-label class="book-label">Book</ion-label>
-                   </button>
-         </ion-col>
+        <!-- Book button details -->
+        <ion-row>
+          <ion-col>
+            <button ion-button class="but book-display" (click)="stat()" full
+              [disabled]="!(anStatus || fnStatus) || !credentialForm.valid">
+              <ion-label class="book-label">Book</ion-label>
+            </button>
+          </ion-col>
 
-      </ion-row>
+        </ion-row>
 
-    </form>
- 
-   <!-- Completion of form -->
+      </form>
+
+      <!-- Completion of form -->
 
     </ion-grid>
 
-   <!-- Ending grid booking details -->
+    <!-- Ending grid booking details -->
 
   </div>
 

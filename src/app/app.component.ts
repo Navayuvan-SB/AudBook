@@ -10,7 +10,6 @@ import { Audi } from '../firebaseconfig';
 import { BookNewPage } from '../pages/book-new/book-new';
 import { DetailPage } from '../pages/detail/detail';
 import { WarningPage } from '../pages/warning/warning';
-
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { RequestPage } from '../pages/request/request';
 import { LoginPage } from '../pages/login/login';
@@ -21,6 +20,9 @@ import {Nav} from 'ionic-angular';
 import {ViewChild} from '@angular/core';
 import { IonicPage, NavController, ToastController, NavParams, LoadingController } from 'ionic-angular';
 import { AdminHistoryPage } from '../pages/admin-history/admin-history';
+import { ProfilePage } from '../pages/profile/profile';
+
+
 
 
  

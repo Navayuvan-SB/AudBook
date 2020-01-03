@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, PopoverController, LoadingController, ToastController} from 'ionic-angular';
+import { NavController, AlertController, NavParams, PopoverController, LoadingController, ToastController } from 'ionic-angular';
 import { BookNewPage } from '../book-new/book-new';
 import { WarningPage } from '../warning/warning';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the StatusPage page.
@@ -37,7 +38,8 @@ export class StatusPage {
     public popoverCtrl: PopoverController,
     private fire: FirebaseServices,
     private afAuth: AngularFireAuth,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    public fbAuth: AngularFireAuth) {
 
     // Initializing Loading Controller
     this.loadingCtrl = this.loading.create({
@@ -62,22 +64,22 @@ export class StatusPage {
 
   }
 
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
 
   }
-  
+
   //variable name to store the objects from data
   firebaseFunctions() {
-    
+
     // Presenting loading controller
     this.loadingCtrl.present();
-  
+
     this.fire.readOnce('requests')
       .then((response) => {
         console.log("Read Once Called");
-        
+
         //objects is stored in obj
         // this.dataret = response;
         let obj = Object.entries(response);
@@ -88,7 +90,7 @@ export class StatusPage {
         // Loop through the received object
         for (var i = 0; i < obj.length; i++) {
 
-        //condition to compare the IDs to display the Status
+          //condition to compare the IDs to display the Status
           if (this.userId == obj[i][1].userId) {
             arr.push(obj[i][1]);
 
@@ -106,13 +108,13 @@ export class StatusPage {
       .catch((error) => {
         console.log(error);
 
-      // Dismissing the loading controller
-      this.loadingCtrl.dismiss();
+        // Dismissing the loading controller
+        this.loadingCtrl.dismiss();
 
-      // Display the toast
-      this.toastCtrl.setMessage("Something went wrong ...please try again")
-      this.toastCtrl.present();
-      
+        // Display the toast
+        this.toastCtrl.setMessage("Something went wrong ...please try again")
+        this.toastCtrl.present();
+
       });
 
   }
@@ -159,21 +161,29 @@ export class StatusPage {
   }
 
 
-  logout(){
+  logout() {
 
-    // Present loading
-    this.afAuth.auth.signOut()
-    .then((response) => {
+    // // Present loading
+    // this.afAuth.auth.signOut()
+    // .then((response) => {
 
-      // Dismiss loading and set login page as root
-      this.navCtrl.setRoot(LoginPage);
-    })
-    .catch((error) => {
+    //   // Dismiss loading and set login page as root
+    //   this.navCtrl.setRoot(LoginPage);
+    // })
+    // .catch((error) => {
 
-      // Dismiss loading and show error toast message
-      this.toastCtrl.setMessage("Some error has occured. Please try again");
-      this.toastCtrl.present();
-    });
+    //   // Dismiss loading and show error toast message
+    //   this.toastCtrl.setMessage("Some error has occured. Please try again");
+    //   this.toastCtrl.present();
+    // });
+
+    let user = this.fbAuth.auth.currentUser;
+    this.fire.readOnce('users/' + user['uid'])
+      .then((response) => {
+        this.navCtrl.push(ProfilePage, { response: response });
+      });
+
+
   }
 
 }
