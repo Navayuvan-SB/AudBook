@@ -160,7 +160,7 @@ export class ProfilePage {
   profileUpdate() {
     this.profupdate = 1;
     console.log(this.profupdate);
-  }
+  } 
 
   save() {
     // Toast controller

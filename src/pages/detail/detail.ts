@@ -43,7 +43,7 @@ export class DetailPage {
   //final concatenated date
   findata: string;
 
-  text: string = '';
+  mobileNum: string = '';
 
   department: string;
   dept1: string;
@@ -127,7 +127,7 @@ export class DetailPage {
     this.calenDateData = navParams.get('getdata');
 
     // for mobile number
-    this.text = navParams.get('text1');
+    this.mobileNum = navParams.get('passMobileNum');
 
 
     //for department
@@ -263,6 +263,10 @@ export class DetailPage {
           console.log(response);
           // Dismissing the loading controller
           this.loadingCtrl.dismiss();
+
+          //Display the toast
+          this.toastCtrl.setMessage("Yah...! Request successfully sent")
+          this.toastCtrl.present();
 
           this.changeRequestCount();
         })
@@ -411,7 +415,7 @@ export class DetailPage {
       .then((response) => {
 
         //passing data to calendar page
-        let pop = this.popoverCtrl.create(CalendarPage, { text: this.text, dept: this.department, aud: this.aud, data: response });//fromtext: this.fromtext, ftext:this.ftext
+        let pop = this.popoverCtrl.create(CalendarPage, { mobileNum: this.mobileNum, dept: this.department, aud: this.aud, data: response });//fromtext: this.fromtext, ftext:this.ftext
 
         //for terminating previous pages
         let currentindex = this.navCtrl.getActive().index;

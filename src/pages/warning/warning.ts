@@ -106,7 +106,7 @@ export class WarningPage {
           this.loading.dismiss();
 
           // Display the toast
-          this.toast.setMessage("Done successfully...!")
+          this.toast.setMessage("Deleted successfully...!")
           this.toast.present();
 
 

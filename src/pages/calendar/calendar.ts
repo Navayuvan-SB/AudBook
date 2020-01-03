@@ -19,7 +19,7 @@ import { FirebaseServices } from '../../services/fireBaseService';
 export class CalendarPage {
   public data: any;
 
-  text1: Long;
+  passMobileNum: Long;
 
   purpose1: string;
 
@@ -42,7 +42,7 @@ export class CalendarPage {
     // getting value from detail page
 
     //for mobile number
-    this.text1 = this.navParams.get('text');
+    this.passMobileNum = this.navParams.get('mobileNum');
 
     //for purpose
     this.purpose1 = this.navParams.get('purpose');
@@ -132,7 +132,7 @@ export class CalendarPage {
     let data = $event;
 
     //pushing data to detail page
-    this.navCtrl.push(DetailPage, { getdata: data, text1: this.text1, dept1: this.dept1, aud: this.aud, purpose1: this.purpose1 }).then(() => {//fromtext1:this.fromtext1, ftext1:this.ftext1,
+    this.navCtrl.push(DetailPage, { getdata: data, passMobileNum: this.passMobileNum, dept1: this.dept1, aud: this.aud, purpose1: this.purpose1 }).then(() => {//fromtext1:this.fromtext1, ftext1:this.ftext1,
       this.navCtrl.remove(currentindex);
     });
 
