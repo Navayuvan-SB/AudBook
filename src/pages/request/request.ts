@@ -102,9 +102,6 @@ export class RequestPage {
         }
         this.display = arr;
 
-
-
-
         // to update request count
         let reqcount = 'auditorium/' + this.reqdata.audID + '/requests';
         let data = {

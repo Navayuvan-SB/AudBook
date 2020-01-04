@@ -247,5 +247,4 @@ export class AdminHistoryPage {
     confirm.present();
   }
 
-
 }

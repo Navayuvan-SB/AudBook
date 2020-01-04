@@ -35,19 +35,10 @@ export class DashboardPage {
     public afAuth: AngularFireAuth,
   ) {
 
-    // loading
-    this.loading = this.loadingCtrl.create({
-      content: 'please wait'
-    });
-
-
-    this.toast = this.toastCtrl.create({
-      message: 'Some error has occured. Please try agian',
-      duration: 2000,
-      position: 'bottom'
-    });
 
     this.firebaseFunctions();
+
+    this.updateCount();
 
   }
 
@@ -61,8 +52,20 @@ export class DashboardPage {
 
   firebaseFunctions() {
 
+    // loading
+    let loading = this.loadingCtrl.create({
+      content: 'please wait'
+    });
+
+
+    let toast = this.toastCtrl.create({
+      message: 'Some error has occured. Please try agian',
+      duration: 2000,
+      position: 'bottom'
+    });
+
     // loading control
-    this.loading.present();
+    loading.present();
 
 
     // fb function to get dept and aud name from db
@@ -84,7 +87,7 @@ export class DashboardPage {
         this.dataret = arr;
 
         // loading dismiss
-        this.loading.dismiss();
+        loading.dismiss();
       });
 
 
@@ -117,8 +120,11 @@ export class DashboardPage {
       .catch((error) => {
 
         // Dismiss loading and show error toast message
-        this.toast.setMessage("Some error has occured. Please try again");
-        this.toast.present();
+        let toast = this.toastCtrl.create({
+          duration: 3000
+        });
+        toast.setMessage("Some error has occured. Please try again");
+        toast.present();
       });
   }
 
@@ -129,5 +135,89 @@ export class DashboardPage {
   //     refresher.dismiss();
   //   }, 2000);
 
+
+  updateCount() {
+
+    this.fire.readOnce('auditorium')
+      .then((response) => {
+
+        let auds = Object.entries(response);
+
+        console.log(auds);
+
+        auds.forEach((element) => {
+
+          // here readonce function is to get data from database 
+          this.fire.readOnce('requests')
+            .then((response) => {
+
+              let obj = Object.entries(response);
+
+              let count = 0;
+
+              // Loop to get all the audid in request from database
+              for (var i = 0; i < obj.length; i++) {
+                let array = (obj[i][1].audId);
+
+                // to check audid in dash page and audid in req from db
+                if (element[1].audID == array) {
+
+                  // to check whether the status is 0 if audid matches
+                  if (obj[i][1].status == '0') {
+
+                    count = count + 1;
+
+                  }
+
+                }
+              }
+
+              // to update request count
+              let reqcount = 'auditorium/' + element[1].audID + '/requests';
+              let data = {
+                [reqcount]: count
+              }
+              this.fire.updateField(data)
+                .then((response) => {
+
+                })
+                .catch((error) => {
+
+                  // show toast message
+                  let toast = this.toastCtrl.create({
+                    duration: 3000
+                  });
+
+                  toast.setMessage("Some error has occured. Please try again");
+                  toast.present();
+                });
+
+            })
+            .catch((error) => {
+
+              // show toast message
+              let toast = this.toastCtrl.create({
+                duration: 3000
+              });
+
+              toast.setMessage("Some error has occured. Please try again");
+              toast.present();
+
+            });
+
+        });
+
+      })
+      .catch((error) => {
+
+        // show toast message
+        let toast = this.toastCtrl.create({
+          duration: 3000
+        });
+
+        toast.setMessage("Some error has occured. Please try again");
+        toast.present();
+      });
+  }
 
 }     
