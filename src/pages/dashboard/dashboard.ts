@@ -6,6 +6,7 @@ import { FirebaseServices } from '../../services/fireBaseService';
 import { RequestPage } from '../request/request';
 import { LoginPage } from '../login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 
 /**
@@ -30,8 +31,9 @@ export class DashboardPage {
     private fire: FirebaseServices,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
+    public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    ) {
+  ) {
 
     // loading
     this.loading = this.loadingCtrl.create({
@@ -46,7 +48,7 @@ export class DashboardPage {
     });
 
     this.firebaseFunctions();
-    
+
   }
 
 
@@ -58,18 +60,17 @@ export class DashboardPage {
 
 
   firebaseFunctions() {
- 
+
     // loading control
     this.loading.present();
 
 
     // fb function to get dept and aud name from db
-    this.fire.readOnce('auditorium')
-      .then((response) => {
-        // console.log("Read Once Called");
+    this.afDatabase.database.ref('auditorium')
+      .on('value', response => {
+
         //objects is stored in var 
-        // this.dataret = response;
-        let obj = Object.entries(response);
+        let obj = Object.entries(response.val());
 
         // Local array to store the array of objects
         let arr = []
@@ -84,14 +85,9 @@ export class DashboardPage {
 
         // loading dismiss
         this.loading.dismiss();
-      })
-      .catch((error) => {
-        this.loading.dismiss();
-        this.toast.setMessage("Some error has occured. Please try again");
-        this.toast.present();
-        // console.log(error);
       });
-      
+
+
   }
 
 
@@ -132,6 +128,6 @@ export class DashboardPage {
   //     console.log('Async operation has ended');
   //     refresher.dismiss();
   //   }, 2000);
-    
+
 
 }     

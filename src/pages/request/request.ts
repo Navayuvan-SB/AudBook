@@ -31,19 +31,6 @@ export class RequestPage {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController) {
 
-    // loading
-    this.loading = this.loadingCtrl.create({
-      content: 'please wait'
-    });
-
-
-    // toast message
-    this.toast = this.toastCtrl.create({
-      message: 'Some error has occured. Please try agian',
-      duration: 2000,
-      position: 'bottom'
-    });
-
     // geting data from dashboard page
     this.reqdata = navParams.get('data');
 
@@ -55,13 +42,26 @@ export class RequestPage {
 
   readData() {
 
-    this.loading.present();
+    // loading
+    let loading = this.loadingCtrl.create({
+      content: 'please wait'
+    });
+
+
+    // toast message
+    let toast = this.toastCtrl.create({
+      message: 'Some error has occured. Please try agian',
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    loading.present();
 
     // here readonce function is to get data from database 
     this.fire.readOnce('requests')
       .then((response) => {
 
-        this.loading.dismiss();
+        loading.dismiss();
         console.log("Read Once Called");
         let obj = Object.entries(response);
         console.log(obj);
@@ -85,11 +85,12 @@ export class RequestPage {
 
               this.present = 1;
               count = count + 1;
-              
-      
+
+
             }
-            else {this.toast.setMessage("Some error has occured. Please try again...");
-            this.toast.present();
+            else {
+              // this.toast.setMessage("Some error has occured. Please try again...");
+              // this.toast.present();
               if (this.present == 1) {
                 this.present = 1
               }
@@ -120,10 +121,10 @@ export class RequestPage {
       })
       .catch((error) => {
 
-        this.loading.dismiss();
+        loading.dismiss();
         console.log(error);
-        this.toast.setMessage("Some error has occured. Please try again");
-        this.toast.present();
+        toast.setMessage("Some error has occured. Please try again");
+        toast.present();
       });
   }
 
@@ -132,6 +133,19 @@ export class RequestPage {
   }
 
   conform(redata) {
+
+    // loading
+    let loading = this.loadingCtrl.create({
+      content: 'please wait'
+    });
+
+
+    // toast message
+    let toast = this.toastCtrl.create({
+      message: 'Some error has occured. Please try agian',
+      duration: 2000,
+      position: 'bottom'
+    });
 
     // Change the accepted status as 1
     let path = 'requests/' + redata.reqId + '/status';
@@ -148,12 +162,16 @@ export class RequestPage {
     this.fire.updateField(data)
       .then((response) => {
 
+        // Reloads the page
+        this.readData();
+
         // Dismiss loading & Show Toast Message
-        this.toast.setMessage("Request accepted successfully...");
-        this.toast.present();
+        toast.setMessage("Request accepted successfully...");
+        toast.present();
+
 
         // Reloads after updation   
-        this.navCtrl.setRoot(DashboardPage);
+        // this.navCtrl.setRoot(DashboardPage);
 
         // Compare the selected info with other 
         for (var i = 0; i < this.display.length; i++) {
@@ -173,6 +191,8 @@ export class RequestPage {
                 this.fire.updateField(data)
                   .then((response) => {
 
+                    this.readData();
+
                   })
                   .catch((error) => {
 
@@ -187,8 +207,8 @@ export class RequestPage {
       .catch((error) => {
 
         // Dismiss loading & Show Toast Message
-        this.toast.setMessage("Some error has occured. Please try again...");
-        this.toast.present();
+        toast.setMessage("Some error has occured. Please try again...");
+        toast.present();
       });
 
   }
@@ -221,6 +241,7 @@ export class RequestPage {
   cancel(redata: any) {
 
     const popover = this.popoverCtrl.create(WarningPage, { requests: redata, from: 2, data: this.reqdata });
+
     popover.present();
 
   }
