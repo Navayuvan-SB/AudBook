@@ -6,46 +6,46 @@
 -->
 
 <ion-header no-border>
-      
-        <ion-navbar>
 
-            <ion-title class="toolbar-title.toolbar-title-md"><b>Book New</b></ion-title>
-     
-        </ion-navbar>
+  <ion-navbar>
+
+    <ion-title class="toolbar-title.toolbar-title-md"><b>Book New</b></ion-title>
+
+  </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-    <ion-grid> 
-               
-        <div class="div1"   >
-          <ion-row (click)="calendar(aud)" *ngFor="let aud of audinfo">
+  <ion-grid>
 
-              <ion-col>
-                      <ion-avatar  class="img1 imgPicDisplay imgDistance" >
-                                   
-                      </ion-avatar>
-              </ion-col>
+    <div class="div1">
+      <ion-row (click)="calendar(aud)" *ngFor="let aud of audinfo" class="margin-bottom">
 
-              <ion-col col-8>
+        <ion-col>
+          <ion-avatar class="img1 imgPicDisplay imgDistance">
 
-                      <ion-row class=" leftDistance distFromTop "><b>{{ aud.name }}</b></ion-row> 
+          </ion-avatar>
+        </ion-col>
 
-                      <ion-row class=" leftDistance textDistance ">{{ aud.dept }}</ion-row>
+        <ion-col col-8>
 
-                      <ion-row class=" leftDistance textDistance ">
+          <ion-row class=" leftDistance distFromTop "><b>{{ aud.name }}</b></ion-row>
 
-                                <ion-badge class= "badge" item-end>{{ aud.sCount }}</ion-badge>
+          <ion-row class=" leftDistance textDistance ">{{ aud.dept }}</ion-row>
 
-                      </ion-row>
+          <ion-row class=" leftDistance textDistance ">
 
-              </ion-col>
+            <ion-badge class="badge" item-end>{{ aud.sCount }}</ion-badge>
 
           </ion-row>
 
-        </div>
+        </ion-col>
 
-      </ion-grid>
+      </ion-row>
+
+    </div>
+
+  </ion-grid>
 
 </ion-content>

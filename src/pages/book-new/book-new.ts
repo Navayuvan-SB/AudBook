@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, LoadingController, ToastController } from 'ionic-angular';
 import { CalendarPage } from '../calendar/calendar';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { DetailPage } from '../detail/detail';
 
 /**
  * Generated class for the BookNewPage page.
@@ -67,7 +68,17 @@ export class BookNewPage {
 
     this.fire.readOnce('requests')
       .then((response) => {
+
         const popover = this.popoverCtrl.create(CalendarPage, { aud: aud, data: response });
+
+        popover.onDidDismiss((data) => {
+
+          if (data != undefined) {
+            this.navCtrl.push(DetailPage, { getData: data, aud: aud, data: response });
+          }
+          
+        });
+
         popover.present();
       });
 

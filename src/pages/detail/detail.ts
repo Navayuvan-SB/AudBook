@@ -45,7 +45,7 @@ export class DetailPage {
 
   mobileNum: string = '';
 
-  department: string;
+  department: string = 'Mech';
   dept1: string;
 
   aud: any;
@@ -124,21 +124,8 @@ export class DetailPage {
     // getting value from calendar page
 
     //for getting the date,month,time
-    this.calenDateData = navParams.get('getdata');
+    this.calenDateData = this.navParams.get('getData');
 
-    // for mobile number
-    this.mobileNum = navParams.get('passMobileNum');
-
-
-    //for department
-    this.dept1 = navParams.get('dept1');
-
-    if (this.dept1 == undefined) {
-      this.department = 'Mech';
-    }
-    else {
-      this.department = this.dept1;
-    }
 
     //for seperating the values from the array of date, time , month 
     this.date = this.calenDateData.date;
@@ -397,10 +384,14 @@ export class DetailPage {
 
         if (flagFN == '1') {
           this.foren = 0;
+        } else {
+          this.foren = 1;
         }
 
         if (flagAN == '1') {
           this.aftern = 0;
+        } else {
+          this.aftern = 1;
         }
       })
       .catch((error) => {
@@ -410,20 +401,38 @@ export class DetailPage {
 
   cal() {
 
-    
+
     this.fire.readOnce('requests')
       .then((response) => {
 
         //passing data to calendar page
-        let pop = this.popoverCtrl.create(CalendarPage, { mobileNum: this.mobileNum, dept: this.department, aud: this.aud, data: response });//fromtext: this.fromtext, ftext:this.ftext
+        let pop = this.popoverCtrl.create(CalendarPage, { aud: this.aud, data: this.navParams.get('data') });
 
-        //for terminating previous pages
-        let currentindex = this.navCtrl.getActive().index;
-        pop.onDidDismiss(() => {
-          this.navCtrl.remove(currentindex);
+        pop.onDidDismiss((data) => {
+
+          if (data != undefined) {
+
+            // get the data from popup page and assign it to calendar data
+            this.calenDateData = data;
+
+            //for seperating the values from the array of date, time , month 
+            this.date = this.calenDateData.date;
+            this.oldMonth = this.calenDateData.month;
+            this.month = Number(this.oldMonth);
+            this.month = this.month + 1;
+            this.year = this.calenDateData.year;
+            this.findata = String(this.date + '/' + this.month + '/' + this.year);
+
+            // for-after-noon border color back to normal when visiting page again 
+            document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+            document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+
+            this.firebaseFunctions();
+          }
+
         });
-
         pop.present();
+
       });
 
   }

@@ -3,9 +3,13 @@ page-profile {
   //for toolbar styling
 
   .toolbar-title.toolbar-title-md {
-    padding-left: 5px;
+    margin-top: 18px !important;
     color: black;
     font-size: 20px;
+  }
+  
+  .menu{
+    margin-left: 20px;
   }
 
   .toolbar-background {
@@ -21,30 +25,30 @@ page-profile {
   //For profile image styling
 
   .imgPicDisplay {
-   display: block;
-   margin: 0 auto;
-   position: relative;
-   width: 100px;
-   height: 100px;
-   background-size: cover;
-   border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    border-radius: 50%;
   }
-    
+
   .image {
-   background-image: url(../assets/imgs/oneaud.png);
-   margin-top: 10px;
+    background-image: url(../assets/imgs/oneaud.png);
+    margin-top: 10px;
   }
-     
+
   //For positioning the first row from the profile pic
-  .common{
-    margin-top:35px;
+  .common {
+    margin-top: 35px;
   }
 
   // item styling for all
 
   .but {
-    margin-top:10px;
-    border: 1px solid  grey;
+    margin-top: 10px;
+    border: 1px solid grey;
     border-radius: 20px;
   }
 
@@ -55,12 +59,12 @@ page-profile {
     margin-right: auto;
     max-width: 100%;
     max-height: 25%;
-  } 
+  }
 
   // area occupied by the change password button display
-  
+
   .password-display,
-  .save{
+  .save {
     margin-left: auto;
     margin-right: auto;
     height: 5.6ch;

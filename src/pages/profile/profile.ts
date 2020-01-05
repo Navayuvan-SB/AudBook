@@ -13,7 +13,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
@@ -61,9 +60,6 @@ export class ProfilePage {
         Validators.maxLength(10)
       ])]
     });
-
-
-
 
   }
 
@@ -160,7 +156,7 @@ export class ProfilePage {
   profileUpdate() {
     this.profupdate = 1;
     console.log(this.profupdate);
-  } 
+  }
 
   save() {
     // Toast controller
@@ -168,39 +164,55 @@ export class ProfilePage {
       duration: 3000
     });
 
+    let conformAlert = this.alertCtrl.create({
+      title: 'Conformation',
+      message: 'Are you sure want to save this?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
 
-    var name = this.detailForm.controls['name'].value;
-    var phone = this.detailForm.controls['phone'].value;
+          }
+        },
+        {
+          text: 'Sure',
+          handler: none => {
 
-    // Keys
-    var nameKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/name';
-    var phoneKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/phone';
+            var name = this.detailForm.controls['name'].value;
+            var phone = this.detailForm.controls['phone'].value;
 
-    var data = {
-      [nameKey]: name,
-      [phoneKey]: phone,
-    };
+            // Keys
+            var nameKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/name';
+            var phoneKey = 'users/' + this.fbAuth.auth.currentUser.uid + '/phone';
 
+            var data = {
+              [nameKey]: name,
+              [phoneKey]: phone,
+            };
 
-    // Update the info.
-    this.fire.updateField(data)
-      .then((response) => {
+            // Update the info.
+            this.fire.updateField(data)
+              .then((response) => {
 
+                // Display the toast
+                toast.setMessage("user name and phone Updated Successfully...!")
+                toast.present();
 
-        // Display the toast
-        toast.setMessage("user name and phone Updated Successfully...!")
-        toast.present();
+              })
+              .catch((error) => {
 
-      })
-      .catch((error) => {
+                // Display the toast
+                toast.setMessage("Something is wrong. Please try again later...!")
+                toast.present();
 
+              });
+          }
+        }
+      ]
+    });
 
-        // Display the toast
-        toast.setMessage("Something is wrong. Please try again later...!")
-        toast.present();
-
-      });
-
+    // present the alert
+    conformAlert.present();
 
   }
 }

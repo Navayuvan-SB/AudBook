@@ -64,7 +64,7 @@ ion-icon {
   height: 90px !important;
   width: 90px !important; //any size 
 }
-button{
+ion-navbar button{
     margin-top: 10% !important;
     margin-bottom: 10%;
     padding-bottom: 15px !important;
@@ -82,4 +82,9 @@ h2{
   margin-top: 3px;
   color: green;
   font-weight: bolder;
+}
+
+// profile button
+ion-item button {
+  margin: 40px 0 20px 0 !important;
 }

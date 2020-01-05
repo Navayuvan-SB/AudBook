@@ -6,6 +6,7 @@ import { FirebaseServices } from '../../services/fireBaseService';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
 import { ProfilePage } from '../profile/profile';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the StatusPage page.
@@ -39,7 +40,8 @@ export class StatusPage {
     private fire: FirebaseServices,
     private afAuth: AngularFireAuth,
     private alertCtrl: AlertController,
-    public fbAuth: AngularFireAuth) {
+    public fbAuth: AngularFireAuth,
+    public afDatabase: AngularFireDatabase) {
 
     // Initializing Loading Controller
     this.loadingCtrl = this.loading.create({
@@ -54,13 +56,16 @@ export class StatusPage {
     //read the userId from database
     this.fire.readOnce('users/' + this.afAuth.auth.currentUser.uid)
       .then((response) => {
+
+        // get the userId and call the firebase functions
         this.userId = response['userId'];
+        this.firebaseFunctions();
       })
       .catch((error) => {
 
       });
 
-    this.firebaseFunctions();
+    
 
   }
 
@@ -76,13 +81,12 @@ export class StatusPage {
     // Presenting loading controller
     this.loadingCtrl.present();
 
-    this.fire.readOnce('requests')
-      .then((response) => {
-        console.log("Read Once Called");
+    this.afDatabase.database.ref('requests')
+      .on("value", (response) => {
 
         //objects is stored in obj
         // this.dataret = response;
-        let obj = Object.entries(response);
+        let obj = Object.entries(response.val());
 
         // Local array to store the array of objects
         let arr = []
@@ -91,7 +95,7 @@ export class StatusPage {
         for (var i = 0; i < obj.length; i++) {
 
           //condition to compare the IDs to display the Status
-          if (this.userId == obj[i][1].userId) {
+          if (this.userId == obj[i][1]['userId']) {
             arr.push(obj[i][1]);
 
           }
@@ -99,14 +103,10 @@ export class StatusPage {
         // Assigining arr to global datar
         this.statusinfo = arr;
 
-        console.log(this.statusinfo);
-
         // Dismissing the loading controller
         this.loadingCtrl.dismiss();
 
-      })
-      .catch((error) => {
-        console.log(error);
+      }, (error) => {
 
         // Dismissing the loading controller
         this.loadingCtrl.dismiss();
@@ -123,6 +123,11 @@ export class StatusPage {
 
     // Pass the data to Warning popover
     const popover = this.popoverCtrl.create(WarningPage, { status: data, from: 1 });
+
+    popover.onDidDismiss((data) => {
+
+    });
+
     popover.present();
   }
 
@@ -160,30 +165,5 @@ export class StatusPage {
 
   }
 
-
-  logout() {
-
-    // // Present loading
-    // this.afAuth.auth.signOut()
-    // .then((response) => {
-
-    //   // Dismiss loading and set login page as root
-    //   this.navCtrl.setRoot(LoginPage);
-    // })
-    // .catch((error) => {
-
-    //   // Dismiss loading and show error toast message
-    //   this.toastCtrl.setMessage("Some error has occured. Please try again");
-    //   this.toastCtrl.present();
-    // });
-
-    let user = this.fbAuth.auth.currentUser;
-    this.fire.readOnce('users/' + user['uid'])
-      .then((response) => {
-        this.navCtrl.push(ProfilePage, { response: response });
-      });
-
-
-  }
 
 }

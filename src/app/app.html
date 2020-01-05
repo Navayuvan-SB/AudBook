@@ -8,7 +8,8 @@
         <img class="avatar-size"
           src="https://images.unsplash.com/photo-1533134486753-c833f0ed4866?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9">
       </ion-avatar>
-      <button ion-button color="primary" block text-capitalize=“false”>Profile</button>
+      <button ion-button color="primary" block text-capitalize=“false” menuClose
+      (click)="navToProfile()">Profile</button>
     </ion-item>
 
     <!-- item to show menu items like history etc., and ngfor to display menu dynamicaly -->

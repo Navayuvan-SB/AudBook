@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import { FirebaseServices } from '../../services/fireBaseService';
 
@@ -38,33 +38,14 @@ export class CalendarPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public fire: FirebaseServices) {
-    // getting value from detail page
-
-    //for mobile number
-    this.passMobileNum = this.navParams.get('mobileNum');
-
-    //for purpose
-    this.purpose1 = this.navParams.get('purpose');
-    console.log(this.purpose1);
-
+    public fire: FirebaseServices,
+    public viewCtrl: ViewController) {
 
     this.firebaseResponse = this.navParams.get('data');
+
     console.log(this.firebaseResponse);
-
-    //To timepicker
-    // this.ftext1=this.navParams.get('ftext');
-
-    //From timepicker
-    // this.fromtext1=this.navParams.get('fromtext');
-    //console.log(this.ftext1);
-
-    //for department
-    this.dept1 = this.navParams.get('dept');
-
     // getting value from booknew
     this.aud = this.navParams.get('aud');
-    console.log(this.aud);
 
     let arr = []
     // default sample code for calendar module
@@ -126,19 +107,11 @@ export class CalendarPage {
   //calendar funtion
   public onDaySelect($event) {
 
-    //terminating previous pages
-    let currentindex = this.navCtrl.getActive().index;
     //console.log($event);
     let data = $event;
 
-    //pushing data to detail page
-    this.navCtrl.push(DetailPage, { getdata: data, passMobileNum: this.passMobileNum, dept1: this.dept1, aud: this.aud, purpose1: this.purpose1 }).then(() => {//fromtext1:this.fromtext1, ftext1:this.ftext1,
-      this.navCtrl.remove(currentindex);
-    });
+    this.viewCtrl.dismiss(data);
 
-    // console.log(data);
-    // this.text1=this.navParams.get('text'); 
-    // console.log(this.text1);
   }
 
 }

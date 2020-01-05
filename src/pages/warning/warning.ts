@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ViewController } from 'ionic-angular';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { StatusPage } from '../status/status';
 import { DashboardPage } from '../dashboard/dashboard';
@@ -38,7 +38,8 @@ export class WarningPage {
     public navParams: NavParams,
     public fire: FirebaseServices,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public viewCtrl: ViewController) {
 
     // Data from status page
     this.status = this.navParams.get('status');
@@ -52,15 +53,6 @@ export class WarningPage {
     // Data from req page
     this.data = this.navParams.get('data');
 
-    // Initialising toast and loading instance
-    this.toast = this.toastCtrl.create({
-      duration: 2000,
-      position: 'bottom'
-    });
-
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait'
-    });
 
   }
 
@@ -71,62 +63,68 @@ export class WarningPage {
   cancel() {
 
     if (this.from == 1) {
+
       // Dismiss the popover
-      let index = this.navCtrl.getActive().index;
-      this.navCtrl.remove(index);
-      this.navCtrl.push(StatusPage);
+      this.viewCtrl.dismiss();
     }
     else if (this.from == 2) {
 
       // Dismiss the popover
-      let index = this.navCtrl.getActive().index;
-      this.navCtrl.remove(index);
-      this.navCtrl.push(RequestPage, { data: this.data });
+      this.viewCtrl.dismiss(this.data);
     }
 
   }
 
   selected() {
 
+    // Initialising toast and loading instance
+    let toast = this.toastCtrl.create({
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait'
+    });
+
     if (this.from == 1) {
 
       // Presenting loading controller
-      this.loading.present();
+      loading.present();
 
       // Remove the data
       this.fire.removeField('requests', this.status.reqId)
         .then((response) => {
 
-          // Dismiss the popover
-          let index = this.navCtrl.getActive().index;
-          this.navCtrl.remove(index);
-          this.navCtrl.push(StatusPage);
-
           // Dismissing the loading controller
-          this.loading.dismiss();
+          loading.dismiss();
 
           // Display the toast
-          this.toast.setMessage("Deleted successfully...!")
-          this.toast.present();
+          toast.setMessage("Deleted successfully...!")
+          toast.present();
 
+          // Dismiss the popover
+          this.viewCtrl.dismiss();
 
         })
         .catch((error) => {
 
           // Dismissing the loading controller
-          this.loading.dismiss();
+          loading.dismiss();
 
           // Display the toast
-          this.toast.setMessage("Something is wrong. Please try again later...!")
-          this.toast.present();
+          toast.setMessage("Something is wrong. Please try again later...!")
+          toast.present();
 
+          // Dismiss the popover
+          this.viewCtrl.dismiss();
 
         });
     }
     else if (this.from == 2) {
 
       // Present loading
-      this.loading.present();
+      loading.present();
 
       // Data to update
       let path = 'requests/' + this.requests.reqId + '/status';
@@ -138,20 +136,23 @@ export class WarningPage {
       this.fire.updateField(data)
         .then((response) => {
 
-          // console.log("Successssssssss");
-          // Remove the active index
-          let index = this.navCtrl.getActive().index;
-          this.navCtrl.remove(index);
-          this.loading.dismiss();
+          // Dismiss the popover
+          this.viewCtrl.dismiss();
+
         })
         .catch((error) => {
 
-          this.loading.dismiss();
-          this.toast.setMessage("Some error has occured. Please try again");
-          this.toast.present();
+          // dismiss the loading
+          loading.dismiss();
+
+          // show toast message
+          toast.setMessage("Some error has occured. Please try again");
+          toast.present();
+
+          // Dismiss the popover
+          this.viewCtrl.dismiss();
+
         });
-
-
     }
   }
 
