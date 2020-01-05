@@ -7,7 +7,12 @@
 
 <!-- header -->
 <ion-header no-border>
-  <ion-navbar class="toolbar-title.toolbar-title-md">
+  <ion-navbar hideBackButton class="toolbar-title.toolbar-title-md">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="prepage()">
+        <ion-icon name="arrow-back"></ion-icon></button>
+      </ion-buttons>
+   
     <ion-title class="toolbar-title.toolbar-title-md"><b>Let's create one...</b></ion-title>
   </ion-navbar>
 </ion-header>

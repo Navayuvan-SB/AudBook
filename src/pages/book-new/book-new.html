@@ -7,8 +7,11 @@
 
 <ion-header no-border>
       
-        <ion-navbar>
-
+        <ion-navbar hideBackButton>
+          <ion-buttons left>
+            <button ion-button icon-only (click)="prepage()">
+              <ion-icon name="arrow-back"></ion-icon></button>
+            </ion-buttons>
             <ion-title class="toolbar-title.toolbar-title-md"><b>Book New</b></ion-title>
      
         </ion-navbar>

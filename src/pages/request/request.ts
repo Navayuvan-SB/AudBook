@@ -224,5 +224,8 @@ export class RequestPage {
     popover.present();
 
   }
+  prepage(){
+    this.navCtrl.setRoot(DashboardPage);
+  }
 
 }

@@ -45,7 +45,8 @@ export class MyApp {
     private fbService: FirebaseServices,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    public afAuth: AngularFireAuth,) {
+    public afAuth: AngularFireAuth,
+    private fire: FirebaseServices) {
 
     // // loading  
     this.loading = this.loadingCtrl.create({
@@ -110,8 +111,7 @@ export class MyApp {
   navPages(pages){
     this.nav.setRoot(pages.component);
   }
-
-
+  
   // logout for both user and admin
   logout() {
 

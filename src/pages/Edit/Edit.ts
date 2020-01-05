@@ -195,7 +195,7 @@ export class EditPage {
     }
 
   }
-  back(){
-    this.navCtrl.pop();
+  prepage(){
+    this.navCtrl.setRoot(DashboardPage);
   }
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, LoadingController, ToastController } from 'ionic-angular';
 import { CalendarPage } from '../calendar/calendar';
 import { FirebaseServices } from '../../services/fireBaseService';
+import { StatusBar } from '@ionic-native/status-bar';
+import { StatusPage } from '../status/status';
 
 /**
  * Generated class for the BookNewPage page.
@@ -166,5 +168,7 @@ export class BookNewPage {
     return sArr;
 
   }
-
+  prepage(){
+    this.navCtrl.setRoot(StatusPage);
+  }
 }

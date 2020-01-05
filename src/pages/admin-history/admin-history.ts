@@ -247,5 +247,8 @@ export class AdminHistoryPage {
     confirm.present();
   }
 
+  prepage(){
+    this.navCtrl.setRoot(DashboardPage);
+  }
 
 }
