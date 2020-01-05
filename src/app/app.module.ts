@@ -23,6 +23,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AdminHistoryPage } from '../pages/admin-history/admin-history';
 import { FormGroup } from '@angular/forms';
 
 
@@ -41,12 +44,14 @@ import { FormGroup } from '@angular/forms';
     DashboardPage,
     RequestPage,
     CalendarPage,
-    ProfilePage,
+    AdminHistoryPage,
+    ProfilePage
     
   ],
   imports: [
     BrowserModule,
     CalendarModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp, {
       mode: 'md'
     }),
@@ -68,7 +73,8 @@ import { FormGroup } from '@angular/forms';
     DashboardPage,
     RequestPage,
     CalendarPage,
-    ProfilePage,
+    AdminHistoryPage,
+    ProfilePage
    
   ],
   providers: [

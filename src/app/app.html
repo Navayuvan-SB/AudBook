@@ -1,1 +1,43 @@
-<ion-nav [root]="rootPage"></ion-nav>
+
+<ion-menu [content]="content">
+
+  <ion-content>
+    <!-- item for profile -->
+    <ion-item no-lines>
+      <ion-avatar class="avatar">
+        <img class="avatar-size"
+          src="https://images.unsplash.com/photo-1533134486753-c833f0ed4866?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9">
+      </ion-avatar>
+      <button ion-button color="primary" block text-capitalize=“false”>Profile</button>
+    </ion-item>
+
+    <!-- item to show menu items like history etc., and ngfor to display menu dynamicaly -->
+    <ion-item no-lines *ngFor="let p of pages" menuClose>
+      <ion-row (click) = navPages(p)>
+        <ion-col col-1 class="icons">
+          <ion-icon [name]="p.icon" [color]="p.color"></ion-icon>
+        </ion-col>
+        <ion-col col-8>
+          <h2>{{p.title}}</h2>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <!-- item for logout -->
+    <ion-item no-lines menuClose>
+      <ion-row (click)= logout() menuClose>
+        <ion-col col-1 class = "icons">
+           <ion-icon name="md-log-out" color="danger"></ion-icon>
+        </ion-col>
+        <ion-col col-8>
+          <h2>Logout</h2>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+

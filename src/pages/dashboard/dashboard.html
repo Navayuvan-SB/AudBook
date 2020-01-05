@@ -4,6 +4,12 @@
     <ion-navbar class="toolbar-title.toolbar-title-md">
 
       <ion-title><b>Dashboard</b></ion-title>
+      <ion-buttons left>
+        <button ion-button icon-only menuToggle color="dark">
+          <ion-icon name="menu"></ion-icon>
+      </button>
+
+    </ion-buttons>
       <ion-buttons right class="logout">
         <button ion-button icon-only (click)="logout()">
           <ion-icon name="md-log-out" color="danger"></ion-icon>
@@ -18,11 +24,7 @@
 <!--content-->
 <ion-content padding>
 
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingText="Pull to refresh" pullingIcon="arrow-dropdown" refreshingSpinner="circles"
-      refreshingText="..fetching">
-    </ion-refresher-content>
-  </ion-refresher>
+  
 
   <!--grid for rows and cols(1row & 3cols)-->
   <ion-grid>

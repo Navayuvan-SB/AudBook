@@ -1,7 +1,14 @@
 page-dashboard {
 
+   //style for navbar
+   ion-navbar {
+    margin-top: 15px;
+  }
+
+
   .toolbar-title.toolbar-title-md {
     padding-left: 15px;
+    margin-top: 18px !important;
     color: black;
     font-size: 20px;
   }

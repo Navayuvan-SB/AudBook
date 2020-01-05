@@ -53,3 +53,33 @@ ion-icon {
   --button-clicked-fn : 1px solid #000;
   --rocolor: #fff;
 }
+
+.avatar{
+  margin-top: 5%;
+  margin-left: 32%;
+  width: 100% !important;  
+  height : 100% !important;  
+}
+.avatar-size{
+  height: 90px !important;
+  width: 90px !important; //any size 
+}
+button{
+    margin-top: 10% !important;
+    margin-bottom: 10%;
+    padding-bottom: 15px !important;
+    padding-top: 15px !important;
+    text-transform: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder !important;
+    font-size: 12px !important;
+  }
+h2{
+    margin-left: 5px !important;
+    font-weight: bolder !important;
+}
+.icons{
+  margin-top: 3px;
+  color: green;
+  font-weight: bolder;
+}

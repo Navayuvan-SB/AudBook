@@ -81,7 +81,7 @@ export class WarningPage {
       // Dismiss the popover
       let index = this.navCtrl.getActive().index;
       this.navCtrl.remove(index);
-      this.navCtrl.push(RequestPage, { data: this.data});
+      this.navCtrl.push(RequestPage, { data: this.data });
     }
 
   }
@@ -127,12 +127,12 @@ export class WarningPage {
 
       // Present loading
       this.loading.present();
-      
+
       // Data to update
       let path = 'requests/' + this.requests.reqId + '/status';
 
       let data = {
-        [path]: 2
+        [path]: 3
       }
 
       this.fire.updateField(data)
