@@ -195,7 +195,7 @@ toastCtrl: any;
   }
  }
 
- back(){
-   this.navCtrl.pop();
+ prepage(){
+   this.navCtrl.setRoot(DashboardPage);
  }
 }

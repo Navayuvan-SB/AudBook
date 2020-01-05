@@ -9,7 +9,9 @@
 
 <ion-header no-border>
   <ion-navbar class="toolbar-title.toolbar-title-md">
+
     <ion-title><b>Let's edit this...</b></ion-title>
+
   </ion-navbar>
 </ion-header>
 
@@ -39,14 +41,17 @@
           <ion-input type="tel" placeholder='Seat Count' formControlName="sCount">
           </ion-input>
         </ion-item>
-        <!--create button-->
-        <div text-center (click)="save()">
-          <button ion-button color="secondary" round class="create-button">
-            Save
-          </button>
-        </div>
 
       </ion-row>
     </ion-grid>
   </form>
 </ion-content>
+
+<ion-footer no-border>
+  <!--create button-->
+  <div text-center (click)="save()">
+    <button ion-button color="secondary" round class="create-button">
+      Save
+    </button>
+  </div>
+</ion-footer>

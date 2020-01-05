@@ -39,6 +39,8 @@ export class EditPage {
     // Getting the data from source page
     this.aud = this.navParams.get('data');
 
+    console.log(this.aud);
+
     // Form Validation
     this.credentialForm = this.form.group({
       name: [this.aud.name, Validators.compose([
@@ -157,9 +159,9 @@ export class EditPage {
     } else {
 
       // Keys
-      var deptKey = 'auditorium/' + this.aud.ID + '/dept';
-      var nameKey = 'auditorium/' + this.aud.ID + '/name';
-      var sCountKey = 'auditorium/' + this.aud.ID + '/sCount';
+      var deptKey = 'auditorium/' + this.aud.audID + '/dept';
+      var nameKey = 'auditorium/' + this.aud.audID + '/name';
+      var sCountKey = 'auditorium/' + this.aud.audID + '/sCount';
 
       var data = {
         [deptKey]: dept,
@@ -195,7 +197,7 @@ export class EditPage {
     }
 
   }
-  back(){
-    this.navCtrl.pop();
+  prepage(){
+    this.navCtrl.setRoot(DashboardPage);
   }
 }

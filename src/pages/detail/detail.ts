@@ -6,6 +6,7 @@ import { getParentRenderElement } from '@angular/core/src/view/util';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { BookNewPage } from '../book-new/book-new';
 
 
 
@@ -471,4 +472,6 @@ export class DetailPage {
 
       });
   }
+
+  
 } 

@@ -4,6 +4,7 @@ import { FirebaseServices } from '../../services/fireBaseService';
 import { WarningPage } from '../warning/warning';
 import { PopoverController } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the RequestPage page.
@@ -29,7 +30,8 @@ export class RequestPage {
     private fire: FirebaseServices,
     public popoverCtrl: PopoverController,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public afDatabase: AngularFireDatabase) {
 
     // geting data from dashboard page
     this.reqdata = navParams.get('data');
@@ -55,15 +57,13 @@ export class RequestPage {
       position: 'bottom'
     });
 
-    loading.present();
-
-    // here readonce function is to get data from database 
-    this.fire.readOnce('requests')
-      .then((response) => {
+    // here read function is to get data from database 
+    this.afDatabase.database.ref('requests')
+      .on("value", (response) => {
 
         loading.dismiss();
         console.log("Read Once Called");
-        let obj = Object.entries(response);
+        let obj = Object.entries(response.val());
         console.log(obj);
 
         let arr = [];
@@ -72,13 +72,13 @@ export class RequestPage {
 
         // Loop to get all the audid in request from database
         for (var i = 0; i < obj.length; i++) {
-          let array = (obj[i][1].audId);
+          let array = (obj[i][1]['audId']);
 
           // to check audid in dash page and audid in req from db
           if (this.reqdata.audID == array) {
 
             // to check whether the status is 0 if audid matches
-            if (obj[i][1].status == '0') {
+            if (obj[i][1]['status'] == '0') {
               arr.push(obj[i][1]);
               var p = obj[i][1];
               console.log(p);
@@ -109,20 +109,21 @@ export class RequestPage {
         }
         this.fire.updateField(data)
           .then((response) => {
-
+  
           })
           .catch((error) => {
 
           });
 
-      })
-      .catch((error) => {
 
-        loading.dismiss();
-        console.log(error);
+      }, (error) => {
+
+      
         toast.setMessage("Some error has occured. Please try again");
         toast.present();
       });
+
+
   }
 
   ionViewDidLoad() {
@@ -156,16 +157,16 @@ export class RequestPage {
     let fnStatus = redata.FN;
     let dateSelected = redata.date;
 
+    // show loading
+    loading.present();
+
     this.fire.updateField(data)
       .then((response) => {
 
-        // Reloads the page
-        this.readData();
-
         // Dismiss loading & Show Toast Message
+        loading.dismiss();
         toast.setMessage("Request accepted successfully...");
         toast.present();
-
 
         // Reloads after updation   
         // this.navCtrl.setRoot(DashboardPage);
@@ -188,11 +189,11 @@ export class RequestPage {
                 this.fire.updateField(data)
                   .then((response) => {
 
-                    this.readData();
-
+                    
                   })
                   .catch((error) => {
 
+                    
                   });
               }
             }
@@ -202,6 +203,9 @@ export class RequestPage {
 
       })
       .catch((error) => {
+
+        // dismiss the loading
+        loading.dismiss();
 
         // Dismiss loading & Show Toast Message
         toast.setMessage("Some error has occured. Please try again...");

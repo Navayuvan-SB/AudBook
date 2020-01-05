@@ -179,5 +179,4 @@ export class BookNewPage {
     return sArr;
 
   }
-
 }

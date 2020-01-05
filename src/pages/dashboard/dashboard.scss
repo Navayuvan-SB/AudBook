@@ -1,10 +1,5 @@
 page-dashboard {
 
-   //style for navbar
-   ion-navbar {
-    margin-top: 15px;
-  }
-
 
   .toolbar-title.toolbar-title-md {
     padding-left: 15px;
@@ -31,7 +26,7 @@ page-dashboard {
 
   //styles inside grid
   ion-grid {
-    margin: 50px 0px -50px 10px;
+    margin: 15px 0px -50px 10px;
   }
 
   ion-card {
@@ -51,7 +46,7 @@ page-dashboard {
   }
 
   .font-lighter {
-    margin-top: 6px;
+    margin-top: 20px;
     font-weight: lighter;
     font-size: small;
   }
@@ -91,7 +86,7 @@ page-dashboard {
   }
 
   .font-lighter {
-    margin-top: 6px;
+    margin-top: 16px;
     font-weight: lighter;
     font-size: small;
   }
@@ -102,7 +97,8 @@ page-dashboard {
     background-color: #35AE59;
     border-radius: 50%;
     display: inline-block;
-    margin-left: -30px;
+    margin-left: -9arcane
+    0px;
     margin-top: 16px;
   }
 
@@ -119,10 +115,7 @@ page-dashboard {
 
   }
 
-
-
-
-  //style for creat button
+  // style for creat button
   .create-button {
     background-color: #35AE59;
     text-transform: none;
@@ -143,32 +136,32 @@ page-dashboard {
     height: 10%;
   }
 
-  // Responsive design
-  @media (min-width: 550px) {
+  // // Responsive design
+  // @media (min-width: 550px) {
 
-    ion-header ion-navbar {
-      width: 550px !important;
-      margin: 0 auto;
-    }
+  //   ion-header ion-navbar {
+  //     width: 550px !important;
+  //     margin: 0 auto;
+  //   }
 
-    ion-content ion-grid {
-      width: 550px !important;
+  //   ion-content ion-grid {
+  //     width: 550px !important;
 
-    }
+  //   }
 
-    ion-footer {
-      width: 100%;
-    }
+  //   ion-footer {
+  //     width: 100%;
+  //   }
 
-    ion-footer div {
-      width: 550px;
-      margin: 0 auto;
-    }
+  //   ion-footer div {
+  //     width: 550px;
+  //     margin: 0 auto;
+  //   }
 
-    .logout {
-      margin-right: 0px;
+  //   .logout {
+  //     margin-right: 0px;
 
-    }
+  //   }
 
-  }
+  // }
 }

@@ -78,7 +78,8 @@ export class MyApp {
                 this.rootPage = DashboardPage;
 
                 this.pages = [
-                  { title: 'History', component: AdminHistoryPage, icon: "time", color: '' },
+                  { title: 'Dashboard', component: DashboardPage, icon: "logo-buffer", color: '' },
+                  { title: 'History', component: AdminHistoryPage, icon: "time", color: '' }
                 ]
               }
             })
@@ -103,9 +104,11 @@ export class MyApp {
 
   //navigation to pages
   navPages(pages) {
-    this.nav.setRoot(pages.component);
-  }
 
+    this.nav.insert(0, pages.component);
+    this.nav.popToRoot();
+
+  }
 
   // logout for both user and admin
   logout() {
@@ -147,7 +150,8 @@ export class MyApp {
                 loading.dismiss();
 
                 // Dismiss loading and set login page as root
-                this.nav.setRoot(LoginPage);
+                this.nav.insert(0, LoginPage);
+                this.nav.popToRoot();
               })
               .catch((error) => {
 

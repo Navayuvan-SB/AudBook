@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, PopoverController, AlertController } from 'ionic-angular';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { DashboardPage } from '../dashboard/dashboard';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 
 
@@ -12,7 +13,6 @@ import { DashboardPage } from '../dashboard/dashboard';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-admin-history',
   templateUrl: 'admin-history.html',
@@ -36,7 +36,10 @@ export class AdminHistoryPage {
   // Toast controller
   toastCtrl: any;
 
-   req: any;
+  req: any;
+
+  // emptyFlag 
+  emptyFlag : Boolean = true;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -44,19 +47,8 @@ export class AdminHistoryPage {
     public toast: ToastController,
     public load: LoadingController,
     public alert: AlertController,
+    public afDatabase: AngularFireDatabase
   ) {
-
-
-
-    // Initializing Loading Controller
-    this.loadingCtrl = this.load.create({
-      content: 'Please wait...'
-    });
-
-    // Initializing Toast Controller
-    this.toastCtrl = this.toast.create({
-      duration: 3000
-    });
 
 
   }
@@ -95,14 +87,26 @@ export class AdminHistoryPage {
 
   //variable name to store the objects from data
   firebaseFunctions() {
-    
-    this.fire.readOnce('requests')
-      .then((response) => {
+
+    // Initializing Loading Controller
+    let loadingCtrl = this.load.create({
+      content: 'Please wait...'
+    });
+
+    // Initializing Toast Controller
+    let toastCtrl = this.toast.create({
+      duration: 3000
+    });
+
+
+    this.afDatabase.database.ref('requests')
+      .on("value", (response) => {
         console.log("Read Once Called");
+
 
         //objects is stored in obj
         // this.dataret = response;
-        let obj = Object.entries(response);
+        let obj = Object.entries(response.val());
 
 
         // Local array to store the array of objects
@@ -110,44 +114,42 @@ export class AdminHistoryPage {
         for (var j = 0; j < obj.length; j++) {
           this.req = obj[j][1]
           console.log(this.req);
-          
+
         }
 
-        // Presenting loading controllSer
-        this.loadingCtrl.present();
         let arr = []
         // Loop through the received object
         for (var i = 0; i < obj.length; i++) {
 
-
-          if (this.finaldate == obj[i][1].date)
+          if (this.finaldate == obj[i][1]['date'])
             arr.push(obj[i][1]);
 
         }
 
+        // Check and update the empty flag
+        if (arr.length == 0) {
+          this.emptyFlag = true;
+        }
+        else {
+          this.emptyFlag = false;
+        }
+
         // Assigining arr to global datar
-        this.historyInfo = arr; 
-        console.log(this.historyInfo);
-        // Dismissing the loading controller
-        this.loadingCtrl.dismiss();
+        this.historyInfo = arr;
+        
 
-      })
-      .catch((error) => {
-        console.log(error);
 
-        // Dismissing the loading controller
-        this.loadingCtrl.dismiss();
+      }, (error) => {
 
         // Display the toast
-        this.toastCtrl.setMessage("Something went wrong ...please try again");
-        this.toastCtrl.present();
-
+        toastCtrl.setMessage("Something went wrong ...please try again");
+        toastCtrl.present();
       });
 
   }
 
 
-  showConfirm(clickedData : any) {
+  showConfirm(clickedData: any) {
 
     const confirm = this.alert.create({
       title: 'Warning',
@@ -156,7 +158,7 @@ export class AdminHistoryPage {
         {
           text: 'No',
           handler: () => {
-            console.log('Disagree clicked');
+
           }
         },
         {
@@ -165,8 +167,8 @@ export class AdminHistoryPage {
             console.log('Agree clicked');
             console.log(clickedData);
 
-            if ( clickedData.status == '2') {
-            
+            if (clickedData.status == '2') {
+
               let path = 'requests/' + clickedData.reqId + '/status';
               let data = {
                 [path]: '0'
@@ -178,26 +180,26 @@ export class AdminHistoryPage {
                 .catch((error) => {
 
                 });
-              
+
             }
-            else if ( clickedData.status == '3'){
-            
+            else if (clickedData.status == '3') {
+
               let path = 'requests/' + clickedData.reqId + '/status';
               let data = {
                 [path]: '0'
               }
               this.fire.updateField(data)
                 .then((response) => {
-                    
+
                 })
                 .catch((error) => {
 
                 });
-               
+
             }
-            
-            
-            else if( clickedData.status == '1'){
+
+
+            else if (clickedData.status == '1') {
 
               let path = 'requests/' + clickedData.reqId + '/status';
               let data = {
@@ -210,37 +212,38 @@ export class AdminHistoryPage {
                 .catch((error) => {
 
                 });
-              for (var i = 0; i < this.historyInfo.length; i++){
-              if (clickedData.date == this.historyInfo[i].date) {
 
-                if (clickedData.AN == this.historyInfo[i].AN || clickedData.AN != this.historyInfo[i].AN 
-                  && clickedData.FN == this.historyInfo[i].FN || clickedData.FN != this.historyInfo[i].FN) {
-    
-                  if (this.historyInfo[i].reqId != clickedData.reqId) {
+              for (var i = 0; i < this.historyInfo.length; i++) {
+                if (clickedData.date == this.historyInfo[i].date) {
 
-                    if(this.historyInfo[i].status == 2){
-              
-                    let path = 'requests/' + this.historyInfo[i].reqId + '/status';
-                    let data = {
-                      [path]: 0
+                  if (clickedData.AN == this.historyInfo[i].AN || clickedData.AN != this.historyInfo[i].AN
+                    && clickedData.FN == this.historyInfo[i].FN || clickedData.FN != this.historyInfo[i].FN) {
+
+                    if (this.historyInfo[i].reqId != clickedData.reqId) {
+
+                      if (this.historyInfo[i].status == 2) {
+
+                        let path = 'requests/' + this.historyInfo[i].reqId + '/status';
+                        let data = {
+                          [path]: 0
+                        }
+
+                        this.fire.updateField(data)
+                          .then((response) => {
+
+                          })
+                          .catch((error) => {
+
+                          });
+                      }
                     }
-    
-                    this.fire.updateField(data)
-                      .then((response) => {
-    
-                      })
-                      .catch((error) => {
-    
-                      });
-                    }  
                   }
                 }
               }
             }
-            }
-            
+
           }
-    
+
         }
       ]
     });

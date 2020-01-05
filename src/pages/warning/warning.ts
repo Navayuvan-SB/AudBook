@@ -136,6 +136,13 @@ export class WarningPage {
       this.fire.updateField(data)
         .then((response) => {
 
+          // dismiss the loading
+          loading.dismiss();
+
+           // show toast message
+           toast.setMessage("Request was successfully rejected.");
+           toast.present();
+
           // Dismiss the popover
           this.viewCtrl.dismiss();
 

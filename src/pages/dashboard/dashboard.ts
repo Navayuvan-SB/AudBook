@@ -108,26 +108,6 @@ export class DashboardPage {
     this.navCtrl.push(RequestPage, { data: data });
   }
 
-  logout() {
-
-    // Present loading
-    this.afAuth.auth.signOut()
-      .then((response) => {
-
-        // Dismiss loading and set login page as root
-        this.navCtrl.setRoot(LoginPage);
-      })
-      .catch((error) => {
-
-        // Dismiss loading and show error toast message
-        let toast = this.toastCtrl.create({
-          duration: 3000
-        });
-        toast.setMessage("Some error has occured. Please try again");
-        toast.present();
-      });
-  }
-
   // doRefresh(refresher: any){
 
   //   setTimeout(() => {

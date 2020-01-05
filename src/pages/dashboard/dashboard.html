@@ -1,30 +1,23 @@
 <!--header-->
 <ion-header no-border>
 
-    <ion-navbar class="toolbar-title.toolbar-title-md">
+  <ion-navbar hideBackButton class="toolbar-title.toolbar-title-md">
 
-      <ion-title><b>Dashboard</b></ion-title>
-      <ion-buttons left>
-        <button ion-button icon-only menuToggle color="dark">
-          <ion-icon name="menu"></ion-icon>
+    <ion-title><b>Dashboard</b></ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle color="dark">
+        <ion-icon name="menu"></ion-icon>
       </button>
-
     </ion-buttons>
-      <ion-buttons right class="logout">
-        <button ion-button icon-only (click)="logout()">
-          <ion-icon name="md-log-out" color="danger"></ion-icon>
-        </button>
-      </ion-buttons>
 
-    </ion-navbar>
+  </ion-navbar>
 </ion-header>
 
 
 
 <!--content-->
 <ion-content padding>
-
-  
 
   <!--grid for rows and cols(1row & 3cols)-->
   <ion-grid>
@@ -40,18 +33,18 @@
       <ion-col col-9 (click)="req(data)">
         <div class="margin-left">
           <ion-row>
-            <ion-col col-10>
+            <ion-col col-12>
               <p class="font-style">{{ data.name }}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-10>
+              <p class="font-lighter">{{ data.dept }}</p>
             </ion-col>
             <ion-col col-2>
               <span class="notification-circle">
                 <p class="notify-nums">{{ data.requests }}</p>
               </span>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12>
-              <p class="font-lighter">{{ data.dept }}</p>
             </ion-col>
           </ion-row>
         </div>
