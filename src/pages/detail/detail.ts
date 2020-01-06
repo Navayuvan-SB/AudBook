@@ -7,7 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { BookNewPage } from '../book-new/book-new';
-
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { ReservedPage } from '../reserved/reserved';
 
 
 /**
@@ -80,6 +81,8 @@ export class DetailPage {
   // User Id
   userId: any;
 
+  // Blur background when popover
+  blurClass: any;
 
   constructor(public fire: FirebaseServices,
     public formBuilder: FormBuilder,
@@ -90,7 +93,8 @@ export class DetailPage {
     public navParams: NavParams,
     public loading: LoadingController,
     public toast: ToastController,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public nativePageTransitions: NativePageTransitions
   ) {
 
     this.credentialForm = this.formBuilder.group({
@@ -98,6 +102,11 @@ export class DetailPage {
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10)
+      ])],
+      purpose: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20)
       ])]
 
     });
@@ -222,8 +231,9 @@ export class DetailPage {
   stat() {
 
     var phoneNumber = this.credentialForm.controls['text1'].value;
+    var purpose = this.credentialForm.controls['purpose'].value;
 
-    if ((this.anStatus == 1) || (this.fnStatus == 1) && (phoneNumber != '')) {
+    if ((this.anStatus == 1) || (this.fnStatus == 1) && (phoneNumber != '') && (purpose.trim() != '')) {
 
       // Req Id Generation
       var write = this.audname + phoneNumber.substring(3, 6) + 'wr' + this.foren + this.aftern;
@@ -239,7 +249,8 @@ export class DetailPage {
         'phone': phoneNumber,
         'reqId': write,
         'userId': this.userId,
-        'status': 0
+        'status': 0,
+        'purpose': purpose
       }
 
       // Presenting loading controller
@@ -268,6 +279,15 @@ export class DetailPage {
           this.toastCtrl.present();
         });
 
+      // Native slide page transitions
+      let options: NativeTransitionOptions = {
+        direction: 'left',
+        duration: 350,
+        slowdownfactor: -1,
+        iosdelay: 50
+      }
+
+      this.nativePageTransitions.slide(options);
       this.navCtrl.setRoot(StatusPage);
 
     }
@@ -319,7 +339,6 @@ export class DetailPage {
       document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
       this.fnStatus = 0;
     }
-    ;
 
   }
 
@@ -341,7 +360,7 @@ export class DetailPage {
 
             core = '1';
 
-            if ((obj[i][1].status == '1') || (obj[i][1].status == '0')) {
+            if ((obj[i][1]['status'] == '1')) {
 
               if (flagAN == '0') {
                 flagAN = obj[i][1].AN;
@@ -352,14 +371,14 @@ export class DetailPage {
               }
 
               if (flagFN == '1' && flagAN == '1') {
-                // this.statusrec = 1;
+
                 document.documentElement.style.setProperty(`--rocolor`, ' #ff0000 ');
               }
 
             }
             else if (obj[i][1].status == '0') {
               if (this.statusrec != 1) {
-                // this.statusrec = 0;
+
                 document.documentElement.style.setProperty(`--rocolor`, ' #FFFF00 ');
               }
 
@@ -374,12 +393,12 @@ export class DetailPage {
         }
 
         if (core == '0') {
-          // this.statusrec = 3;
+
           document.documentElement.style.setProperty(`--rocolor`, '  #35AE59 ');
         }
 
         if ((flagAN == '0' && flagFN == '1') || (flagAN == '1' && flagFN == '0')) {
-          // this.statusrec = 0;
+
           document.documentElement.style.setProperty(`--rocolor`, ' #FFFF00 ');
         }
 
@@ -406,29 +425,49 @@ export class DetailPage {
     this.fire.readOnce('requests')
       .then((response) => {
 
+        this.blurClass = 'blur';
         //passing data to calendar page
         let pop = this.popoverCtrl.create(CalendarPage, { aud: this.aud, data: this.navParams.get('data') });
 
         pop.onDidDismiss((data) => {
 
+          this.blurClass = false;
           if (data != undefined) {
 
-            // get the data from popup page and assign it to calendar data
-            this.calenDateData = data;
+            // See if the date has events
+            if (data.hasEvent) {
 
-            //for seperating the values from the array of date, time , month 
-            this.date = this.calenDateData.date;
-            this.oldMonth = this.calenDateData.month;
-            this.month = Number(this.oldMonth);
-            this.month = this.month + 1;
-            this.year = this.calenDateData.year;
-            this.findata = String(this.date + '/' + this.month + '/' + this.year);
+              // Native slide page transitions
+              let options: NativeTransitionOptions = {
+                direction: 'left',
+                duration: 350,
+                slowdownfactor: -1,
+                iosdelay: 50
+              }
 
-            // for-after-noon border color back to normal when visiting page again 
-            document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
-            document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+              this.nativePageTransitions.slide(options);
+              this.navCtrl.push(ReservedPage, { getData: data, aud: this.aud, data: response });
 
-            this.firebaseFunctions();
+            } else {
+
+              // get the data from popup page and assign it to calendar data
+              this.calenDateData = data;
+
+              //for seperating the values from the array of date, time , month 
+              this.date = this.calenDateData.date;
+              this.oldMonth = this.calenDateData.month;
+              this.month = Number(this.oldMonth);
+              this.month = this.month + 1;
+              this.year = this.calenDateData.year;
+              this.findata = String(this.date + '/' + this.month + '/' + this.year);
+
+              // for-after-noon border color back to normal when visiting page again 
+              document.documentElement.style.setProperty(`--button-clicked-an`, '1px solid #000');
+              document.documentElement.style.setProperty(`--button-clicked-fn`, '1px solid #000');
+
+              this.firebaseFunctions();
+            }
+
           }
 
         });
@@ -473,5 +512,4 @@ export class DetailPage {
       });
   }
 
-  
 } 

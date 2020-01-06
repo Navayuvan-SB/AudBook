@@ -7,6 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
 import { ProfilePage } from '../profile/profile';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 /**
  * Generated class for the StatusPage page.
@@ -30,6 +31,9 @@ export class StatusPage {
   // Toast controller
   toastCtrl: any;
 
+  // Class for blur the background when popup
+  blurClass: any;
+
   constructor(
     public alertctrl: AlertController,
     public navCtrl: NavController,
@@ -41,7 +45,8 @@ export class StatusPage {
     private afAuth: AngularFireAuth,
     private alertCtrl: AlertController,
     public fbAuth: AngularFireAuth,
-    public afDatabase: AngularFireDatabase) {
+    public afDatabase: AngularFireDatabase,
+    public nativePageTransitions: NativePageTransitions) {
 
     // Initializing Loading Controller
     this.loadingCtrl = this.loading.create({
@@ -65,7 +70,7 @@ export class StatusPage {
 
       });
 
-    
+
 
   }
 
@@ -121,11 +126,12 @@ export class StatusPage {
 
   alert(data: any) {
 
+    this.blurClass = 'blur';
     // Pass the data to Warning popover
     const popover = this.popoverCtrl.create(WarningPage, { status: data, from: 1 });
 
     popover.onDidDismiss((data) => {
-
+      this.blurClass = false;
     });
 
     popover.present();
@@ -155,6 +161,15 @@ export class StatusPage {
           handler: data => {
 
             // Pass the seat count to Book New Page
+            // Native slide page transitions
+            let options: NativeTransitionOptions = {
+              direction: 'left',
+              duration: 350,
+              slowdownfactor: -1,
+              iosdelay: 50
+            }
+
+            this.nativePageTransitions.slide(options);
             this.navCtrl.push(BookNewPage, { sCount: data });
           }
         }
@@ -164,6 +179,5 @@ export class StatusPage {
     seatAlert.present();
 
   }
-
 
 }

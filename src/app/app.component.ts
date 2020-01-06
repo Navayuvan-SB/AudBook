@@ -21,8 +21,8 @@ import { ViewChild } from '@angular/core';
 import { IonicPage, NavController, ToastController, NavParams, LoadingController } from 'ionic-angular';
 import { AdminHistoryPage } from '../pages/admin-history/admin-history';
 import { ProfilePage } from '../pages/profile/profile';
-
-
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { ReservedPage } from '../pages/reserved/reserved';
 
 
 
@@ -33,7 +33,7 @@ import { ProfilePage } from '../pages/profile/profile';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage : any;
   loading: any;
   toast: any;
   pages: Array<{ title: string, component: any, icon: string, color: string }>
@@ -47,7 +47,8 @@ export class MyApp {
     public loadingCtrl: LoadingController,
     public afAuth: AngularFireAuth,
     public alertCtrl: AlertController,
-    public fire: FirebaseServices) {
+    public fire: FirebaseServices,
+    public nativePageTransitions: NativePageTransitions) {
 
 
 
@@ -105,6 +106,15 @@ export class MyApp {
   //navigation to pages
   navPages(pages) {
 
+    // Native slide page transitions
+    let options: NativeTransitionOptions = {
+      direction: 'left',
+      duration: 350,
+      slowdownfactor: -1,
+      iosdelay: 50
+    }
+
+    this.nativePageTransitions.slide(options);
     this.nav.insert(0, pages.component);
     this.nav.popToRoot();
 
@@ -150,6 +160,15 @@ export class MyApp {
                 loading.dismiss();
 
                 // Dismiss loading and set login page as root
+                // Native slide page transitions
+                let options: NativeTransitionOptions = {
+                  direction: 'left',
+                  duration: 350,
+                  slowdownfactor: -1,
+                  iosdelay: 50
+                }
+
+                this.nativePageTransitions.slide(options);
                 this.nav.insert(0, LoginPage);
                 this.nav.popToRoot();
               })
@@ -174,6 +193,16 @@ export class MyApp {
     let user = this.afAuth.auth.currentUser;
     this.fire.readOnce('users/' + user['uid'])
       .then((response) => {
+
+        // Native slide page transitions
+        let options: NativeTransitionOptions = {
+          direction: 'left',
+          duration: 350,
+          slowdownfactor: -1,
+          iosdelay: 50
+        }
+
+        this.nativePageTransitions.slide(options);
         this.nav.setRoot(ProfilePage, { response: response });
       });
   }

@@ -87,4 +87,14 @@ h2{
 // profile button
 ion-item button {
   margin: 40px 0 20px 0 !important;
+  height: 30px !important;
+  border-radius: 12px !important;
+  -webkit-border-radius: 12px !important;
+  -moz-border-radius: 12px !important;
+  -ms-border-radius: 12px !important;
+  -o-border-radius: 12px !important;
+}
+
+ion-item button span {
+  font-size: 14px;
 }

@@ -23,9 +23,9 @@
 <ion-content padding>
 
   <!-- Date picker -->
-  <ion-item>
+  <ion-item (click)="datetime.open()">
     <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="D/M/YYYY" [(ngModel)]="date" (ionChange)="dateChanged()"></ion-datetime>
+    <ion-datetime #datetime displayFormat="D/M/YYYY" [(ngModel)]="date" (ionChange)="dateChanged()"></ion-datetime>
   </ion-item>
 
 

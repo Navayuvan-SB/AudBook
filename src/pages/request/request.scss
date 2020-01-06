@@ -75,4 +75,10 @@ page-request {
     // width: 50% !important;
   }
 
+  // Blur background
+  .blur {
+    filter: blur(1.2px);
+    -webkit-filter: blur(1.2px);
+  }
+
 }

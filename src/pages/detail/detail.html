@@ -4,15 +4,16 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header no-border>
-  <ion-navbar >
-   
+<ion-header no-border [ngClass]="blurClass">
+  <ion-navbar>
+
     <ion-title class="toolbar-title.toolbar-title-md"><b>One more step...</b></ion-title>
+
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding [ngClass]="blurClass">
   <!-- Auditorium picture details -->
 
   <div class="one">
@@ -24,7 +25,6 @@
       <ion-row>
 
         <!--aud image -->
-
         <ion-col>
           <ion-avatar class="image imgPicDisplay ">
             <!--image-->
@@ -32,7 +32,6 @@
         </ion-col>
 
         <!--aud image details -->
-
         <ion-col col-6>
           <ion-row class="leftDistance name-distance"><b>{{ audname }}</b> </ion-row>
           <ion-row class="leftDistance dept-distance ">{{ auddept }}</ion-row>
@@ -132,20 +131,19 @@
 
         </ion-row>
 
-        <!--Purpose details  -->
-
-        <!-- <ion-row>
+        <!-- Purpose details  -->
+        <ion-row>
           <ion-col>
-               <ion-item  class="but button-display">
-                    <ion-input formControlName="purpose" placeholder="Purpose" class="common"> </ion-input>
-               </ion-item>
+            <ion-item class="but button-display">
+              <ion-input formControlName="purpose" placeholder="Purpose" class="common"> </ion-input>
+            </ion-item>
 
-               <ion-item
-               *ngIf="!credentialForm.controls.purpose.valid && (credentialForm.controls.purpose.dirty || submitAttempt)">
-               <p >Minimum length should be 10 &<br>Maximum length should be 25</p>
-           </ion-item>
+            <ion-item
+              *ngIf="!credentialForm.controls.purpose.valid && (credentialForm.controls.purpose.dirty || submitAttempt)">
+              <p>Minimum length should be 8 &<br>Maximum length should be 25</p>
+            </ion-item>
           </ion-col>
-      </ion-row> -->
+        </ion-row>
 
         <!-- Book button details -->
         <ion-row>

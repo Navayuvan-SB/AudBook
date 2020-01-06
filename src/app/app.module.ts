@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AdminHistoryPage } from '../pages/admin-history/admin-history';
 import { FormGroup } from '@angular/forms';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { ReservedPage } from '../pages/reserved/reserved';
 
 
 
@@ -45,8 +47,8 @@ import { FormGroup } from '@angular/forms';
     RequestPage,
     CalendarPage,
     AdminHistoryPage,
-    ProfilePage
-    
+    ProfilePage,
+    ReservedPage  
   ],
   imports: [
     BrowserModule,
@@ -74,8 +76,8 @@ import { FormGroup } from '@angular/forms';
     RequestPage,
     CalendarPage,
     AdminHistoryPage,
-    ProfilePage
-   
+    ProfilePage,
+    ReservedPage
   ],
   providers: [
   
@@ -85,7 +87,8 @@ import { FormGroup } from '@angular/forms';
     AngularFireAuth,
     AngularFireDatabase,
     AngularFireModule,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NativePageTransitions
   ]
 })
 export class AppModule { }

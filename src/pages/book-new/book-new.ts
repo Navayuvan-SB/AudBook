@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, PopoverController, LoadingControll
 import { CalendarPage } from '../calendar/calendar';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { DetailPage } from '../detail/detail';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { ReservedPage } from '../reserved/reserved';
 
 /**
  * Generated class for the BookNewPage page.
@@ -29,12 +31,16 @@ export class BookNewPage {
   // Seat Count
   sCount: number = 0;
 
+  // Class for blur the background when popup
+  blurClass: any;
+
   constructor(public fire: FirebaseServices,
     public navCtrl: NavController,
     public navParams: NavParams,
     public popoverCtrl: PopoverController,
     public loading: LoadingController,
-    public toast: ToastController) {
+    public toast: ToastController,
+    public nativePageTransitions: NativePageTransitions) {
 
 
     // Initializing Loading Controller
@@ -69,14 +75,45 @@ export class BookNewPage {
     this.fire.readOnce('requests')
       .then((response) => {
 
+        this.blurClass = 'blur';
         const popover = this.popoverCtrl.create(CalendarPage, { aud: aud, data: response });
 
         popover.onDidDismiss((data) => {
 
+          this.blurClass = false;
           if (data != undefined) {
-            this.navCtrl.push(DetailPage, { getData: data, aud: aud, data: response });
+
+            // See if the date has events
+
+            if (data.hasEvent) {
+
+              // Native slide page transitions
+              let options: NativeTransitionOptions = {
+                direction: 'left',
+                duration: 350,
+                slowdownfactor: -1,
+                iosdelay: 50
+              }
+
+              this.nativePageTransitions.slide(options);
+              this.navCtrl.push(ReservedPage, { getData: data, aud: aud, data: response });
+
+            } else {
+
+              // Native slide page transitions
+              let options: NativeTransitionOptions = {
+                direction: 'left',
+                duration: 350,
+                slowdownfactor: -1,
+                iosdelay: 50
+              }
+
+              this.nativePageTransitions.slide(options);
+              this.navCtrl.push(DetailPage, { getData: data, aud: aud, data: response });
+            }
+
           }
-          
+
         });
 
         popover.present();

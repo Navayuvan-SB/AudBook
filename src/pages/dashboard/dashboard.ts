@@ -7,6 +7,7 @@ import { RequestPage } from '../request/request';
 import { LoginPage } from '../login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 
 /**
@@ -33,6 +34,7 @@ export class DashboardPage {
     public loadingCtrl: LoadingController,
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
+    public nativePageTransitions: NativePageTransitions
   ) {
 
 
@@ -95,25 +97,48 @@ export class DashboardPage {
 
 
   edit(data: any) {
+
+    // Native slide page transitions
+    let options: NativeTransitionOptions = {
+      direction: 'left',
+      duration: 350,
+      slowdownfactor: -1,
+      iosdelay: 50
+     }
+
+    this.nativePageTransitions.slide(options);
     this.navCtrl.push(EditPage, { data: data });
   }
 
 
   create() {
+
+    // Native slide page transitions
+    let options: NativeTransitionOptions = {
+      direction: 'left',
+      duration: 350,
+      slowdownfactor: -1,
+      iosdelay: 50
+     }
+
+    this.nativePageTransitions.slide(options);
     this.navCtrl.push(CreatePage);
   }
 
 
   req(data: any) {
+
+    // Native slide page transitions
+    let options: NativeTransitionOptions = {
+      direction: 'left',
+      duration: 350,
+      slowdownfactor: -1,
+      iosdelay: 50
+     }
+
+    this.nativePageTransitions.slide(options);
     this.navCtrl.push(RequestPage, { data: data });
   }
-
-  // doRefresh(refresher: any){
-
-  //   setTimeout(() => {
-  //     console.log('Async operation has ended');
-  //     refresher.dismiss();
-  //   }, 2000);
 
 
   updateCount() {

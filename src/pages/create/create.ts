@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { DashboardPage } from '../dashboard/dashboard';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 /**
  * Generated class for the CreatePage page.
  *
@@ -34,7 +34,8 @@ toastCtrl: any;
               public loading: LoadingController,
               public toast: ToastController,
               public form: FormBuilder, 
-              public alert: AlertController) {
+              public alert: AlertController,
+              public nativePageTransitions: NativePageTransitions) {
 
                 
     this.Department = "Mech";
@@ -191,11 +192,19 @@ toastCtrl: any;
 
         });         
     // console.log('save button clicked');
-    this.navCtrl.push(DashboardPage)
+
+     // Native slide page transitions
+     let options: NativeTransitionOptions = {
+      direction: 'left',
+      duration: 350,
+      slowdownfactor: -1,
+      iosdelay: 50
+     }
+
+    this.nativePageTransitions.slide(options);
+    this.navCtrl.insert(0, DashboardPage);
+    this.navCtrl.popToRoot();
   }
  }
 
- prepage(){
-   this.navCtrl.setRoot(DashboardPage);
- }
 }

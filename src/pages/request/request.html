@@ -6,7 +6,7 @@
 -->
 <!--header-->
 <!--header-->
-<ion-header no-border>
+<ion-header no-border [ngClass]="blurClass">
 
   <ion-navbar class="toolbar-title.toolbar-title-md">
     <ion-title class="toolbar-title.toolbar-title-md"><b>Requests</b></ion-title>
@@ -18,7 +18,7 @@
 
 
 <!--content-->
-<ion-content padding>
+<ion-content padding [ngClass]="blurClass">
 
 
   <!--grid for rows and cols(1row & 3cols)-->
@@ -73,8 +73,5 @@
   <div class="notfound" *ngIf="!present">
     <p>Request not found</p>
   </div>
-
-
-
 
 </ion-content>

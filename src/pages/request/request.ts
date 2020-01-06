@@ -24,6 +24,9 @@ export class RequestPage {
   loading: any;
   toast: any;
 
+  // Blur background for popup
+  blurClass: any;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alerCtrl: AlertController,
@@ -241,8 +244,13 @@ export class RequestPage {
   }
   cancel(redata: any) {
 
-    const popover = this.popoverCtrl.create(WarningPage, { requests: redata, from: 2, data: this.reqdata });
 
+    this.blurClass = 'blur';
+    const popover = this.popoverCtrl.create(WarningPage, { requests: redata, from: 2, data: this.reqdata });
+    
+    popover.dismiss(() => {{
+      this.blurClass = false;
+    }});
     popover.present();
 
   }

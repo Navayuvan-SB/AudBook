@@ -1,0 +1,93 @@
+<!--
+  Generated template for the ReservedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+  <ion-navbar>
+
+    <ion-title class="toolbar-title.toolbar-title-md"><b>Reserved</b></ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="one">
+
+    <ion-grid>
+
+      <ion-row>
+
+        <!--aud image -->
+        <ion-col>
+          <ion-avatar class="image imgPicDisplay ">
+            <!--image-->
+          </ion-avatar>
+        </ion-col>
+
+        <!--aud image details -->
+        <ion-col col-6>
+          <ion-row class="leftDistance name-distance"><b>{{ auditorium.name }}</b> </ion-row>
+          <ion-row class="leftDistance dept-distance ">{{ auditorium.dept }}</ion-row>
+        </ion-col>
+
+        <!--green round details  -->
+        <ion-col col-2>
+          <ion-avatar class="avail-display">
+          </ion-avatar>
+        </ion-col>
+
+      </ion-row>
+
+      <div *ngFor="let request of requests">
+        <h3 *ngIf="request.AN == 1 && request.FN == 0">Reserved for AN</h3>
+        <h3 *ngIf="request.AN == 0 && request.FN == 1">Reserved for FN</h3>
+        <h3 *ngIf="request.AN == 1 && request.FN == 1">Reserved for AN & FN</h3>
+        <ion-row class="detail-row">
+          <ion-col col-12 class="detail-col">
+            <b>Department</b>
+          </ion-col>
+
+          <ion-col col-12 class="detail-col">
+            {{ request.dept }}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="detail-row">
+          <ion-col col-12 class="detail-col">
+            <b>Date</b>
+          </ion-col>
+
+          <ion-col col-12 class="detail-col">
+            {{ request.date }}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="detail-row">
+          <ion-col col-12 class="detail-col">
+            <b>Phone Number</b>
+          </ion-col>
+
+          <ion-col col-12 class="detail-col">
+            {{ request.phone }}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="detail-row">
+          <ion-col col-12 class="detail-col">
+            <b>Purpose</b>
+          </ion-col>
+
+          <ion-col col-12 class="detail-col">
+            {{ request.purpose }}
+          </ion-col>
+        </ion-row>
+
+      </div>
+
+    </ion-grid>
+
+  </div>
+</ion-content>

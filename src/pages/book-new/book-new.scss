@@ -68,4 +68,10 @@ page-book-new {
     margin-top: 10px;
   }
 
+  // Blur background
+  .blur {
+    filter: blur(1.2px);
+    -webkit-filter: blur(1.2px);
+  }
+
 }

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseServices } from '../../services/fireBaseService';
 import { DashboardPage } from '../dashboard/dashboard';
 import { StatusPage } from '../status/status';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 @Component({
   selector: 'page-login',
@@ -18,7 +19,8 @@ export class LoginPage {
     public formBuilder: FormBuilder,
     public fbService: FirebaseServices,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public nativePageTransitions: NativePageTransitions) {
 
     this.credentialForm = this.formBuilder.group({
       email: ['', Validators.compose([
@@ -61,22 +63,40 @@ export class LoginPage {
 
         // get the user type and navigate to according to it.
         this.fbService.readOnce('users/' + uid)
-        .then((response) => {
+          .then((response) => {
 
-          // Check the user type and navigate to the apt page.
-          if (response['type'] == 'user'){
+            // Check the user type and navigate to the apt page.
+            if (response['type'] == 'user') {
 
-            this.navCtrl.push(StatusPage);
+              // Native slide page transitions
+              let options: NativeTransitionOptions = {
+                direction: 'left',
+                duration: 350,
+                slowdownfactor: -1,
+                iosdelay: 50
+              }
 
-          }else if (response['type'] == 'admin'){
+              this.nativePageTransitions.slide(options);
+              this.navCtrl.push(StatusPage);
 
-            this.navCtrl.push(DashboardPage);
+            } else if (response['type'] == 'admin') {
 
-          }
-        })
-        .catch((error) => {
+              // Native slide page transitions
+              let options: NativeTransitionOptions = {
+                direction: 'left',
+                duration: 350,
+                slowdownfactor: -1,
+                iosdelay: 50
+              }
 
-        });
+              this.nativePageTransitions.slide(options);
+              this.navCtrl.push(DashboardPage);
+
+            }
+          })
+          .catch((error) => {
+
+          });
 
       })
       .catch((error) => {

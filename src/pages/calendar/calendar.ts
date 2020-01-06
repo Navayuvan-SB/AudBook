@@ -43,7 +43,6 @@ export class CalendarPage {
 
     this.firebaseResponse = this.navParams.get('data');
 
-    console.log(this.firebaseResponse);
     // getting value from booknew
     this.aud = this.navParams.get('aud');
 
@@ -66,7 +65,7 @@ export class CalendarPage {
 
         core = '1';
 
-        if ((obj[i][1]['status'] == '1') || (obj[i][1]['status'] == '0')) {
+        if ((obj[i][1]['status'] == '1')) {
 
           if (flagAN == '0') {
             flagAN = obj[i][1]['AN'];
@@ -96,8 +95,6 @@ export class CalendarPage {
 
     }
 
-    console.log(this.currentEvents);
-
   }
 
   ionViewDidLoad() {
@@ -107,7 +104,7 @@ export class CalendarPage {
   //calendar funtion
   public onDaySelect($event) {
 
-    //console.log($event);
+    // console.log($event);
     let data = $event;
 
     this.viewCtrl.dismiss(data);
