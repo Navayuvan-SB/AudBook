@@ -97,20 +97,19 @@ export class RequestPage {
         }
         this.display = arr;
 
-        if (count != 0) {
-          // to update request count
-          let reqcount = 'auditorium/' + this.reqdata.audID + '/requests';
-          let data = {
-            [reqcount]: count
-          }
-          this.fire.updateField(data)
-            .then((response) => {
-
-            })
-            .catch((error) => {
-
-            });
+        // to update request count
+        let reqcount = 'auditorium/' + this.reqdata.audID + '/requests';
+        let data = {
+          [reqcount]: count
         }
+        this.fire.updateField(data)
+          .then((response) => {
+
+          })
+          .catch((error) => {
+
+          });
+
       })
       .catch((error) => {
 

@@ -79,6 +79,36 @@ ion-grid {
   color: #35AE59;
 }
 
+  // Responsive design
+  @media (min-width: 550px) {
+
+    ion-header ion-navbar {
+      width: 550px !important;
+      margin: 0 auto;
+    }
+
+    ion-content ion-grid {
+      width: 550px !important;
+
+    }
+
+    ion-footer {
+      width: 100%;
+    }
+
+    ion-footer div {
+      width: 550px;
+      margin: 0 auto;
+    }
+
+    .logout {
+      margin-right: 0px;
+
+    }
+
+  }
+
+
 //style for creat button
 .create-button {
   background-color: #35AE59;

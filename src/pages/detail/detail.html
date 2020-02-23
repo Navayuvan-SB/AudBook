@@ -12,119 +12,157 @@
 
 
 <ion-content padding>
+  <!-- Auditorium picture details -->
 
   <div class="one">
+
+  <!-- Starting grid aud pic details -->
 
     <ion-grid>
       
       <ion-row>
 
+  <!--aud image -->
+
           <ion-col>
-             <ion-avatar class="img1 imgPicDisplay ">
+             <ion-avatar class="image imgPicDisplay ">
                   <!--image-->
              </ion-avatar>
           </ion-col>
 
+  <!--aud image details -->
 
-          <ion-col col-7>
-             <ion-row class="leftDistance top-dist-one"><b>{{ audname }}</b> </ion-row>
-             <ion-row class="leftDistance top-dist-two ">{{ auddept }}</ion-row>
+          <ion-col col-6>
+             <ion-row class="leftDistance name-distance"><b>{{ audname }}</b> </ion-row>
+             <ion-row class="leftDistance dept-distance ">{{ auddept }}</ion-row>
           </ion-col>
 
-
-          <ion-col col-1>
+  <!--green round details  -->
+          <ion-col col-2>
              <ion-avatar class="avail-display">
              </ion-avatar>
           </ion-col>
 
-
       </ion-row>
 
     </ion-grid>
+   
+  <!-- Ending grid of aud pic details -->
+
+  <!--Starting grid booking details -->
 
     <ion-grid>
+
+  <!--Date display details  -->
 
       <ion-row row-12>
 
           <ion-col>
-             <ion-item  (click)="cal()" class="but but1">
-                  <ion-label class="l1"> {{ findata }}</ion-label>
-                  <ion-icon class="icon1"  name="custom-calendar" item-end></ion-icon>
+             <ion-item  (click)="cal()" class="but button-display">
+                  <ion-label class="common"> {{ findata }}</ion-label>
+                  <ion-icon class="icon-display"  name="custom-calendar" item-end></ion-icon>
              </ion-item>
           </ion-col>
 
       </ion-row>
 
+  <!-- Starting of form -->
+
     <form [formGroup]="credentialForm">
+
+  <!-- Fore-after-noon details -->
 
       <ion-row row-12>
 
            <ion-col col-6 *ngIf="!foren">
-                <ion-item class="but-unchecked but1">
-                      <ion-label class="l4">FN</ion-label>  
+                <ion-item class="but-unchecked button-display">
+                      <ion-label class="fore-after-noon">FN</ion-label>  
                 </ion-item>
            </ion-col>
 
            <ion-col col-6 *ngIf="foren">
-                <ion-item class="but-checked-fn but1" (click)="mycolorFn()">            
-                     <ion-label class="l4">FN</ion-label>
+                <ion-item class="but-checked-fn button-display" (click)="mycolorFn()">            
+                     <ion-label class="fore-after-noon">FN</ion-label>
                 </ion-item>
            </ion-col>
 
            <ion-col col-6 *ngIf="!aftern">
-                <ion-item class="but1 but-unchecked">
-                     <ion-label class="l4" id="bocolor">AN</ion-label>
+                <ion-item class="button-display but-unchecked">
+                     <ion-label class="fore-after-noon" id="bocolor">AN</ion-label>
                 </ion-item>
            </ion-col>
 
            <ion-col col-6 *ngIf="aftern">
-               <ion-item class="but1 but-checked-an" (click)="mycolorAn()">
-                     <ion-label class="l4" id="bocolor">AN</ion-label>
+               <ion-item class="button-display but-checked-an" (click)="mycolorAn()">
+                     <ion-label class="fore-after-noon" id="bocolor">AN</ion-label>
                </ion-item>
            </ion-col>
 
       </ion-row>
+
+  <!-- Department details -->
 
       <ion-row>
 
            <ion-col>
-               <ion-item (click)="dept()" class="but but1">
-                    <ion-label  class="ll1 l1">{{ department }}</ion-label>
-                    <ion-icon class="icon1" name="custom-dwarr" item-end></ion-icon>
+               <ion-item (click)="dept()" class="but book-display">
+                    <ion-label  class="dept-display common">{{ department }}</ion-label>
+                    <ion-icon class="icon-display" name="custom-aw" item-end></ion-icon>
                </ion-item>
            </ion-col>
 
       </ion-row>
 
+  <!-- Mobile number details -->
+
       <ion-row>
 
           <ion-col>
-               <ion-item  class="but but1">
-                    <ion-input formControlName="text1" placeholder="Mobilenumber" class="l1" [(ngModel)]="text">
+               <ion-item  class="but button-display">
+                    <ion-input formControlName="passMobileNum" placeholder="Mobilenumber" class="common" [(ngModel)]="mobileNum">
                     </ion-input>
                </ion-item>
 
                <ion-item
-                   *ngIf="!credentialForm.controls.text1.valid && (credentialForm.controls.text1.dirty || submitAttempt)">
+                   *ngIf="!credentialForm.controls.passMobileNum.valid && (credentialForm.controls.passMobileNum.dirty || submitAttempt)">
                    <p>Enter valid Phone number</p>
                </ion-item>
           </ion-col>
           
       </ion-row>
- 
-      <ion-row>
 
+  <!--Purpose details  -->
+
+      <ion-row>
+          <ion-col>
+               <ion-item  class="but button-display">
+                    <ion-input formControlName="purpose" placeholder="Purpose" class="common"> </ion-input>
+               </ion-item>
+
+               <ion-item
+               *ngIf="!credentialForm.controls.purpose.valid && (credentialForm.controls.purpose.dirty || submitAttempt)">
+               <p >Minimum length should be 10 &<br>Maximum length should be 25</p>
+           </ion-item>
+          </ion-col>
+      </ion-row>
+
+    <!-- Book button details -->
+      <ion-row>
          <ion-col>
-                   <button ion-button class="but but2" (click)="stat()" full [disabled]="!(anStatus || fnStatus) || !credentialForm.valid">
-                         <ion-label class="l3">Book</ion-label>
+                   <button ion-button class="but book-display" (click)="stat()" full [disabled]="!(anStatus || fnStatus) || !credentialForm.valid">
+                         <ion-label class="book-label">Book</ion-label>
                    </button>
          </ion-col>
 
       </ion-row>
 
     </form>
+ 
+   <!-- Completion of form -->
 
     </ion-grid>
+
+   <!-- Ending grid booking details -->
 
   </div>
 

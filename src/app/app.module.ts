@@ -24,6 +24,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { AdminHistoryPage } from '../pages/admin-history/admin-history';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CalendarPage } from '../pages/calendar/calendar';
     WarningPage,
     DashboardPage,
     RequestPage,
-    CalendarPage
+    CalendarPage,
+    AdminHistoryPage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { CalendarPage } from '../pages/calendar/calendar';
     StatusPage,
     DashboardPage,
     RequestPage,
-    CalendarPage
+    CalendarPage,
+    AdminHistoryPage
   ],
   providers: [
   
