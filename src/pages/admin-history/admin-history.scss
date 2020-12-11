@@ -36,7 +36,11 @@ page-admin-history {
     height: 90px;
     background-size: cover;
     display: block;
-    border-radius: 10%;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
   }
 
   //button
@@ -87,5 +91,15 @@ page-admin-history {
     font-size: 25px;
   }
 
-
+  // Image inside ion-avatar (aud image)
+  ion-avatar img {
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+  }
 }

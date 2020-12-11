@@ -91,6 +91,9 @@ export class StatusPage {
 
         //objects is stored in obj
         // this.dataret = response;
+
+        console.log(response.val());
+
         let obj = Object.entries(response.val());
 
         // Local array to store the array of objects
@@ -106,7 +109,7 @@ export class StatusPage {
           }
         }
         // Assigining arr to global datar
-        this.statusinfo = arr;
+        this.statusinfo = this.addAuditoriumImage(arr);
 
         // Dismissing the loading controller
         this.loadingCtrl.dismiss();
@@ -177,6 +180,25 @@ export class StatusPage {
     });
 
     seatAlert.present();
+
+  }
+
+  addAuditoriumImage(requests) {
+
+    // Access the auditorium id and add image in the property
+    requests.map(element => {
+      
+      this.fire.readOnce('auditorium/' + element['audId'] + '/image')
+      .then((response) => {
+        return element['image'] = response;
+      })
+      .catch((error) => {
+      
+      });
+
+    });
+
+    return requests;
 
   }
 

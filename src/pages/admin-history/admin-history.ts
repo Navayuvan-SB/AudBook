@@ -39,7 +39,7 @@ export class AdminHistoryPage {
   req: any;
 
   // emptyFlag 
-  emptyFlag : Boolean = true;
+  emptyFlag: Boolean = true;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -135,8 +135,8 @@ export class AdminHistoryPage {
         }
 
         // Assigining arr to global datar
-        this.historyInfo = arr;
-        
+        this.historyInfo = this.addAuditoriumImage(arr);
+
 
 
       }, (error) => {
@@ -233,7 +233,7 @@ export class AdminHistoryPage {
 
                           })
                           .catch((error) => {
-
+                            
                           });
                       }
                     }
@@ -248,6 +248,26 @@ export class AdminHistoryPage {
       ]
     });
     confirm.present();
+  }
+
+  // Add auditorium image to respective request
+  addAuditoriumImage(requests) {
+
+    // Access the auditorium id and add image in the property
+    requests.map(element => {
+
+      this.fire.readOnce('auditorium/' + element['audId'] + '/image')
+        .then((response) => {
+          return element['image'] = response;
+        })
+        .catch((error) => {
+
+        });
+
+    });
+
+    return requests;
+
   }
 
 }

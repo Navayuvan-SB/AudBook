@@ -56,16 +56,6 @@ export class EditPage {
 
     this.Department = this.aud.dept;
 
-    // Initializing Loading Controller
-    this.loadingCtrl = this.loading.create({
-      content: 'Please wait...'
-    });
-
-    // Initializing Toast Controller
-    this.toastCtrl = this.toast.create({
-      duration: 3000
-    });
-
   }
 
   ionViewDidLoad() {
@@ -140,8 +130,18 @@ export class EditPage {
   // Saving process of edit page
   save() {
 
+     // Initializing Loading Controller
+     let loadingCtrl = this.loading.create({
+      content: 'Please wait...'
+    });
+
+    // Initializing Toast Controller
+    let toastCtrl = this.toast.create({
+      duration: 3000
+    });
+
     // Presenting loading controller
-    this.loadingCtrl.present();
+    loadingCtrl.present();
 
     // Getting the field values
     var dept = this.Department;
@@ -152,13 +152,23 @@ export class EditPage {
     if (dept.trim() == '' || name.trim() == '' || sCount.trim() == '') {
 
       // Dismissing the loading controller
-      this.loadingCtrl.dismiss();
+      loadingCtrl.dismiss();
 
       // Display the toast
-      this.toastCtrl.setMessage("Fill all the fields...")
-      this.toastCtrl.present();
+      toastCtrl.setMessage("Fill all the fields...")
+      toastCtrl.present();
 
-    } else {
+    }
+    else if (Number(sCount.trim) > 2000 || Number(sCount.trim) < 50) {
+
+      // Dismissing the loading controller
+      loadingCtrl.dismiss();
+
+      // Display the toast
+      toastCtrl.setMessage("Seat count should be between 50 and 2000")
+      toastCtrl.present();
+    }
+    else {
 
       // Keys
       var deptKey = 'auditorium/' + this.aud.audID + '/dept';
@@ -176,21 +186,21 @@ export class EditPage {
         .then((response) => {
 
           // Dismissing the loading controller
-          this.loadingCtrl.dismiss();
+          loadingCtrl.dismiss();
 
           // Display the toast
-          this.toastCtrl.setMessage("Auditorium name and dept Updated Successfully...!")
-          this.toastCtrl.present();
+          toastCtrl.setMessage("Auditorium name and dept Updated Successfully...!")
+          toastCtrl.present();
 
         })
         .catch((error) => {
 
           // Dismissing the loading controller
-          this.loadingCtrl.dismiss();
+          loadingCtrl.dismiss();
 
           // Display the toast
-          this.toastCtrl.setMessage("Something is wrong. Please try again later...!")
-          this.toastCtrl.present();
+          toastCtrl.setMessage("Something is wrong. Please try again later...!")
+          toastCtrl.present();
 
         });
 

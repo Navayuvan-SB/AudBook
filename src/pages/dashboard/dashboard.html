@@ -1,6 +1,5 @@
 <!--header-->
 <ion-header no-border>
-
   <ion-navbar hideBackButton class="toolbar-title.toolbar-title-md">
 
     <ion-title><b>Dashboard</b></ion-title>
@@ -15,7 +14,6 @@
 </ion-header>
 
 
-
 <!--content-->
 <ion-content padding>
 
@@ -26,7 +24,7 @@
       <!--col 1 for image-->
       <ion-col col-2>
         <ion-card (click)="req(data)">
-          <img src="../../assets/imgs/AuditImageView@2x.png">
+          <img id="audDisplayImage" src="{{ data.image }}">
         </ion-card>
       </ion-col>
       <!-- col 3 for text & notifi (1 col-> (2rows) -> (1row(2col)) & 1row(1col) ) -->
@@ -56,10 +54,7 @@
         </div>
       </ion-col>
     </ion-row>
-
   </ion-grid>
-
-
 </ion-content>
 
 

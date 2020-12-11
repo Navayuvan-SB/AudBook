@@ -16,28 +16,27 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 })
 export class CreatePage {
 
-testRadioOpen: boolean;
-testRadioResult;
-Department: string;
-credentialForm: FormGroup;
+  testRadioOpen: boolean;
+  testRadioResult;
+  Department: string;
+  credentialForm: FormGroup;
 
-// Loading controller
-loadingCtrl: any;
+  // Loading controller
+  loadingCtrl: any;
 
-// Toast controller
-toastCtrl: any;
+  // Toast controller
+  toastCtrl: any;
 
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private fire: FirebaseServices,
-              public loading: LoadingController,
-              public toast: ToastController,
-              public form: FormBuilder, 
-              public alert: AlertController,
-              public nativePageTransitions: NativePageTransitions) {
-
-                
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private fire: FirebaseServices,
+    public loading: LoadingController,
+    public toast: ToastController,
+    public form: FormBuilder,
+    public alert: AlertController,
+    public nativePageTransitions: NativePageTransitions) {
+    
     this.Department = "Mech";
 
     // Form Validation
@@ -53,22 +52,13 @@ toastCtrl: any;
       ])]
     });
 
-    // Initializing Loading Controller
-    this.loadingCtrl = this.loading.create({
-      content: 'Please wait...'
-    });
-
-    // Initializing Toast Controller
-    this.toastCtrl = this.toast.create({
-      duration: 3000
-    });
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatePage');
   }
-  
+
   //Drop-down using alert component
   Dept() {
     let alert = this.alert.create();
@@ -134,10 +124,21 @@ toastCtrl: any;
   }
 
   // Saving process of edit page
-  save(){
+  save() {
+
+    // Initializing Loading Controller
+    let loadingCtrl = this.loading.create({
+      content: 'Please wait...'
+    });
+
+    // Initializing Toast Controller
+    let toastCtrl = this.toast.create({
+      duration: 3000
+    });
+
 
     // Presenting loading controller
-    this.loadingCtrl.present();
+    loadingCtrl.present();
 
     // Getting the field values
     var dept = this.Department;
@@ -149,16 +150,24 @@ toastCtrl: any;
     if (dept.trim() == '' || name.trim() == '' || sCount.trim() == '') {
 
       // Dismissing the loading controller
-      this.loadingCtrl.dismiss();
+      loadingCtrl.dismiss();
 
       // Display the toast
-      this.toastCtrl.setMessage("Fill all the fields...")
-      this.toastCtrl.present();
+      toastCtrl.setMessage("Fill all the fields...")
+      toastCtrl.present();
 
-    } 
+    }
+    else if (Number(sCount.trim) > 2000 || Number(sCount.trim) < 50) {
 
+      // Dismissing the loading controller
+      loadingCtrl.dismiss();
+
+      // Display the toast
+      toastCtrl.setMessage("Seat count should be between 50 and 2000")
+      toastCtrl.present();
+    }
     else {
-      
+
       // AudID Generation
       var audId = name.slice(0, 3) + 'cs' + dept;
 
@@ -171,40 +180,40 @@ toastCtrl: any;
         sCount: sCount
       };
 
-    //write in Database
-     this.fire.writeInDatabase('auditorium/' + audId, data)
+      //write in Database
+      this.fire.writeInDatabase('auditorium/' + audId, data)
         .then((response) => {
 
-           // Dismissing the loading controller
-           this.loadingCtrl.dismiss();
+          // Dismissing the loading controller
+          loadingCtrl.dismiss();
 
-           // Display the toast
-           this.toastCtrl.setMessage("Auditorium name and dept Created Successfully...!")
-           this.toastCtrl.present();
+          // Display the toast
+          toastCtrl.setMessage("Auditorium name and dept Created Successfully...!")
+          toastCtrl.present();
         })
         .catch((error) => {
           // Dismissing the loading controller
-          this.loadingCtrl.dismiss();
+          loadingCtrl.dismiss();
 
           // Display the toast
-          this.toastCtrl.setMessage("Something is wrong. Please try again later...!")
-          this.toastCtrl.present();
+          toastCtrl.setMessage("Something is wrong. Please try again later...!")
+          toastCtrl.present();
 
-        });         
-    // console.log('save button clicked');
+        });
+      // console.log('save button clicked');
 
-     // Native slide page transitions
-     let options: NativeTransitionOptions = {
-      direction: 'left',
-      duration: 350,
-      slowdownfactor: -1,
-      iosdelay: 50
-     }
+      // Native slide page transitions
+      let options: NativeTransitionOptions = {
+        direction: 'left',
+        duration: 350,
+        slowdownfactor: -1,
+        iosdelay: 50
+      }
 
-    this.nativePageTransitions.slide(options);
-    this.navCtrl.insert(0, DashboardPage);
-    this.navCtrl.popToRoot();
+      this.nativePageTransitions.slide(options);
+      this.navCtrl.insert(0, DashboardPage);
+      this.navCtrl.popToRoot();
+    }
   }
- }
 
 }

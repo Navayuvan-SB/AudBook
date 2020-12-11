@@ -30,8 +30,13 @@ page-dashboard {
   }
 
   ion-card {
-    width: 80px !important;
-  }
+    width: 90px !important;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
 
   .margin-left {
     margin-left: 50px;
@@ -135,6 +140,19 @@ page-dashboard {
   ion-footer {
     height: 10%;
   }
+
+  // Display Image of Auditorium
+  #audDisplayImage {
+    width: 90px !important;
+    height: 90px !important;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    object-fit: cover;
+
+}
 
   // // Responsive design
   // @media (min-width: 550px) {

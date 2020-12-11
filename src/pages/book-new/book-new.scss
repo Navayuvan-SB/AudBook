@@ -42,14 +42,18 @@ page-book-new {
     height: 90px;
     background-size: cover;
     display: block;
-    border-radius: 7%;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
   }
 
   // Picture for auditorium
-  .img1 {
-    background-image: url(../assets/imgs/oneaud.png);
+  // .img1 {
+  //   background-image: url(../assets/imgs/oneaud.png);
 
-  }
+  // }
 
   //aligning content for auditorium 
   .leftDistance {
@@ -72,6 +76,18 @@ page-book-new {
   .blur {
     filter: blur(1.2px);
     -webkit-filter: blur(1.2px);
+  }
+
+  // Image inside ion-avatar (aud image)
+  ion-avatar img {
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
   }
 
 }
